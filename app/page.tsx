@@ -1,11 +1,14 @@
-import { Button } from "@/components/ui/button";
+import { Hero } from "@/components/hero";
+import { Skills } from "@/components/skills";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function Home() {
   return (
-    <main className="">
-      <Button>
-        Click Me
-      </Button>
-    </main>
+    <>
+    <Hero />
+    <Skills />
+
+    <ThemeToggle />
+    </>
   )
 }
