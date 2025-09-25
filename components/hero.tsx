@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import { GITHUB_URL, LINKED_IN_URL, MAIL_URL } from '@/constants';
 
 export const Hero = () => {
   const scrollToSection = (sectionId: string) => {
@@ -121,7 +122,7 @@ export const Hero = () => {
           className="flex justify-center gap-6"
         >
           <motion.a
-            href="https://github.com/your-username"
+            href={GITHUB_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground transition-colors p-2"
@@ -132,7 +133,7 @@ export const Hero = () => {
             <span className="sr-only">GitHub</span>
           </motion.a>
           <motion.a
-            href="https://linkedin.com/in/harsh-vansjaliya"
+            href={LINKED_IN_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground transition-colors p-2"
@@ -143,7 +144,7 @@ export const Hero = () => {
             <span className="sr-only">LinkedIn</span>
           </motion.a>
           <motion.a
-            href="mailto:your.email@example.com"
+            href={MAIL_URL}
             className="text-muted-foreground hover:text-foreground transition-colors p-2"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}

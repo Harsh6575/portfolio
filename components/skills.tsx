@@ -2,119 +2,121 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Code, 
-  Database, 
-  Server, 
-  Wrench, 
-  Braces, 
-  TrendingUp,
-  Calendar
+import {
+    Code,
+    Database,
+    Server,
+    Wrench,
+    Braces,
+    TrendingUp,
+    Calendar
 } from 'lucide-react';
 import { SectionHeading } from './section-heading';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 
 export const skillsData = [
-  {
-    category: "Backend Focus",
-    icon: Server,
-    period: "2024 - Present",
-    description: "Current specialization in scalable backend systems",
-    items: [
-      "Node.js", 
-      "Express.js", 
-      "Django", 
-      "REST API", 
-      "GraphQL", 
-      ".NET Core",
-      "PostgreSQL",
-      "MongoDB"
-    ],
-    priority: true
-  },
-  {
-    category: "Algorithmic Trading",
-    icon: TrendingUp,
-    period: "2024 - Present", 
-    description: "Market data analysis and automated strategies",
-    items: [
-      "Python",
-      "pandas", 
-      "NumPy", 
-      "yfinance",
-      "Jupyter Notebooks",
-      "Data Analysis"
-    ],
-    priority: true
-  },
-  {
-    category: "Frontend & Full-Stack",
-    icon: Code,
-    period: "2022 - Present",
-    description: "Modern web development with React ecosystem",
-    items: [
-      "Next.js", 
-      "React", 
-      "TypeScript", 
-      "JavaScript (ES6+)", 
-      "Tailwind CSS", 
-      "shadcn/ui"
-    ],
-    priority: false
-  },
-  {
-    category: "Databases",
-    icon: Database,
-    period: "2023 - Present",
-    description: "Database design and optimization",
-    items: [
-      "PostgreSQL", 
-      "MongoDB", 
-      "SQL Server", 
-      "Database Design",
-      "Query Optimization"
-    ],
-    priority: false
-  },
-  {
-    category: "Tools & DevOps", 
-    icon: Wrench,
-    period: "2022 - Present",
-    description: "Development workflow and deployment tools",
-    items: [
-      "Git", 
-      "Docker", 
-      "Postman", 
-      "VS Code",
-      "Linux",
-      "Vercel",
-      "CI/CD"
-    ],
-    priority: false
-  },
-  {
-    category: "Languages",
-    icon: Braces,
-    period: "2022 - Present", 
-    description: "Programming languages in active use",
-    items: [
-      "TypeScript", 
-      "JavaScript", 
-      "Python", 
-      "C#",
-      "SQL"
-    ],
-    priority: false
-  }
+    {
+        category: "Backend Focus",
+        icon: Server,
+        period: "2024 - Present",
+        description: "Current specialization in scalable backend systems",
+        items: [
+            "Node.js",
+            "Express.js",
+            "Django",
+            "Spring Boot",
+            "REST API",
+            "GraphQL",
+            "PostgreSQL",
+            "MongoDB"
+        ],
+        priority: true
+    },
+    {
+        category: "Algorithmic Trading",
+        icon: TrendingUp,
+        period: "2024 - Present",
+        description: "Market data analysis and automated strategies",
+        items: [
+            "Python",
+            "pandas",
+            "NumPy",
+            "yfinance",
+            "Jupyter Notebooks",
+            "Data Analysis"
+        ],
+        priority: true
+    },
+    {
+        category: "Frontend & Full-Stack",
+        icon: Code,
+        period: "2022 - Present",
+        description: "Modern web development with React ecosystem",
+        items: [
+            "Next.js",
+            "React",
+            "TypeScript",
+            "JavaScript (ES6+)",
+            "Tailwind CSS",
+            "shadcn/ui"
+        ],
+        priority: false
+    },
+    {
+        category: "Databases",
+        icon: Database,
+        period: "2023 - Present",
+        description: "Database design and optimization",
+        items: [
+            "PostgreSQL",
+            "MongoDB",
+            "SQL Server",
+            "Database Design",
+            "Query Optimization"
+        ],
+        priority: false
+    },
+    {
+        category: "Tools & DevOps",
+        icon: Wrench,
+        period: "2022 - Present",
+        description: "Development workflow and deployment tools",
+        items: [
+            "Git",
+            "Docker",
+            "GitHub",
+            "BitBucket",
+            "Postman",
+            "VS Code",
+            "Linux",
+            "Vercel",
+            "CI/CD"
+        ],
+        priority: false
+    },
+    {
+        category: "Languages",
+        icon: Braces,
+        period: "2022 - Present",
+        description: "Programming languages in active use",
+        items: [
+            "TypeScript",
+            "JavaScript",
+            "Python",
+            "Java",
+            "SQL"
+        ],
+        priority: false
+    }
 ];
 
 export const Skills = () => {
-  return (
+    return (
     <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        <SectionHeading
+        <SectionHeading 
           title="Skills & Expertise"
           subtitle="My technical journey and current focus areas - from frontend foundations to backend specialization"
         />
@@ -151,11 +153,11 @@ export const Skills = () => {
                             <Icon className="w-6 h-6" />
                           </div>
                           <div className="flex-1">
-                            <div className="flex items-center justify-between mb-2">
+                            <div className="flex flex-col sm:flex-row justify-between gap-2 mb-2">
                               <CardTitle className="text-lg">
                                 {skillGroup.category}
                               </CardTitle>
-                              <Badge variant="secondary" className="text-xs">
+                              <Badge variant="secondary" className="text-xs font-medium w-fit">
                                 {skillGroup.period}
                               </Badge>
                             </div>
@@ -175,7 +177,9 @@ export const Skills = () => {
                               transition={{ duration: 0.3, delay: 0.5 + (idx * 0.05) }}
                               viewport={{ once: true }}
                             >
-                              <Badge variant="outline" className="hover:bg-primary/10 transition-colors">
+                              {/* <Badge className="px-3 py-1 text-sm rounded-full bg-primary/10 text-primary border 
+                              border-primary/20 hover:bg-primary/20 transition-colors cursor-default"> */}
+                              <Badge variant="my_primary">
                                 {skill}
                               </Badge>
                             </motion.div>
@@ -228,13 +232,12 @@ export const Skills = () => {
                       <CardContent className="pt-0">
                         <div className="flex flex-wrap gap-2">
                           {skillGroup.items.map((skill, idx) => (
-                            <Badge 
-                              key={idx} 
-                              variant="secondary" 
-                              className="text-xs hover:bg-muted/70 transition-colors"
+                            <span
+                              key={idx}
+                              className="px-3 py-1 text-sm rounded-full bg-muted/50 text-foreground hover:bg-muted transition-colors cursor-default"
                             >
                               {skill}
-                            </Badge>
+                            </span>
                           ))}
                         </div>
                       </CardContent>
