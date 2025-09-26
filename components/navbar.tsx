@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { ThemeToggle } from "@/components/theme-toggle";
 import Image from "next/image";
 
 const navItems = [
