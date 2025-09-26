@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
@@ -12,7 +12,6 @@ import { SectionHeading } from '@/components/section-heading';
 import { 
   Mail, 
   MapPin, 
-  Phone, 
   Send, 
   Github, 
   Linkedin, 

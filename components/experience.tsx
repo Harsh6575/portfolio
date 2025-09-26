@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { SectionHeading } from '@/components/section-heading';
 import { MapPin, Calendar, Building, Briefcase, GraduationCap } from 'lucide-react';
@@ -13,7 +13,7 @@ export const experiences = [
     role: "Software Developer",
     company: "Algoacharya",
     location: "Ahmedabad",
-    duration: "Sept 2023 – May 2025",
+    duration: "Sept 2023 - May 2025",
     type: "Full-time",
     logo: "/algoacharya-logo.webp", // Add your company logo path
     description: [
@@ -29,7 +29,7 @@ export const experiences = [
     role: ".NET Developer Intern",
     company: "Gujarat Informatics Limited (GIL)",
     location: "Gandhinagar",
-    duration: "Mar 2023 – May 2023",
+    duration: "Mar 2023 - May 2023",
     type: "Internship",
     logo: "/gil-logo.png", // Add your company logo path
     description: [
