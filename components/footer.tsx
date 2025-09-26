@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowUp, Heart } from 'lucide-react';
-import { GITHUB_URL, LINKED_IN_URL, MAIL_URL, X_URL } from '@/constants';
+import { GITHUB_URL, LINKED_IN_URL, MAIL_URL, OPEN_TO_NEW_OP, X_URL } from '@/constants';
 
 export const Footer = () => {
   const bgRef = useRef<HTMLDivElement | null>(null);
@@ -14,7 +14,7 @@ export const Footer = () => {
     setIsClient(true);
   }, []);
 
-  if(!isClient){
+  if (!isClient) {
     return null;
   }
 
@@ -30,12 +30,12 @@ export const Footer = () => {
         className="absolute inset-0 flex items-center pointer-events-none"
       >
         <motion.h1
-          animate={{ 
+          animate={{
             x: ['30%', '-60%'],
           }}
-          transition={{ 
-            duration: 30, 
-            repeat: Infinity, 
+          transition={{
+            duration: 30,
+            repeat: Infinity,
             repeatType: 'reverse',
             ease: 'linear'
           }}
@@ -130,7 +130,7 @@ export const Footer = () => {
           </motion.p>
 
           {/* Status */}
-          <motion.div
+          {OPEN_TO_NEW_OP && (<motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -139,7 +139,7 @@ export const Footer = () => {
           >
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
             <span>Available for backend opportunities</span>
-          </motion.div>
+          </motion.div>)}
         </div>
       </div>
     </footer>

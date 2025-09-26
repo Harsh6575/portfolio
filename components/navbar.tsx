@@ -68,11 +68,10 @@ export const Navbar = () => {
             <button
               key={item.href}
               onClick={() => handleScroll(item.href)}
-              className={`relative text-sm font-medium transition-colors ${
-                active === item.href
+              className={`relative text-sm font-medium transition-colors ${active === item.href
                   ? "text-primary"
                   : "text-muted-foreground hover:text-foreground"
-              }`}
+                }`}
             >
               {item.label}
               {active === item.href && (
@@ -107,11 +106,10 @@ export const Navbar = () => {
             <button
               key={item.href}
               onClick={() => handleScroll(item.href)}
-              className={`w-full text-left text-sm font-medium transition-colors ${
-                active === item.href
+              className={`w-full text-left text-sm font-medium transition-colors ${active === item.href
                   ? "text-primary"
                   : "text-muted-foreground hover:text-foreground"
-              }`}
+                }`}
             >
               {item.label}
             </button>

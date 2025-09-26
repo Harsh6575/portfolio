@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
-import { GITHUB_URL, LINKED_IN_URL, MAIL_URL } from '@/constants';
+import { GITHUB_URL, LINKED_IN_URL, MAIL_URL, OPEN_TO_NEW_OP } from '@/constants';
 
 export const Hero = () => {
   const scrollToSection = (sectionId: string) => {
@@ -40,17 +40,20 @@ export const Hero = () => {
       {/* Main Content */}
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         {/* Status Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-6"
-        >
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20">
-            <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
-            Open to New Opportunities
-          </span>
-        </motion.div>
+        {
+          OPEN_TO_NEW_OP &&
+          (<motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-6"
+          >
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20">
+              <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+              Open to New Opportunities
+            </span>
+          </motion.div>)
+        }
 
         {/* Name */}
         <motion.h1
