@@ -180,31 +180,6 @@ export const Contact = () => {
                 </motion.div>
               ))}
             </div>
-
-            {/* Social Links */}
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-foreground">Connect With Me</h3>
-              <div className="flex gap-4">
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={index}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, delay: 0.2 + (index * 0.1) }}
-                    viewport={{ once: true }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`p-3 rounded-lg border border-border hover:border-primary/50 text-muted-foreground ${social.color} transition-all duration-200`}
-                  >
-                    <social.icon className="w-5 h-5" />
-                    <span className="sr-only">{social.label}</span>
-                  </motion.a>
-                ))}
-              </div>
-            </div>
           </motion.div>
 
           {/* Right Column - Contact Form */}
