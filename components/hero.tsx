@@ -13,7 +13,7 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
       {/* Background Initials */}
       <motion.div
         className="absolute inset-0 flex items-center justify-center pointer-events-none"
