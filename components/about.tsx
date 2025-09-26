@@ -15,6 +15,7 @@ import {
   Zap
 } from 'lucide-react';
 import Image from 'next/image';
+import { TOTAL_EXPERIENCE } from '@/constants';
 
 export const About = () => {
   const highlights = [
@@ -61,7 +62,7 @@ export const About = () => {
           >
             <div className="space-y-4">
               <p className="text-lg text-foreground/90 leading-relaxed">
-                I&apos;m a <span className="text-primary font-semibold">Software Developer</span> with 2+ years of experience, 
+                I&apos;m a <span className="text-primary font-semibold">Software Developer</span> with {TOTAL_EXPERIENCE}+ years of experience, 
                 currently transitioning into backend specialization. My journey began in frontend development, 
                 but I&apos;ve discovered my passion lies in building <span className="text-primary font-semibold">scalable, 
                 robust backend systems</span>.
@@ -195,7 +196,7 @@ export const About = () => {
                 <h3 className="font-semibold text-foreground mb-4 text-center">Quick Stats</h3>
                 <div className="grid grid-cols-2 gap-4 text-center">
                   <div>
-                    <div className="text-2xl font-bold text-primary">2+</div>
+                    <div className="text-2xl font-bold text-primary">{TOTAL_EXPERIENCE}+</div>
                     <div className="text-xs text-muted-foreground">Years Experience</div>
                   </div>
                   <div>

@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
-import { GITHUB_URL, LINKED_IN_URL, MAIL_URL, OPEN_TO_NEW_OP } from '@/constants';
+import { GITHUB_URL, LINKED_IN_URL, MAIL_URL, OPEN_TO_NEW_OP, TOTAL_EXPERIENCE } from '@/constants';
 
 export const Hero = () => {
   const scrollToSection = (sectionId: string) => {
@@ -89,7 +89,7 @@ export const Hero = () => {
           className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed"
         >
           Building scalable backend solutions and trading systems with{' '}
-          <span className="text-primary font-medium">2+ years</span> of experience
+          <span className="text-primary font-medium">{TOTAL_EXPERIENCE}+ years</span> of experience
         </motion.p>
 
         {/* CTA Buttons */}

@@ -4,3 +4,4 @@ export const LINKED_IN_URL: string =
 export const GITHUB_URL: string = "https://github.com/harsh6575";
 export const X_URL: string = "https://x.com/HarshVansjaliya";
 export const OPEN_TO_NEW_OP: boolean = true;
+export const TOTAL_EXPERIENCE: number = new Date().getFullYear() - 2023;
