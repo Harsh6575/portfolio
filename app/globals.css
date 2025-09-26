@@ -1,8 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@import "tailwindcss";
-
 @theme {
   --font-poppins: var(--font-poppins), sans-serif;
 }
