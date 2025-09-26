@@ -12,54 +12,33 @@ import {
   Users,
   Star,
   TrendingUp,
-  Database,
-  Smartphone
+  Database
 } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa6';
+import { GITHUB_URL } from '@/constants';
 
 
 const projectsData = [
-  {
-    title: "Hotel Reservation Platform",
-    description: "A full-stack hotel booking application inspired by Airbnb, built with modern web technologies. Features complete user authentication, property listings, booking system, and payment integration.",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "NextAuth.js", "React-Leaflet", "Cloudinary"],
-    category: "Full-Stack",
-    icon: Users,
-    status: "Completed",
-    date: "2024",
-    features: [
-      "User authentication and authorization system",
-      "Property listing with image galleries",
-      "Advanced search and filtering options",
-      "Interactive maps integration",
-      "Booking system with date selection",
-      "Responsive design across all devices"
-    ],
-    links: {
-      github: "https://github.com/your-username/hotel-reservation",
-      live: "https://hotel-reservation-demo.vercel.app",
-    },
-  },
-  {
-    title: "Twitter Clone Mobile App",
-    description: "A feature-rich social media application built with React Native and Expo, replicating core Twitter functionality with real-time features and modern mobile UI/UX.",
-    technologies: ["React Native", "Expo", "TypeScript", "NativeWind", "Node.js", "Express.js", "MongoDB", "Cloudinary"],
-    category: "Mobile",
-    icon: Smartphone,
-    status: "Completed",
-    date: "2024",
-    features: [
-      "Real-time posting and feed updates",
-      "Media upload and management",
-      "User authentication with Clerk",
-      "Secure backend with spam protection",
-      "Responsive mobile design",
-      "Push notifications support"
-    ],
-    links: {
-      github: "https://github.com/your-username/twitter-clone-mobile",
-    },
-  },
+  // {
+  //   title: "Twitter Clone Mobile App",
+  //   description: "A feature-rich social media application built with React Native and Expo, replicating core Twitter functionality with real-time features and modern mobile UI/UX.",
+  //   technologies: ["React Native", "Expo", "TypeScript", "NativeWind", "Node.js", "Express.js", "MongoDB", "Cloudinary"],
+  //   category: "Mobile",
+  //   icon: Smartphone,
+  //   status: "Completed",
+  //   date: "2024",
+  //   features: [
+  //     "Real-time posting and feed updates",
+  //     "Media upload and management",
+  //     "User authentication with Clerk",
+  //     "Secure backend with spam protection",
+  //     "Responsive mobile design",
+  //     "Push notifications support"
+  //   ],
+  //   links: {
+  //     github: "https://github.com/your-username/twitter-clone-mobile",
+  //   },
+  // },
   {
     title: "Algorithmic Trading Platform",
     description: "A sophisticated trading platform for the Indian stock market with automated strategies, real-time data analysis, and portfolio management capabilities.",
@@ -97,9 +76,30 @@ const projectsData = [
       "Report generation"
     ],
     links: {
-      github: "https://github.com/your-username/library-management-javafx",
+      github: GITHUB_URL + "/LibraryManagementSystemJava",
     },
-  }
+  },
+  {
+    title: "Hotel Reservation Platform",
+    description: "A full-stack hotel booking application inspired by Airbnb, built with modern web technologies. Features complete user authentication, property listings, booking system, and payment integration.",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "NextAuth.js", "React-Leaflet", "Cloudinary"],
+    category: "Full-Stack",
+    icon: Users,
+    status: "Completed",
+    date: "2022",
+    features: [
+      "User authentication and authorization system",
+      "Property listing with image galleries",
+      "Advanced search and filtering options",
+      "Interactive maps integration",
+      "Booking system with date selection",
+      "Responsive design across all devices"
+    ],
+    links: {
+      github: GITHUB_URL + "/airbnb-clone",
+      live: "http://hotel-reservation-harsh6575.vercel.app/",
+    },
+  },
 ];
 
 export const Projects = () => {
