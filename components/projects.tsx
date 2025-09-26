@@ -8,7 +8,6 @@ import { Badge } from '@/components/ui/badge';
 import { SectionHeading } from '@/components/section-heading';
 import {
   ExternalLink,
-  Github,
   Calendar,
   Users,
   Star,
@@ -16,6 +15,8 @@ import {
   Database,
   Smartphone
 } from 'lucide-react';
+import { FaGithub } from 'react-icons/fa6';
+
 
 const projectsData = [
   {
@@ -124,14 +125,17 @@ export const Projects = () => {
               <Card className="flex flex-col h-full border-border/50 shadow-sm hover:shadow-xl transition-all duration-300 hover:border-primary/30 overflow-hidden rounded-2xl">
 
                 {/* Top Icon / Header */}
-                <div className="bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center py-10">
+                {/* <div className="bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center py-10">
                   <div className="w-16 h-16 rounded-xl bg-primary/20 flex items-center justify-center">
                     <project.icon className="w-8 h-8 text-primary" />
                   </div>
-                </div>
+                </div> */}
 
                 {/* Content */}
-                <CardHeader className="p-6">
+                {/* <CardHeader className="p-6"> */}
+                <CardHeader>
+                  <CardTitle className="text-xl">{project.title}</CardTitle>
+
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
                       <Badge variant="outline" className="text-xs">
@@ -150,7 +154,6 @@ export const Projects = () => {
                     </div>
                   </div>
 
-                  <CardTitle className="text-xl">{project.title}</CardTitle>
                   <CardDescription className="mt-2 text-sm leading-relaxed">
                     {project.description}
                   </CardDescription>
@@ -202,7 +205,7 @@ export const Projects = () => {
                             rel="noopener noreferrer"
                             className="flex items-center gap-2"
                           >
-                            <Github className="w-4 h-4" />
+                            <FaGithub className="w-4 h-4" />
                             Code
                           </a>
                         </Button>

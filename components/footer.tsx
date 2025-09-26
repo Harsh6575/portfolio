@@ -3,7 +3,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowUp, Heart } from 'lucide-react';
+import { ArrowUp, Heart, Mail } from 'lucide-react';
+import { FaGithub, FaLinkedin, FaXTwitter } from 'react-icons/fa6';
 import { GITHUB_URL, LINKED_IN_URL, MAIL_URL, OPEN_TO_NEW_OP, X_URL } from '@/constants';
 
 export const Footer = () => {
@@ -76,7 +77,7 @@ export const Footer = () => {
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
             >
-              GitHub
+              <FaGithub size={24} />
             </Link>
             <Link
               href={LINKED_IN_URL}
@@ -84,19 +85,19 @@ export const Footer = () => {
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
             >
-              LinkedIn
+              <FaLinkedin size={24} />
             </Link>
             <Link
               href={MAIL_URL}
               className="text-muted-foreground hover:text-primary transition-colors"
             >
-              Email
+              <Mail size={24} />
             </Link>
             <Link
               href={X_URL}
               className="text-muted-foreground hover:text-primary transition-colors"
             >
-              Twitter (X)
+              <FaXTwitter size={24} />
             </Link>
           </motion.div>
 

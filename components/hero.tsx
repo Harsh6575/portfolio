@@ -3,7 +3,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowDown, Mail } from 'lucide-react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa6';
 import { GITHUB_URL, LINKED_IN_URL, MAIL_URL, OPEN_TO_NEW_OP, TOTAL_EXPERIENCE } from '@/constants';
 
 export const Hero = () => {
@@ -46,7 +47,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-6"
+            className="mb-6 mt-8 md:mt-0"
           >
             <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20">
               <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
@@ -132,7 +133,7 @@ export const Hero = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Github className="w-6 h-6" />
+            <FaGithub className="w-6 h-6" />
             <span className="sr-only">GitHub</span>
           </motion.a>
           <motion.a
@@ -143,7 +144,7 @@ export const Hero = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Linkedin className="w-6 h-6" />
+            <FaLinkedin className="w-6 h-6" />
             <span className="sr-only">LinkedIn</span>
           </motion.a>
           <motion.a
@@ -159,7 +160,7 @@ export const Hero = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.5 }}
@@ -176,7 +177,7 @@ export const Hero = () => {
             className="w-1 h-3 bg-muted-foreground/50 rounded-full mt-2"
           />
         </motion.div>
-      </motion.div>
+      </motion.div> */}
     </section>
   );
 };
