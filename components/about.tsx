@@ -14,6 +14,7 @@ import {
   Target,
   Zap
 } from 'lucide-react';
+import Image from 'next/image';
 
 export const About = () => {
   const highlights = [
@@ -146,10 +147,12 @@ export const About = () => {
                 }}
                 className="w-48 h-48 bg-gradient-to-br from-primary/20 to-primary/5 rounded-full flex items-center justify-center border border-primary/20"
               >
-                <img 
+                <Image 
                   src="/400X400.svg" 
                   alt="Harsh Vansjaliya" 
                   className="w-32 h-32 opacity-80 dark:invert"
+                  height={132}
+                  width={132}
                 />
               </motion.div>
             </div>
