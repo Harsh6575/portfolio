@@ -90,7 +90,7 @@ const projectsData = [
     ],
     links: {
       github: GITHUB_URL + "/airbnb-clone",
-      live: "http://hotel-reservation-harsh6575.vercel.app/",
+      live: "https://hotel-reservation-harsh6575.vercel.app/",
     },
   },
 ];

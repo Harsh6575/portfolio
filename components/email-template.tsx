@@ -7,7 +7,7 @@ interface EmailTemplateProps {
   message: string;
 }
 
-export function EmailTemplate({ name, email, subject, message }: EmailTemplateProps) {
+export function EmailTemplate({ name, email, subject, message }: Readonly<EmailTemplateProps>) {
   return (
     <div>
       <h2>📩 New Contact Form Submission</h2>

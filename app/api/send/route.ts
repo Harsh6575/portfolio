@@ -9,10 +9,6 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { name, email, subject, message } = body;
 
-    // console.log("Request body:", body);
-    // console.log("Resend API Key exists:", !!process.env.RESEND_API_KEY);
-    // console.log("Sending to:", MAIL_URL.slice(7));
-
     const { error } = await resend.emails.send({
       from: "onboarding@resend.dev",
       to: MAIL_URL.slice(7),
@@ -22,11 +18,9 @@ export async function POST(req: Request) {
     });
 
     if (error) {
-      // console.error("Resend API error:", error);
       return Response.json({ error: error.message }, { status: 500 });
     }
-
-    // console.log("Email sent successfully:", data);
+    
     return Response.json({ success: true });
   } catch (error) {
     console.error("Server error:", error);
