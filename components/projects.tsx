@@ -16,26 +16,6 @@ import { GITHUB_URL } from '@/constants';
 
 
 const projectsData = [
-  // {
-  //   title: "Twitter Clone Mobile App",
-  //   description: "A feature-rich social media application built with React Native and Expo, replicating core Twitter functionality with real-time features and modern mobile UI/UX.",
-  //   technologies: ["React Native", "Expo", "TypeScript", "NativeWind", "Node.js", "Express.js", "MongoDB", "Cloudinary"],
-  //   category: "Mobile",
-  //   icon: Smartphone,
-  //   status: "Completed",
-  //   date: "2024",
-  //   features: [
-  //     "Real-time posting and feed updates",
-  //     "Media upload and management",
-  //     "User authentication with Clerk",
-  //     "Secure backend with spam protection",
-  //     "Responsive mobile design",
-  //     "Push notifications support"
-  //   ],
-  //   links: {
-  //     github: "https://github.com/your-username/twitter-clone-mobile",
-  //   },
-  // },
   {
     title: "Patient Management System",
     description: "A distributed healthcare management system built with Spring Boot microservices architecture. Designed to learn and implement enterprise-level backend patterns including API Gateway, service mesh communication, and event-driven architecture.",
@@ -122,7 +102,7 @@ export const Projects = () => {
         {/* Section Header */}
         <SectionHeading
           title="Featured Projects"
-          subtitle="A showcase of my development work - from full-stack web applications to mobile apps and trading platforms"
+          subtitle="A showcase of my development work - from full-stack web applications to trading platforms"
         />
 
         {/* Projects List */}
@@ -137,15 +117,7 @@ export const Projects = () => {
             >
               <Card className="flex flex-col h-full border-border/50 shadow-sm hover:shadow-xl transition-all duration-300 hover:border-primary/30 overflow-hidden rounded-2xl">
 
-                {/* Top Icon / Header */}
-                {/* <div className="bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center py-10">
-                  <div className="w-16 h-16 rounded-xl bg-primary/20 flex items-center justify-center">
-                    <project.icon className="w-8 h-8 text-primary" />
-                  </div>
-                </div> */}
-
                 {/* Content */}
-                {/* <CardHeader className="p-6"> */}
                 <CardHeader>
                   <CardTitle className="text-xl">{project.title}</CardTitle>
 
