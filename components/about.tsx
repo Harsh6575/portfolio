@@ -117,9 +117,16 @@ export const About = () => {
 
             {/* CTA */}
             <div className="pt-4">
-              <Button className="group" size="lg">
-                <Download className="w-4 h-4 mr-2 transition-transform group-hover:translate-y-0.5" />
-                Download Resume
+              <Button className="group" size="lg" asChild>
+                <a
+                  href="https://raw.githubusercontent.com/Harsh6575/portfolio-data/main/assets/Harsh_Vansjaliya_Resume.pdf"
+                  download="Harsh_Vansjaliya_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Download className="w-4 h-4 mr-2 transition-transform group-hover:translate-y-0.5" />
+                  Download Resume
+                </a>
               </Button>
             </div>
           </motion.div>
