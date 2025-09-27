@@ -9,10 +9,7 @@ import { SectionHeading } from '@/components/section-heading';
 import {
   ExternalLink,
   Calendar,
-  Users,
   Star,
-  TrendingUp,
-  Database
 } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa6';
 import { GITHUB_URL } from '@/constants';
@@ -40,11 +37,29 @@ const projectsData = [
   //   },
   // },
   {
+    title: "Patient Management System",
+    description: "A distributed healthcare management system built with Spring Boot microservices architecture. Designed to learn and implement enterprise-level backend patterns including API Gateway, service mesh communication, and event-driven architecture.",
+    technologies: ["Java", "Spring Boot", "Microservices", "gRPC", "Kafka", "PostgreSQL", "Docker", "JWT"],
+    category: "Backend",
+    status: "Completed",
+    date: "2025",
+    features: [
+      "5-service microservices architecture",
+      "API Gateway with request routing & auth",
+      "gRPC inter-service communication",
+      "Kafka event streaming for analytics",
+      "JWT authentication & authorization",
+      "Docker containerized deployment"
+    ],
+    links: {
+      github: GITHUB_URL + "/patient-management-spring-boot"
+    }
+  },
+  {
     title: "Algorithmic Trading Platform",
     description: "A sophisticated trading platform for the Indian stock market with automated strategies, real-time data analysis, and portfolio management capabilities.",
     technologies: ["Python", "Django", "PostgreSQL", "pandas", "NumPy", "yfinance", "Next.js", "GraphQL"],
     category: "FinTech",
-    icon: TrendingUp,
     status: "Professional Project",
     date: "2023-2025",
     features: [
@@ -64,7 +79,6 @@ const projectsData = [
     description: "A desktop application built with JavaFX for efficient library operations, featuring book management, user authentication, and borrowing system.",
     technologies: ["Java", "JavaFX", "SQLite", "FXML", "CSS"],
     category: "Desktop",
-    icon: Database,
     status: "Completed",
     date: "2023",
     features: [
@@ -84,7 +98,6 @@ const projectsData = [
     description: "A full-stack hotel booking application inspired by Airbnb, built with modern web technologies. Features complete user authentication, property listings, booking system, and payment integration.",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "NextAuth.js", "React-Leaflet", "Cloudinary"],
     category: "Full-Stack",
-    icon: Users,
     status: "Completed",
     date: "2022",
     features: [
