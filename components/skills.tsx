@@ -3,120 +3,120 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import {
-    Code,
-    Database,
-    Server,
-    Wrench,
-    Braces,
-    TrendingUp,
-    Calendar
+  Code,
+  Database,
+  Server,
+  Wrench,
+  Braces,
+  TrendingUp,
+  Calendar
 } from 'lucide-react';
 import { SectionHeading } from './section-heading';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 
 export const skillsData = [
-    {
-        category: "Backend Focus",
-        icon: Server,
-        period: "2024 - Present",
-        description: "Current specialization in scalable backend systems",
-        items: [
-            "Node.js",
-            "Express.js",
-            "Django",
-            "Spring Boot",
-            "REST API",
-            "GraphQL",
-            "PostgreSQL",
-            "MongoDB"
-        ],
-        priority: true
-    },
-    {
-        category: "Algorithmic Trading",
-        icon: TrendingUp,
-        period: "2024 - Present",
-        description: "Market data analysis and automated strategies",
-        items: [
-            "Python",
-            "pandas",
-            "NumPy",
-            "yfinance",
-            "Jupyter Notebooks",
-            "Data Analysis"
-        ],
-        priority: true
-    },
-    {
-        category: "Frontend & Full-Stack",
-        icon: Code,
-        period: "2022 - Present",
-        description: "Modern web development with React ecosystem",
-        items: [
-            "Next.js",
-            "React",
-            "TypeScript",
-            "JavaScript (ES6+)",
-            "Tailwind CSS",
-            "shadcn/ui"
-        ],
-        priority: false
-    },
-    {
-        category: "Databases",
-        icon: Database,
-        period: "2023 - Present",
-        description: "Database design and optimization",
-        items: [
-            "PostgreSQL",
-            "MongoDB",
-            "SQL Server",
-            "Database Design",
-            "Query Optimization"
-        ],
-        priority: false
-    },
-    {
-        category: "Tools & DevOps",
-        icon: Wrench,
-        period: "2022 - Present",
-        description: "Development workflow and deployment tools",
-        items: [
-            "Git",
-            "Docker",
-            "GitHub",
-            "BitBucket",
-            "Postman",
-            "VS Code",
-            "Linux",
-            "Vercel",
-            "CI/CD"
-        ],
-        priority: false
-    },
-    {
-        category: "Languages",
-        icon: Braces,
-        period: "2022 - Present",
-        description: "Programming languages in active use",
-        items: [
-            "TypeScript",
-            "JavaScript",
-            "Python",
-            "Java",
-            "SQL"
-        ],
-        priority: false
-    }
+  {
+    category: "Backend Focus",
+    icon: Server,
+    period: "2024 - Present",
+    description: "Current specialization in scalable backend systems",
+    items: [
+      "Node.js",
+      "Express.js",
+      "Django",
+      "Spring Boot",
+      "REST API",
+      "GraphQL",
+      "PostgreSQL",
+      "MongoDB"
+    ],
+    priority: true
+  },
+  {
+    category: "Algorithmic Trading",
+    icon: TrendingUp,
+    period: "2024 - Present",
+    description: "Market data analysis and automated strategies",
+    items: [
+      "Python",
+      "pandas",
+      "NumPy",
+      "yfinance",
+      "Jupyter Notebooks",
+      "Data Analysis"
+    ],
+    priority: true
+  },
+  {
+    category: "Frontend & Full-Stack",
+    icon: Code,
+    period: "2022 - Present",
+    description: "Modern web development with React ecosystem",
+    items: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "JavaScript (ES6+)",
+      "Tailwind CSS",
+      "shadcn/ui"
+    ],
+    priority: false
+  },
+  {
+    category: "Databases",
+    icon: Database,
+    period: "2023 - Present",
+    description: "Schema design, indexing, and query optimization for relational & NoSQL databases",
+    items: [
+      "PostgreSQL",
+      "MongoDB",
+      "SQL Server",
+      "Database Design",
+      "Query Optimization"
+    ],
+    priority: false
+  },
+  {
+    category: "Tools & DevOps",
+    icon: Wrench,
+    period: "2022 - Present",
+    description: "Development workflow and deployment tools",
+    items: [
+      "Git",
+      "Docker",
+      "GitHub",
+      "BitBucket",
+      "Postman",
+      "VS Code",
+      "Linux",
+      "Vercel",
+      "CI/CD"
+    ],
+    priority: false
+  },
+  {
+    category: "Languages",
+    icon: Braces,
+    period: "2022 - Present",
+    description: "Programming languages in active use",
+    items: [
+      "TypeScript",
+      "JavaScript",
+      "Python",
+      "Java",
+      "SQL"
+    ],
+    priority: false
+  }
 ];
 
 export const Skills = () => {
-    return (
+  return (
     <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        <SectionHeading 
+        <SectionHeading
           title="Skills & Expertise"
           subtitle="My technical journey and current focus areas - from frontend foundations to backend specialization"
         />
