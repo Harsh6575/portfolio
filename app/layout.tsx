@@ -16,6 +16,9 @@ const APP_DESCRIPTION = "Software Developer with 2+ years of experience, special
 
 export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),
+  other: {
+    'vercel-deployment-url': APP_URL,
+  },
   title: {
     default: `${APP_NAME} | Software Developer`,
     template: `%s | ${APP_NAME}`
