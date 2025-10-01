@@ -111,6 +111,58 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Core SEO */}
+        <title>Harsh Vansjaliya | Software Developer</title>
+        <meta
+          name="description"
+          content="Software Developer with 2+ years of experience, specializing in backend development and building scalable solutions. Experienced in Next.js, TypeScript, Spring Boot, and algorithmic trading systems."
+        />
+        <meta name="application-name" content="Harsh Vansjaliya Portfolio" />
+        <meta name="author" content="Harsh Vansjaliya" />
+        <meta name="publisher" content="Harsh Vansjaliya" />
+
+        {/* OpenGraph (Facebook, LinkedIn) */}
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:url" content="https://harsh-vansjaliya.vercel.app" />
+        <meta property="og:site_name" content="Harsh Vansjaliya Portfolio" />
+        <meta
+          property="og:title"
+          content="Harsh Vansjaliya | Software Developer"
+        />
+        <meta
+          property="og:description"
+          content="Software Developer with 2+ years of experience, specializing in backend development and building scalable solutions."
+        />
+        <meta
+          property="og:image"
+          content="https://harsh-vansjaliya.vercel.app/preview.png"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Harsh Vansjaliya | Software Developer"
+        />
+        <meta
+          name="twitter:description"
+          content="Software Developer with 2+ years of experience, specializing in backend development and scalable web applications."
+        />
+        <meta
+          name="twitter:image"
+          content="https://harsh-vansjaliya.vercel.app/preview.png"
+        />
+        <meta name="twitter:creator" content="@your_twitter_handle" />
+
+        {/* Favicon / App Icons */}
+        <link rel="icon" href="/400X400.svg" />
+        <link rel="apple-touch-icon" href="/400X400.svg" />
+        <link rel="canonical" href="https://harsh-vansjaliya.vercel.app" />
+      </head>
       <body
         className={`${poppins.variable} antialiased font-poppins`}
       >
