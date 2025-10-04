@@ -61,18 +61,18 @@ export const About = () => {
             className="space-y-6"
           >
             <div className="space-y-4">
-              <p className="text-lg text-foreground/90 leading-relaxed text-justify">
+              <p className="text-lg text-foreground/90 leading-relaxed">
                 I&apos;m a <span className="text-primary font-semibold">Software Developer</span> with {TOTAL_EXPERIENCE}+ years of experience,
                 currently transitioning into <span className="text-primary font-semibold">backend specialization</span>. My journey began in frontend development,
                 but I&apos;ve discovered my passion lies in <span className="text-primary font-semibold"> designing and  building scalable,
                   robust backend systems</span>that power seamless user experiences.
               </p>
 
-              <p className="text-muted-foreground leading-relaxed text-justify">
+              <p className="text-muted-foreground leading-relaxed">
                 At <span className='text-primary font-semibold'>AlgoAcharya (fintech startup)</span>,I contributed to algorithmic trading platforms, working across the stack — from crafting responsive dashboards to optimizing APIs and database queries for performance. This hands-on work gave me a solid understanding of how frontend and backend connect in real-world systems.
               </p>
 
-              <p className="text-muted-foreground leading-relaxed text-justify">
+              <p className="text-muted-foreground leading-relaxed">
                 Recently, I&apos;ve been expanding my skills into <span className="text-foreground font-medium">backend engineering with Java (Spring Boot), Go, and Docker</span>,
                 alongside deep dives into <span className='text-foreground font-medium'>system design, DBMS, operating systems, and computer networks</span>. I&apos;m also exploring <span className='text-foreground font-medium'>algorithmic trading </span> with Python, pandas, and risk management strategies, combining my tech skills with my passion for financial systems.
               </p>
