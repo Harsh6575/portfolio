@@ -19,12 +19,12 @@ export const Navbar = () => {
 
   const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
+  useMotionValueEvent(scrollY, "change", latest => {
     if (latest < 100) {
       setActive("hero");
       return;
     }
-    navItems.forEach((item) => {
+    navItems.forEach(item => {
       const section = document.getElementById(item.href);
       if (section) {
         const { top, bottom } = section.getBoundingClientRect();
@@ -64,14 +64,15 @@ export const Navbar = () => {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-6">
-          {navItems.map((item) => (
+          {navItems.map(item => (
             <button
               key={item.href}
               onClick={() => handleScroll(item.href)}
-              className={`relative text-sm font-medium transition-colors ${active === item.href
+              className={`relative text-sm font-medium transition-colors ${
+                active === item.href
                   ? "text-primary"
                   : "text-muted-foreground hover:text-foreground"
-                }`}
+              }`}
             >
               {item.label}
               {active === item.href && (
@@ -102,14 +103,15 @@ export const Navbar = () => {
           animate={{ opacity: 1, y: 0 }}
           className="md:hidden bg-background/95 backdrop-blur-md border-t border-border/30 px-6 py-4 space-y-3"
         >
-          {navItems.map((item) => (
+          {navItems.map(item => (
             <button
               key={item.href}
               onClick={() => handleScroll(item.href)}
-              className={`w-full text-left text-sm font-medium transition-colors ${active === item.href
+              className={`w-full text-left text-sm font-medium transition-colors ${
+                active === item.href
                   ? "text-primary"
                   : "text-muted-foreground hover:text-foreground"
-                }`}
+              }`}
             >
               {item.label}
             </button>

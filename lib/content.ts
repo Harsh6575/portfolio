@@ -1,5 +1,4 @@
-const GITHUB_RAW_URL =
-  "https://raw.githubusercontent.com/Harsh6575/portfolio-data/main";
+const GITHUB_RAW_URL = "https://raw.githubusercontent.com/Harsh6575/portfolio-data/main";
 
 export async function fetchContentData(fileName: string) {
   try {

@@ -1,37 +1,39 @@
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Moon, Sun } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Moon, Sun } from "lucide-react";
 
 export const ThemeToggle = () => {
-  const [theme, setTheme] = React.useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = React.useState<"light" | "dark">("light");
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
     setMounted(true);
     // Check system preference or localStorage on mount
-    const savedTheme = localStorage.getItem('theme');
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    const initialTheme = (savedTheme as 'light' | 'dark') || systemTheme;
-    
+    const savedTheme = localStorage.getItem("theme");
+    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+    const initialTheme = (savedTheme as "light" | "dark") || systemTheme;
+
     setTheme(initialTheme);
-    if (initialTheme === 'dark') {
-      document.documentElement.classList.add('dark');
+    if (initialTheme === "dark") {
+      document.documentElement.classList.add("dark");
     }
   }, []);
 
   React.useEffect(() => {
     if (mounted) {
-      localStorage.setItem('theme', theme);
+      localStorage.setItem("theme", theme);
     }
   }, [theme, mounted]);
 
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
+    const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
-    document.documentElement.classList.toggle('dark');
+    document.documentElement.classList.toggle("dark");
   };
 
   // Prevent hydration mismatch
@@ -47,12 +49,12 @@ export const ThemeToggle = () => {
     <motion.div
       initial={{ opacity: 0, scale: 0, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ 
-        duration: 0.3, 
+      transition={{
+        duration: 0.3,
         delay: 1.5,
         type: "spring",
         stiffness: 200,
-        damping: 20
+        damping: 20,
       }}
       className="fixed bottom-6 right-6 z-50"
     >
@@ -68,14 +70,10 @@ export const ThemeToggle = () => {
           animate={{ rotate: 0, opacity: 1 }}
           transition={{ duration: 0.2 }}
         >
-          {theme === 'light' ? (
-            <Moon className="w-5 h-5" />
-          ) : (
-            <Sun className="w-5 h-5" />
-          )}
+          {theme === "light" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
         </motion.div>
         <span className="sr-only">
-          {theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+          {theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
         </span>
       </Button>
     </motion.div>

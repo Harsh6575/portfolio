@@ -1,20 +1,23 @@
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { ArrowDown, Mail } from 'lucide-react';
-import { FaGithub, FaLinkedin } from 'react-icons/fa6';
-import { GITHUB_URL, LINKED_IN_URL, MAIL_URL, OPEN_TO_NEW_OP, TOTAL_EXPERIENCE } from '@/constants';
+import React from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ArrowDown, Mail } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa6";
+import { GITHUB_URL, LINKED_IN_URL, MAIL_URL, OPEN_TO_NEW_OP, TOTAL_EXPERIENCE } from "@/constants";
 
 export const Hero = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: 'smooth' });
+    element?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background"
+    >
       {/* Background Initials */}
       <motion.div
         className="absolute inset-0 flex items-center justify-center pointer-events-none"
@@ -28,12 +31,12 @@ export const Hero = () => {
           className="w-96 h-96 sm:w-[500px] sm:h-[500px] lg:w-[600px] lg:h-[600px] dark:invert"
           animate={{
             y: [0, -20, 0],
-            rotate: [0, 2, -2, 0]
+            rotate: [0, 2, -2, 0],
           }}
           transition={{
             duration: 8,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         />
       </motion.div>
@@ -41,9 +44,8 @@ export const Hero = () => {
       {/* Main Content */}
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         {/* Status Badge */}
-        {
-          OPEN_TO_NEW_OP &&
-          (<motion.div
+        {OPEN_TO_NEW_OP && (
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -53,8 +55,8 @@ export const Hero = () => {
               <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
               Open to New Opportunities
             </span>
-          </motion.div>)
-        }
+          </motion.div>
+        )}
 
         {/* Name */}
         <motion.h1
@@ -65,7 +67,6 @@ export const Hero = () => {
         >
           Harsh Vansjaliya
         </motion.h1>
-
 
         {/* Title & Subtitle */}
         <motion.div
@@ -89,7 +90,7 @@ export const Hero = () => {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed"
         >
-          Building scalable backend solutions and trading systems with{' '}
+          Building scalable backend solutions and trading systems with{" "}
           <span className="text-primary font-medium">{TOTAL_EXPERIENCE}+ years</span> of experience
         </motion.p>
 
@@ -101,7 +102,7 @@ export const Hero = () => {
           className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
         >
           <Button
-            onClick={() => scrollToSection('projects')}
+            onClick={() => scrollToSection("projects")}
             size="lg"
             className="group text-base px-8 py-3 h-auto"
           >
@@ -109,7 +110,7 @@ export const Hero = () => {
             <ArrowDown className="ml-2 w-4 h-4 transition-transform group-hover:translate-y-1" />
           </Button>
           <Button
-            onClick={() => scrollToSection('contact')}
+            onClick={() => scrollToSection("contact")}
             variant="outline"
             size="lg"
             className="text-base px-8 py-3 h-auto"

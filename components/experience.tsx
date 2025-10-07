@@ -1,12 +1,12 @@
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { SectionHeading } from '@/components/section-heading';
-import { MapPin, Calendar, Building, Briefcase, GraduationCap } from 'lucide-react';
-import { CompanyLogo } from './company-logo';
+import React from "react";
+import { motion } from "framer-motion";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { SectionHeading } from "@/components/section-heading";
+import { MapPin, Calendar, Building, Briefcase, GraduationCap } from "lucide-react";
+import { CompanyLogo } from "./company-logo";
 
 export const experiences = [
   {
@@ -23,7 +23,7 @@ export const experiences = [
       "Collaborated with designers and product managers to deliver trading features and tools.",
       "Contributed to backend using Python (Django) and PostgreSQL, becoming a versatile full-stack contributor.",
     ],
-    technologies: ["Next.js", "TypeScript", "Python", "Django", "PostgreSQL", "GraphQL"]
+    technologies: ["Next.js", "TypeScript", "Python", "Django", "PostgreSQL", "GraphQL"],
   },
   {
     role: ".NET Developer Intern",
@@ -37,7 +37,7 @@ export const experiences = [
       "Designed efficient database schemas, improving data retrieval speed by 25%.",
       "Implemented REST APIs and authentication for secure user access.",
     ],
-    technologies: [".NET Core", "SQL Server", "REST API", "C#"]
+    technologies: [".NET Core", "SQL Server", "REST API", "C#"],
   },
 ];
 
@@ -48,7 +48,7 @@ export const Experience = () => {
         {/* Section Header */}
         <SectionHeading
           title="Professional Experience"
-          subtitle="My journey in software development - building trading platforms and scalable web applications"
+          subtitle="My journey in software development — building trading platforms and scalable web applications"
         />
 
         {/* Experience Timeline */}
@@ -92,14 +92,14 @@ export const Experience = () => {
                               <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
                                 <CardTitle className="text-xl text-foreground flex items-center gap-2">
                                   {exp.role}
-                                  {exp.type === 'Full-time' ? (
+                                  {exp.type === "Full-time" ? (
                                     <Briefcase className="w-4 h-4 text-primary" />
                                   ) : (
                                     <GraduationCap className="w-4 h-4 text-secondary-foreground" />
                                   )}
                                 </CardTitle>
                                 <Badge
-                                  variant={exp.type === 'Full-time' ? 'default' : 'secondary'}
+                                  variant={exp.type === "Full-time" ? "default" : "secondary"}
                                   className="w-fit text-xs"
                                 >
                                   {exp.type}
@@ -140,7 +140,7 @@ export const Experience = () => {
                               key={idx}
                               initial={{ opacity: 0, x: -20 }}
                               whileInView={{ opacity: 1, x: 0 }}
-                              transition={{ duration: 0.4, delay: 0.1 + (idx * 0.1) }}
+                              transition={{ duration: 0.4, delay: 0.1 + idx * 0.1 }}
                               viewport={{ once: true }}
                               className="flex items-start gap-3 text-muted-foreground"
                             >
@@ -153,14 +153,16 @@ export const Experience = () => {
 
                       {/* Technologies */}
                       <div>
-                        <h4 className="text-sm font-medium text-foreground mb-2">Technologies Used:</h4>
+                        <h4 className="text-sm font-medium text-foreground mb-2">
+                          Technologies Used:
+                        </h4>
                         <div className="flex flex-wrap gap-2">
                           {exp.technologies.map((tech, idx) => (
                             <motion.div
                               key={idx}
                               initial={{ opacity: 0, scale: 0.8 }}
                               whileInView={{ opacity: 1, scale: 1 }}
-                              transition={{ duration: 0.3, delay: 0.3 + (idx * 0.05) }}
+                              transition={{ duration: 0.3, delay: 0.3 + idx * 0.05 }}
                               viewport={{ once: true }}
                             >
                               <span className="px-2 py-1 text-xs rounded-md bg-muted/50 text-muted-foreground hover:bg-muted transition-colors cursor-default">

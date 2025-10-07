@@ -20,7 +20,7 @@ export async function POST(req: Request) {
     if (error) {
       return Response.json({ error: error.message }, { status: 500 });
     }
-    
+
     return Response.json({ success: true });
   } catch (error) {
     console.error("Server error:", error);

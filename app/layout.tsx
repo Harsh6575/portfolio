@@ -4,7 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from "@vercel/analytics/next";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -14,16 +14,17 @@ const poppins = Poppins({
 
 const APP_URL = `https://harsh-vansjaliya.vercel.app`;
 const APP_NAME = "Harsh Vansjaliya";
-const APP_DESCRIPTION = "Software Developer with 2+ years of experience, specializing in backend development and building scalable solutions. Experienced in Next.js, TypeScript, Spring Boot, and algorithmic trading systems.";
+const APP_DESCRIPTION =
+  "Software Developer with 2+ years of experience, specializing in backend development and building scalable solutions. Experienced in Next.js, TypeScript, Spring Boot, and algorithmic trading systems.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),
   other: {
-    'vercel-deployment-url': APP_URL,
+    "vercel-deployment-url": APP_URL,
   },
   title: {
     default: `${APP_NAME} | Software Developer`,
-    template: `%s | ${APP_NAME}`
+    template: `%s | ${APP_NAME}`,
   },
   description: APP_DESCRIPTION,
   applicationName: `${APP_NAME} Portfolio`,
@@ -32,8 +33,8 @@ export const metadata: Metadata = {
   publisher: APP_NAME,
 
   icons: {
-    icon: '/400X400.svg',
-    apple: '/400X400.svg',
+    icon: "/400X400.svg",
+    apple: "/400X400.svg",
   },
 
   keywords: [
@@ -52,7 +53,7 @@ export const metadata: Metadata = {
     "Web Development",
     "Microservices",
     "Java Developer",
-    "Python Developer"
+    "Python Developer",
   ],
 
   openGraph: {
@@ -87,9 +88,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
 
@@ -103,7 +104,7 @@ export const metadata: Metadata = {
     canonical: APP_URL,
   },
 
-  category: 'technology',
+  category: "technology",
 };
 
 export default function RootLayout({
@@ -129,35 +130,23 @@ export default function RootLayout({
         <meta property="og:locale" content="en_US" />
         <meta property="og:url" content="https://harsh-vansjaliya.vercel.app" />
         <meta property="og:site_name" content="Harsh Vansjaliya Portfolio" />
-        <meta
-          property="og:title"
-          content="Harsh Vansjaliya | Software Developer"
-        />
+        <meta property="og:title" content="Harsh Vansjaliya | Software Developer" />
         <meta
           property="og:description"
           content="Software Developer with 2+ years of experience, specializing in backend development and building scalable solutions."
         />
-        <meta
-          property="og:image"
-          content="https://harsh-vansjaliya.vercel.app/preview.png"
-        />
+        <meta property="og:image" content="https://harsh-vansjaliya.vercel.app/preview.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="Harsh Vansjaliya | Software Developer"
-        />
+        <meta name="twitter:title" content="Harsh Vansjaliya | Software Developer" />
         <meta
           name="twitter:description"
           content="Software Developer with 2+ years of experience, specializing in backend development and scalable web applications."
         />
-        <meta
-          name="twitter:image"
-          content="https://harsh-vansjaliya.vercel.app/preview.png"
-        />
+        <meta name="twitter:image" content="https://harsh-vansjaliya.vercel.app/preview.png" />
         <meta name="twitter:creator" content="@your_twitter_handle" />
 
         {/* Favicon / App Icons */}
@@ -165,9 +154,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/400X400.svg" />
         <link rel="canonical" href="https://harsh-vansjaliya.vercel.app" />
       </head>
-      <body
-        className={`${poppins.variable} antialiased font-poppins`}
-      >
+      <body className={`${poppins.variable} antialiased font-poppins`}>
         <Navbar />
         {children}
         <Footer />

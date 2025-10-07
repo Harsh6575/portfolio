@@ -1,19 +1,11 @@
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import {
-  Code,
-  Database,
-  Server,
-  Wrench,
-  Braces,
-  TrendingUp,
-  Calendar
-} from 'lucide-react';
-import { SectionHeading } from './section-heading';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Badge } from './ui/badge';
+import React from "react";
+import { motion } from "framer-motion";
+import { Code, Database, Server, Wrench, Braces, TrendingUp, Calendar } from "lucide-react";
+import { SectionHeading } from "./section-heading";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { Badge } from "./ui/badge";
 
 export const skillsData = [
   {
@@ -29,53 +21,33 @@ export const skillsData = [
       "REST API",
       "GraphQL",
       "PostgreSQL",
-      "MongoDB"
+      "MongoDB",
     ],
-    priority: true
+    priority: true,
   },
   {
     category: "Algorithmic Trading",
     icon: TrendingUp,
     period: "2024 - Present",
     description: "Market data analysis and automated strategies",
-    items: [
-      "Python",
-      "pandas",
-      "NumPy",
-      "yfinance",
-      "Jupyter Notebooks",
-      "Data Analysis"
-    ],
-    priority: true
+    items: ["Python", "pandas", "NumPy", "yfinance", "Jupyter Notebooks", "Data Analysis"],
+    priority: true,
   },
   {
     category: "Frontend & Full-Stack",
     icon: Code,
     period: "2022 - Present",
     description: "Modern web development with React ecosystem",
-    items: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "JavaScript (ES6+)",
-      "Tailwind CSS",
-      "shadcn/ui"
-    ],
-    priority: false
+    items: ["Next.js", "React", "TypeScript", "JavaScript (ES6+)", "Tailwind CSS", "shadcn/ui"],
+    priority: false,
   },
   {
     category: "Databases",
     icon: Database,
     period: "2023 - Present",
     description: "Schema design, indexing, and query optimization for relational & NoSQL databases",
-    items: [
-      "PostgreSQL",
-      "MongoDB",
-      "SQL Server",
-      "Database Design",
-      "Query Optimization"
-    ],
-    priority: false
+    items: ["PostgreSQL", "MongoDB", "SQL Server", "Database Design", "Query Optimization"],
+    priority: false,
   },
   {
     category: "Tools & DevOps",
@@ -91,24 +63,18 @@ export const skillsData = [
       "VS Code",
       "Linux",
       "Vercel",
-      "CI/CD"
+      "CI/CD",
     ],
-    priority: false
+    priority: false,
   },
   {
     category: "Languages",
     icon: Braces,
     period: "2022 - Present",
     description: "Programming languages in active use",
-    items: [
-      "TypeScript",
-      "JavaScript",
-      "Python",
-      "Java",
-      "SQL"
-    ],
-    priority: false
-  }
+    items: ["TypeScript", "JavaScript", "Python", "Java", "SQL"],
+    priority: false,
+  },
 ];
 
 export const Skills = () => {
@@ -143,7 +109,7 @@ export const Skills = () => {
                     key={skillGroup.category}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 + (index * 0.1) }}
+                    transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
                     viewport={{ once: true }}
                   >
                     <Card className="h-full border-border/50 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-primary/30">
@@ -154,16 +120,12 @@ export const Skills = () => {
                           </div>
                           <div className="flex-1">
                             <div className="flex flex-col sm:flex-row justify-between gap-2 mb-2">
-                              <CardTitle className="text-lg">
-                                {skillGroup.category}
-                              </CardTitle>
+                              <CardTitle className="text-lg">{skillGroup.category}</CardTitle>
                               <Badge variant="secondary" className="text-xs font-medium w-fit">
                                 {skillGroup.period}
                               </Badge>
                             </div>
-                            <CardDescription>
-                              {skillGroup.description}
-                            </CardDescription>
+                            <CardDescription>{skillGroup.description}</CardDescription>
                           </div>
                         </div>
                       </CardHeader>
@@ -174,14 +136,12 @@ export const Skills = () => {
                               key={idx}
                               initial={{ opacity: 0, scale: 0.8 }}
                               whileInView={{ opacity: 1, scale: 1 }}
-                              transition={{ duration: 0.3, delay: 0.5 + (idx * 0.05) }}
+                              transition={{ duration: 0.3, delay: 0.5 + idx * 0.05 }}
                               viewport={{ once: true }}
                             >
                               {/* <Badge className="px-3 py-1 text-sm rounded-full bg-primary/10 text-primary border 
                               border-primary/20 hover:bg-primary/20 transition-colors cursor-default"> */}
-                              <Badge variant="my_primary">
-                                {skill}
-                              </Badge>
+                              <Badge variant="my_primary">{skill}</Badge>
                             </motion.div>
                           ))}
                         </div>
@@ -214,16 +174,14 @@ export const Skills = () => {
                     key={skillGroup.category}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.5 + (index * 0.1) }}
+                    transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
                     viewport={{ once: true }}
                   >
                     <Card className="h-full border-border/30 hover:border-border transition-all duration-300">
                       <CardHeader className="pb-3">
                         <div className="flex items-center gap-3">
                           <Icon className="w-5 h-5 text-muted-foreground" />
-                          <CardTitle className="text-base">
-                            {skillGroup.category}
-                          </CardTitle>
+                          <CardTitle className="text-base">{skillGroup.category}</CardTitle>
                         </div>
                         <CardDescription className="text-xs">
                           {skillGroup.description}

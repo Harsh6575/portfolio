@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { Badge } from '@/components/ui/badge';
-import { SectionHeading } from '@/components/section-heading';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
+import { SectionHeading } from "@/components/section-heading";
 import {
   Mail,
   MapPin,
@@ -16,43 +16,42 @@ import {
   MessageCircle,
   Calendar,
   CheckCircle,
-  AlertCircle
-} from 'lucide-react';
-import { MAIL_URL, OPEN_TO_NEW_OP } from '@/constants';
-
+  AlertCircle,
+} from "lucide-react";
+import { MAIL_URL, OPEN_TO_NEW_OP } from "@/constants";
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
+      label: "Email",
       value: MAIL_URL.slice(7),
       href: MAIL_URL,
-      description: 'Best way to reach me'
+      description: "Best way to reach me",
     },
     {
       icon: MapPin,
-      label: 'Location',
-      value: 'Gujarat, India',
+      label: "Location",
+      value: "Gujarat, India",
       href: null,
-      description: 'Available for remote work'
+      description: "Available for remote work",
     },
     {
       icon: Calendar,
-      label: 'Response Time',
-      value: 'Within 24 hours',
+      label: "Response Time",
+      value: "Within 24 hours",
       href: null,
-      description: 'Usually much faster'
-    }
+      description: "Usually much faster",
+    },
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -63,7 +62,7 @@ export const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus('idle');
+    setSubmitStatus("idle");
 
     try {
       const res = await fetch("/api/send", {
@@ -79,8 +78,8 @@ export const Contact = () => {
         setSubmitStatus("error");
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitStatus('error');
+      console.error("Error submitting form:", error);
+      setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
@@ -92,7 +91,7 @@ export const Contact = () => {
         {/* Section Header */}
         <SectionHeading
           title="Get In Touch"
-          subtitle="Let's discuss opportunities, collaborations, or just have a chat about technology"
+          subtitle="Let's talk about opportunities, collaborations, or tech in general."
         />
 
         <div className="grid lg:grid-cols-2 gap-12">
@@ -105,19 +104,25 @@ export const Contact = () => {
             className="space-y-8"
           >
             {/* Availability Status */}
-            {OPEN_TO_NEW_OP && (<Card className="border-green-200 bg-green-50 dark:border-green-900 dark:bg-green-950">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <Badge variant="outline" className="border-green-600 text-green-700 dark:text-green-300">
-                    Available for Opportunities
-                  </Badge>
-                </div>
-                <p className="text-sm text-green-700 dark:text-green-300">
-                  Currently open to backend developer positions and interesting project collaborations.
-                </p>
-              </CardContent>
-            </Card>)}
+            {OPEN_TO_NEW_OP && (
+              <Card className="border-green-200 bg-green-50 dark:border-green-900 dark:bg-green-950">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                    <Badge
+                      variant="outline"
+                      className="border-green-600 text-green-700 dark:text-green-300"
+                    >
+                      Available for Opportunities
+                    </Badge>
+                  </div>
+                  <p className="text-sm text-green-700 dark:text-green-300">
+                    Currently open to backend developer positions and interesting project
+                    collaborations.
+                  </p>
+                </CardContent>
+              </Card>
+            )}
 
             {/* Contact Information */}
             <div className="space-y-4">
@@ -131,7 +136,7 @@ export const Contact = () => {
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.1 + (index * 0.1) }}
+                  transition={{ duration: 0.4, delay: 0.1 + index * 0.1 }}
                   viewport={{ once: true }}
                 >
                   <Card className="border-border/50 hover:border-border transition-colors">
@@ -142,21 +147,18 @@ export const Contact = () => {
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center gap-2">
-                            <span className="font-medium text-foreground text-sm">{info.label}</span>
+                            <span className="font-medium text-foreground text-sm">
+                              {info.label}
+                            </span>
                           </div>
                           {info.href ? (
-                            <a
-                              href={info.href}
-                              className="text-sm text-primary hover:underline"
-                            >
+                            <a href={info.href} className="text-sm text-primary hover:underline">
                               {info.value}
                             </a>
                           ) : (
                             <span className="text-sm text-muted-foreground">{info.value}</span>
                           )}
-                          <p className="text-xs text-muted-foreground mt-1">
-                            {info.description}
-                          </p>
+                          <p className="text-xs text-muted-foreground mt-1">{info.description}</p>
                         </div>
                       </div>
                     </CardContent>
@@ -241,25 +243,21 @@ export const Contact = () => {
                   </div>
 
                   {/* Status Messages */}
-                  {submitStatus === 'success' && (
+                  {submitStatus === "success" && (
                     <div className="flex items-center gap-2 text-green-600 text-sm">
                       <CheckCircle className="w-4 h-4" />
                       Message sent successfully! I&apos;ll get back to you soon.
                     </div>
                   )}
 
-                  {submitStatus === 'error' && (
+                  {submitStatus === "error" && (
                     <div className="flex items-center gap-2 text-red-600 text-sm">
                       <AlertCircle className="w-4 h-4" />
                       Something went wrong. Please try again or email me directly.
                     </div>
                   )}
 
-                  <Button
-                    type="submit"
-                    className="w-full"
-                    disabled={isSubmitting}
-                  >
+                  <Button type="submit" className="w-full" disabled={isSubmitting}>
                     {isSubmitting ? (
                       <>
                         <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>

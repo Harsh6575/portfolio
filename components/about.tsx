@@ -1,45 +1,39 @@
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { SectionHeading } from '@/components/section-heading';
-import {
-  Code2,
-  Server,
-  TrendingUp,
-  Download,
-  Heart,
-  Target,
-  Zap
-} from 'lucide-react';
-import Image from 'next/image';
-import { TOTAL_EXPERIENCE } from '@/constants';
+import React from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { SectionHeading } from "@/components/section-heading";
+import { Code2, Server, TrendingUp, Download, Heart, Target, Zap } from "lucide-react";
+import Image from "next/image";
+import { TOTAL_EXPERIENCE } from "@/constants";
 
 export const About = () => {
   const highlights = [
     {
       icon: Server,
       title: "Backend Specialist",
-      description: "Building scalable APIs with Node.js and Spring Boot, learning microservices and distributed systems"
+      description:
+        "Building scalable APIs with Node.js and Spring Boot, learning microservices and distributed systems",
     },
     {
       icon: TrendingUp,
       title: "Algo Trading Enthusiast",
-      description: "Prototyping trading strategies and data pipelines with Python, pandas, and market APIs"
+      description:
+        "Prototyping trading strategies and data pipelines with Python, pandas, and market APIs",
     },
     {
       icon: Code2,
       title: "Full-Stack Experience",
-      description: "Delivered fintech dashboards using React, Next.js, TypeScript, and Django"
-    }
+      description: "Delivered fintech dashboards using React, Next.js, TypeScript, and Django",
+    },
   ];
 
   const values = [
     { icon: Heart, text: "Passionate about clean, maintainable code" },
     { icon: Target, text: "Always learning and adapting to new technologies" },
-    { icon: Zap, text: "Building solutions that make a real impact" }
+    { icon: Zap, text: "Building solutions that make a real impact" },
   ];
 
   return (
@@ -62,19 +56,37 @@ export const About = () => {
           >
             <div className="space-y-4">
               <p className="text-lg text-foreground/90 leading-relaxed">
-                I&apos;m a <span className="text-primary font-semibold">Software Developer</span> with {TOTAL_EXPERIENCE}+ years of experience,
-                currently transitioning into <span className="text-primary font-semibold">backend specialization</span>. My journey began in frontend development,
-                but I&apos;ve discovered my passion lies in <span className="text-primary font-semibold"> designing and  building scalable,
-                  robust backend systems</span>that power seamless user experiences.
+                I&apos;m a <span className="text-primary font-semibold">Software Developer</span>{" "}
+                with {TOTAL_EXPERIENCE}+ years of experience, currently transitioning into{" "}
+                <span className="text-primary font-semibold">backend specialization</span>. My
+                journey began in frontend development, but I&apos;ve discovered my passion lies in{" "}
+                <span className="text-primary font-semibold">
+                  designing and building scalable, robust backend systems
+                </span>
+                that power seamless user experiences.
               </p>
 
               <p className="text-muted-foreground leading-relaxed">
-                At <span className='text-primary font-semibold'>AlgoAcharya (fintech startup)</span>,I contributed to algorithmic trading platforms, working across the stack — from crafting responsive dashboards to optimizing APIs and database queries for performance. This hands-on work gave me a solid understanding of how frontend and backend connect in real-world systems.
+                At <span className="text-primary font-semibold">AlgoAcharya (fintech startup)</span>
+                , I contributed to algorithmic trading platforms, working across the stack — from
+                crafting responsive dashboards to optimizing APIs and database queries for
+                performance. This hands-on work gave me a solid understanding of how frontend and
+                backend connect in real-world systems.
               </p>
 
               <p className="text-muted-foreground leading-relaxed">
-                Recently, I&apos;ve been expanding my skills into <span className="text-foreground font-medium">backend engineering with Java (Spring Boot), Go, and Docker</span>,
-                alongside deep dives into <span className='text-foreground font-medium'>system design, DBMS, operating systems, and computer networks</span>. I&apos;m also exploring <span className='text-foreground font-medium'>algorithmic trading </span> with Python, pandas, and risk management strategies, combining my tech skills with my passion for financial systems.
+                Recently, I&apos;ve been expanding my skills into{" "}
+                <span className="text-foreground font-medium">
+                  backend engineering with Java (Spring Boot), Go, and Docker
+                </span>
+                , alongside deep dives into{" "}
+                <span className="text-foreground font-medium">
+                  system design, DBMS, operating systems and computer networks
+                </span>
+                . I&apos;m also exploring{" "}
+                <span className="text-foreground font-medium">algorithmic trading </span> with
+                Python, pandas, and risk management strategies, combining my tech skills with my
+                passion for financial systems.
               </p>
             </div>
 
@@ -86,7 +98,7 @@ export const About = () => {
                   Currently Focusing On
                 </h3>
                 <div className="space-y-2 text-sm text-muted-foreground">
-                  <p>• Building backend APIs with Java Spring Boot and Node.js/Express</p>
+                  <p>• Building backend APIs with Java (Spring Boot) and Node.js (Express)</p>
                   <p>• Exploring distributed systems and microservices architecture</p>
                   <p>• Experimenting with algorithmic trading strategies using Python and pandas</p>
                   <p>• Strengthening CS fundamentals (OS, DBMS, CN, DSA)</p>
@@ -104,7 +116,7 @@ export const About = () => {
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: 0.1 + (index * 0.1) }}
+                    transition={{ duration: 0.4, delay: 0.1 + index * 0.1 }}
                     viewport={{ once: true }}
                     className="flex items-center gap-3 text-muted-foreground"
                   >
@@ -144,12 +156,12 @@ export const About = () => {
               <motion.div
                 animate={{
                   y: [0, -10, 0],
-                  rotate: [0, 1, -1, 0]
+                  rotate: [0, 1, -1, 0],
                 }}
                 transition={{
                   duration: 6,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
                 className="w-48 h-48 bg-gradient-to-br from-primary/20 to-primary/5 rounded-full flex items-center justify-center border border-primary/20"
               >
@@ -171,7 +183,7 @@ export const About = () => {
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.3 + (index * 0.1) }}
+                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                   viewport={{ once: true }}
                 >
                   <Card className="border-border/50 hover:border-border transition-colors">

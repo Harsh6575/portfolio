@@ -1,7 +1,15 @@
 import Image from "next/image";
 import { useState } from "react";
 
-export const CompanyLogo = ({ src, alt, fallback }: { src: string; alt: string; fallback: string }) => {
+export const CompanyLogo = ({
+  src,
+  alt,
+  fallback,
+}: {
+  src: string;
+  alt: string;
+  fallback: string;
+}) => {
   const [imgSrc, setImgSrc] = useState(src);
 
   return (

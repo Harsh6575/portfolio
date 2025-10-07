@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { ArrowUp, Heart, Mail } from 'lucide-react';
-import { FaGithub, FaLinkedin, FaXTwitter } from 'react-icons/fa6';
-import { GITHUB_URL, LINKED_IN_URL, MAIL_URL, OPEN_TO_NEW_OP, X_URL } from '@/constants';
+import React, { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { ArrowUp, Heart, Mail } from "lucide-react";
+import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { GITHUB_URL, LINKED_IN_URL, MAIL_URL, OPEN_TO_NEW_OP, X_URL } from "@/constants";
 
 export const Footer = () => {
   const bgRef = useRef<HTMLDivElement | null>(null);
@@ -20,25 +20,22 @@ export const Footer = () => {
   }
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <footer className="relative bg-background border-t border-border overflow-hidden">
       {/* Background Watermark */}
-      <div
-        ref={bgRef}
-        className="absolute inset-0 flex items-center pointer-events-none"
-      >
+      <div ref={bgRef} className="absolute inset-0 flex items-center pointer-events-none">
         <motion.h1
           animate={{
-            x: ['30%', '-60%'],
+            x: ["30%", "-60%"],
           }}
           transition={{
             duration: 30,
             repeat: Infinity,
-            repeatType: 'reverse',
-            ease: 'linear'
+            repeatType: "reverse",
+            ease: "linear",
           }}
           className="text-[5rem] md:text-[10rem] font-extrabold uppercase tracking-widest opacity-[0.1] whitespace-nowrap select-none text-foreground"
           aria-hidden="true"
@@ -131,16 +128,18 @@ export const Footer = () => {
           </motion.p>
 
           {/* Status */}
-          {OPEN_TO_NEW_OP && (<motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-2 text-xs text-muted-foreground"
-          >
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <span>Available for backend opportunities</span>
-          </motion.div>)}
+          {OPEN_TO_NEW_OP && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="flex items-center gap-2 text-xs text-muted-foreground"
+            >
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span>Available for backend opportunities</span>
+            </motion.div>
+          )}
         </div>
       </div>
     </footer>
