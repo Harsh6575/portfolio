@@ -24,169 +24,169 @@ const projectsData: {
     url?: string;
   }[];
 }[] = [
-  {
-    title: "Tailor Management System",
-    description:
-      "A full-stack tailor shop management system with separate frontend and backend. Built to manage customer orders, measurements, billing, and inventory with a modern tech stack implementing RESTful APIs and responsive UI design.",
-    technologies: [
-      "Next.js",
-      "React",
-      "Node.js",
-      "Express",
-      "PostgreSQL",
-      "TypeScript",
-      "Tailwind CSS",
-      "JWT",
-      "Docker",
-      "Vitest",
-      "Drizzle ORM",
-    ],
-    category: "Full Stack",
-    status: "In Progress",
-    date: "2025",
-    features: [
-      "Customer order & measurement tracking",
-      "Real-time inventory management",
-      "Billing & invoice generation",
-      "RESTful API architecture",
-      "JWT authentication & role-based access",
-      "Responsive modern UI design",
-    ],
-    links: [
-      {
-        type: "github",
-        label: "Backend Code",
-        url: GITHUB_URL + "/tailor-track-backend",
-      },
-      {
-        type: "github",
-        label: "Frontend Code",
-        url: GITHUB_URL + "/tailor-track-frontend",
-      },
-    ],
-  },
-  {
-    title: "Patient Management System",
-    description:
-      "A distributed healthcare management system built with Spring Boot microservices architecture. Designed to learn and implement enterprise-level backend patterns including API Gateway, service mesh communication, and event-driven architecture.",
-    technologies: [
-      "Java",
-      "Spring Boot",
-      "Microservices",
-      "gRPC",
-      "Kafka",
-      "PostgreSQL",
-      "Docker",
-      "JWT",
-    ],
-    category: "Backend",
-    status: "Completed",
-    date: "2025",
-    features: [
-      "5-service microservices architecture",
-      "API Gateway with request routing & auth",
-      "gRPC inter-service communication",
-      "Kafka event streaming for analytics",
-      "JWT authentication & authorization",
-      "Docker containerized deployment",
-    ],
-    links: [
-      {
-        type: "github",
-        label: "Code",
-        url: GITHUB_URL + "/patient-management-spring-boot",
-      },
-    ],
-  },
-  {
-    title: "Algorithmic Trading Platform",
-    description:
-      "A sophisticated trading platform for the Indian stock market with automated strategies, real-time data analysis, and portfolio management capabilities.",
-    technologies: [
-      "Python",
-      "Django",
-      "PostgreSQL",
-      "pandas",
-      "NumPy",
-      "yfinance",
-      "Next.js",
-      "GraphQL",
-    ],
-    category: "FinTech",
-    status: "Professional Project",
-    date: "2023-2025",
-    features: [
-      "Real-time market data integration",
-      "Automated trading algorithm execution",
-      "Comprehensive backtesting system",
-      "Portfolio performance analytics",
-      "Risk management tools",
-      "Custom algorithm development interface",
-    ],
-    links: [],
-  },
-  {
-    title: "Library Management System",
-    description:
-      "A desktop application built with JavaFX for efficient library operations, featuring book management, user authentication, and borrowing system.",
-    technologies: ["Java", "JavaFX", "SQLite", "FXML", "CSS"],
-    category: "Desktop",
-    status: "Completed",
-    date: "2023",
-    features: [
-      "Complete book catalog management",
-      "Member registration and management",
-      "Borrowing and return system",
-      "Fine calculation and management",
-      "Search and filtering capabilities",
-      "Report generation",
-    ],
-    links: [
-      {
-        type: "github",
-        label: "Code",
-        url: GITHUB_URL + "/LibraryManagementSystemJava",
-      },
-    ],
-  },
-  {
-    title: "Hotel Reservation Platform",
-    description:
-      "A full-stack hotel booking application inspired by Airbnb, built with modern web technologies. Features complete user authentication, property listings, booking system, and payment integration.",
-    technologies: [
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "Prisma",
-      "NextAuth.js",
-      "React-Leaflet",
-      "Cloudinary",
-    ],
-    category: "Full-Stack",
-    status: "Completed",
-    date: "2022",
-    features: [
-      "User authentication and authorization system",
-      "Property listing with image galleries",
-      "Advanced search and filtering options",
-      "Interactive maps integration",
-      "Booking system with date selection",
-      "Responsive design across all devices",
-    ],
-    links: [
-      {
-        type: "github",
-        label: "Code",
-        url: GITHUB_URL + "/airbnb-clone",
-      },
-      {
-        type: "live",
-        label: "Demo",
-        url: "https://hotel-reservation-harsh6575.vercel.app/",
-      },
-    ],
-  },
-];
+    {
+      title: "Tailor Management System",
+      description:
+        "A full-stack tailor shop management system with separate frontend and backend. Built to manage customer orders, measurements, billing, and inventory with a modern tech stack implementing RESTful APIs and responsive UI design.",
+      technologies: [
+        "Next.js",
+        "React",
+        "Node.js",
+        "Express",
+        "PostgreSQL",
+        "TypeScript",
+        "Tailwind CSS",
+        "JWT",
+        "Docker",
+        "Vitest",
+        "Drizzle ORM",
+      ],
+      category: "Full Stack",
+      status: "In Progress",
+      date: "2025",
+      features: [
+        "Customer order & measurement tracking",
+        "Real-time inventory management",
+        "Billing & invoice generation",
+        "RESTful API architecture",
+        "JWT authentication & role-based access",
+        "Responsive modern UI design",
+      ],
+      links: [
+        {
+          type: "github",
+          label: "Backend Code",
+          url: GITHUB_URL + "/tailor-track-backend",
+        },
+        {
+          type: "github",
+          label: "Frontend Code",
+          url: GITHUB_URL + "/tailor-track-frontend",
+        },
+      ],
+    },
+    {
+      title: "Patient Management System",
+      description:
+        "A distributed healthcare management system built with Spring Boot microservices architecture. Designed to learn and implement enterprise-level backend patterns including API Gateway, service mesh communication, and event-driven architecture.",
+      technologies: [
+        "Java",
+        "Spring Boot",
+        "Microservices",
+        "gRPC",
+        "Kafka",
+        "PostgreSQL",
+        "Docker",
+        "JWT",
+      ],
+      category: "Backend",
+      status: "Completed",
+      date: "2025",
+      features: [
+        "5-service microservices architecture",
+        "API Gateway with request routing & auth",
+        "gRPC inter-service communication",
+        "Kafka event streaming for analytics",
+        "JWT authentication & authorization",
+        "Docker containerized deployment",
+      ],
+      links: [
+        {
+          type: "github",
+          label: "Code",
+          url: GITHUB_URL + "/patient-management-spring-boot",
+        },
+      ],
+    },
+    {
+      title: "Algorithmic Trading Platform",
+      description:
+        "A sophisticated trading platform for the Indian stock market with automated strategies, real-time data analysis, and portfolio management capabilities.",
+      technologies: [
+        "Python",
+        "Django",
+        "PostgreSQL",
+        "pandas",
+        "NumPy",
+        "yfinance",
+        "Next.js",
+        "GraphQL",
+      ],
+      category: "FinTech",
+      status: "Professional Project",
+      date: "2023-2025",
+      features: [
+        "Real-time market data integration",
+        "Automated trading algorithm execution",
+        "Comprehensive backtesting system",
+        "Portfolio performance analytics",
+        "Risk management tools",
+        "Custom algorithm development interface",
+      ],
+      links: [],
+    },
+    {
+      title: "Library Management System",
+      description:
+        "A desktop application built with JavaFX for efficient library operations, featuring book management, user authentication, and borrowing system.",
+      technologies: ["Java", "JavaFX", "SQLite", "FXML", "CSS"],
+      category: "Desktop",
+      status: "Completed",
+      date: "2023",
+      features: [
+        "Complete book catalog management",
+        "Member registration and management",
+        "Borrowing and return system",
+        "Fine calculation and management",
+        "Search and filtering capabilities",
+        "Report generation",
+      ],
+      links: [
+        {
+          type: "github",
+          label: "Code",
+          url: GITHUB_URL + "/LibraryManagementSystemJava",
+        },
+      ],
+    },
+    {
+      title: "Hotel Reservation Platform",
+      description:
+        "A full-stack hotel booking application inspired by Airbnb, built with modern web technologies. Features complete user authentication, property listings, booking system, and payment integration.",
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Prisma",
+        "NextAuth.js",
+        "React-Leaflet",
+        "Cloudinary",
+      ],
+      category: "Full-Stack",
+      status: "Completed",
+      date: "2022",
+      features: [
+        "User authentication and authorization system",
+        "Property listing with image galleries",
+        "Advanced search and filtering options",
+        "Interactive maps integration",
+        "Booking system with date selection",
+        "Responsive design across all devices",
+      ],
+      links: [
+        {
+          type: "github",
+          label: "Code",
+          url: GITHUB_URL + "/airbnb-clone",
+        },
+        {
+          type: "live",
+          label: "Demo",
+          url: "https://hotel-reservation-harsh6575.vercel.app/",
+        },
+      ],
+    },
+  ];
 
 export const Projects = () => {
   return (
@@ -219,7 +219,13 @@ export const Projects = () => {
                         {project.category}
                       </Badge>
                       <Badge
-                        variant={project.status === "Completed" ? "default" : "secondary"}
+                        variant={
+                          project.status === "In Progress"
+                            ? "outline"
+                            : project.status === "Completed"
+                              ? "default"
+                              : "my_primary"
+                        }
                         className="text-xs"
                       >
                         {project.status}
