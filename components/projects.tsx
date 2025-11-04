@@ -10,7 +10,61 @@ import { ExternalLink, Calendar, Star } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
 import { GITHUB_URL } from "@/constants";
 
-const projectsData = [
+const projectsData: {
+  title: string;
+  description: string;
+  technologies: string[];
+  category: string;
+  status: "In Progress" | "Completed" | "Professional Project" | "Freelance";
+  date: string;
+  features: string[];
+  links?: {
+    type?: "github" | "live";
+    label?: string;
+    url?: string;
+  }[];
+}[] = [
+  {
+    title: "Tailor Management System",
+    description:
+      "A full-stack tailor shop management system with separate frontend and backend. Built to manage customer orders, measurements, billing, and inventory with a modern tech stack implementing RESTful APIs and responsive UI design.",
+    technologies: [
+      "Next.js",
+      "React",
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "TypeScript",
+      "Tailwind CSS",
+      "JWT",
+      "Docker",
+      "Vitest",
+      "Drizzle ORM",
+    ],
+    category: "Full Stack",
+    status: "In Progress",
+    date: "2025",
+    features: [
+      "Customer order & measurement tracking",
+      "Real-time inventory management",
+      "Billing & invoice generation",
+      "RESTful API architecture",
+      "JWT authentication & role-based access",
+      "Responsive modern UI design",
+    ],
+    links: [
+      {
+        type: "github",
+        label: "Backend Code",
+        url: GITHUB_URL + "/tailor-track-backend",
+      },
+      {
+        type: "github",
+        label: "Frontend Code",
+        url: GITHUB_URL + "/tailor-track-frontend",
+      },
+    ],
+  },
   {
     title: "Patient Management System",
     description:
@@ -36,9 +90,13 @@ const projectsData = [
       "JWT authentication & authorization",
       "Docker containerized deployment",
     ],
-    links: {
-      github: GITHUB_URL + "/patient-management-spring-boot",
-    },
+    links: [
+      {
+        type: "github",
+        label: "Code",
+        url: GITHUB_URL + "/patient-management-spring-boot",
+      },
+    ],
   },
   {
     title: "Algorithmic Trading Platform",
@@ -65,7 +123,7 @@ const projectsData = [
       "Risk management tools",
       "Custom algorithm development interface",
     ],
-    links: {},
+    links: [],
   },
   {
     title: "Library Management System",
@@ -83,9 +141,13 @@ const projectsData = [
       "Search and filtering capabilities",
       "Report generation",
     ],
-    links: {
-      github: GITHUB_URL + "/LibraryManagementSystemJava",
-    },
+    links: [
+      {
+        type: "github",
+        label: "Code",
+        url: GITHUB_URL + "/LibraryManagementSystemJava",
+      },
+    ],
   },
   {
     title: "Hotel Reservation Platform",
@@ -111,10 +173,18 @@ const projectsData = [
       "Booking system with date selection",
       "Responsive design across all devices",
     ],
-    links: {
-      github: GITHUB_URL + "/airbnb-clone",
-      live: "https://hotel-reservation-harsh6575.vercel.app/",
-    },
+    links: [
+      {
+        type: "github",
+        label: "Code",
+        url: GITHUB_URL + "/airbnb-clone",
+      },
+      {
+        type: "live",
+        label: "Demo",
+        url: "https://hotel-reservation-harsh6575.vercel.app/",
+      },
+    ],
   },
 ];
 
@@ -202,34 +272,37 @@ export const Projects = () => {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex flex-wrap gap-3">
-                      {project.links.github && (
-                        <Button variant="outline" size="sm" asChild>
-                          <a
-                            href={project.links.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2"
+                    {project.links && (
+                      <div className="flex flex-wrap gap-3">
+                        {project.links.map((link, idx) => (
+                          <Button
+                            key={idx}
+                            variant={link.type === "github" ? "outline" : "default"}
+                            size="sm"
+                            asChild
                           >
-                            <FaGithub className="w-4 h-4" />
-                            Code
-                          </a>
-                        </Button>
-                      )}
-                      {project.links.live && (
-                        <Button size="sm" asChild>
-                          <a
-                            href={project.links.live}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2"
-                          >
-                            <ExternalLink className="w-4 h-4" />
-                            Demo
-                          </a>
-                        </Button>
-                      )}
-                    </div>
+                            <a
+                              href={link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-2"
+                            >
+                              {link.type === "github" ? (
+                                <>
+                                  <FaGithub className="w-4 h-4" />
+                                  {link.label || "Code"}
+                                </>
+                              ) : (
+                                <>
+                                  <ExternalLink className="w-4 h-4" />
+                                  {link.label || "Demo"}
+                                </>
+                              )}
+                            </a>
+                          </Button>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>

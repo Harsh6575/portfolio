@@ -31,7 +31,7 @@ export const skillsData = [
     period: "2024 - Present",
     description: "Market data analysis and automated strategies",
     items: ["Python", "pandas", "NumPy", "yfinance", "Jupyter Notebooks", "Data Analysis"],
-    priority: true,
+    priority: false,
   },
   {
     category: "Frontend & Full-Stack",
@@ -39,7 +39,7 @@ export const skillsData = [
     period: "2022 - Present",
     description: "Modern web development with React ecosystem",
     items: ["Next.js", "React", "TypeScript", "JavaScript (ES6+)", "Tailwind CSS", "shadcn/ui"],
-    priority: false,
+    priority: true,
   },
   {
     category: "Databases",

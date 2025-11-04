@@ -67,7 +67,8 @@ export const About = () => {
               </p>
 
               <p className="text-muted-foreground leading-relaxed">
-                At <span className="text-primary font-semibold">AlgoAcharya (fintech startup)</span>
+                At{" "}
+                <span className="text-foreground font-semibold">AlgoAcharya (fintech startup)</span>
                 , I contributed to algorithmic trading platforms, working across the stack — from
                 crafting responsive dashboards to optimizing APIs and database queries for
                 performance. This hands-on work gave me a solid understanding of how frontend and
@@ -101,7 +102,10 @@ export const About = () => {
                   <p>• Building backend APIs with Java (Spring Boot) and Node.js (Express)</p>
                   <p>• Exploring distributed systems and microservices architecture</p>
                   <p>• Experimenting with algorithmic trading strategies using Python and pandas</p>
-                  <p>• Strengthening CS fundamentals (OS, DBMS, CN, DSA)</p>
+                  <p>
+                    • Reading Technical Books like Head First Design Patterns and Building
+                    Microservices
+                  </p>
                   <p>• Deploying apps with Docker and exploring cloud-native workflows</p>
                 </div>
               </CardContent>

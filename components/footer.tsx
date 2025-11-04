@@ -104,7 +104,7 @@ export const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="flex items-center gap-2 text-sm text-muted-foreground"
+            className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs sm:text-sm text-muted-foreground"
           >
             <span>Built with</span>
             <Heart className="w-3 h-3 text-red-500 fill-current" />
@@ -122,7 +122,7 @@ export const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="text-sm text-muted-foreground text-center"
+            className="text-xs sm:text-sm  text-muted-foreground text-center"
           >
             © {new Date().getFullYear()} Harsh Vansjaliya. All rights reserved.
           </motion.p>
@@ -134,7 +134,7 @@ export const Footer = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
-              className="flex items-center gap-2 text-xs text-muted-foreground"
+              className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground"
             >
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
               <span>Available for backend opportunities</span>
