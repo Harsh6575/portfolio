@@ -5,37 +5,14 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/section-heading";
-import { Code2, Server, TrendingUp, Download, Heart, Target, Zap } from "lucide-react";
+import { Download, Target } from "lucide-react";
 import Image from "next/image";
 import { TOTAL_EXPERIENCE } from "@/constants";
+import { Values } from "./about/values";
+import { Expertise } from "./about/expertise";
+import { QuickStats } from "./about/quick-stats";
 
 export const About = () => {
-  const highlights = [
-    {
-      icon: Server,
-      title: "Backend Specialist",
-      description:
-        "Building scalable APIs with Node.js and Spring Boot, learning microservices and distributed systems",
-    },
-    {
-      icon: TrendingUp,
-      title: "Algo Trading Enthusiast",
-      description:
-        "Prototyping trading strategies and data pipelines with Python, pandas, and market APIs",
-    },
-    {
-      icon: Code2,
-      title: "Full-Stack Experience",
-      description: "Delivered fintech dashboards using React, Next.js, TypeScript, and Django",
-    },
-  ];
-
-  const values = [
-    { icon: Heart, text: "Passionate about clean, maintainable code" },
-    { icon: Target, text: "Always learning and adapting to new technologies" },
-    { icon: Zap, text: "Building solutions that make a real impact" },
-  ];
-
   return (
     <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/20">
       <div className="max-w-6xl mx-auto">
@@ -78,14 +55,14 @@ export const About = () => {
               <p className="text-muted-foreground leading-relaxed">
                 Recently, I&apos;ve been expanding my skills into{" "}
                 <span className="text-foreground font-medium">
-                  backend engineering with Java (Spring Boot), Go, and Docker
+                  backend engineering with Node.js, Python (FastAPI/Django), and Docker
                 </span>
                 , alongside deep dives into{" "}
                 <span className="text-foreground font-medium">
-                  system design, DBMS, operating systems and computer networks
+                  system design, databases (PostgreSQL, Redis, MongoDB), and distributed systems
                 </span>
-                . I&apos;m also exploring{" "}
-                <span className="text-foreground font-medium">algorithmic trading </span> with
+                . I&apos;m also actively building{" "}
+                <span className="text-foreground font-medium">algorithmic trading systems</span> with
                 Python, pandas, and risk management strategies, combining my tech skills with my
                 passion for financial systems.
               </p>
@@ -99,37 +76,18 @@ export const About = () => {
                   Currently Focusing On
                 </h3>
                 <div className="space-y-2 text-sm text-muted-foreground">
-                  <p>• Building backend APIs with Java (Spring Boot) and Node.js (Express)</p>
-                  <p>• Exploring distributed systems and microservices architecture</p>
-                  <p>• Experimenting with algorithmic trading strategies using Python and pandas</p>
-                  <p>
-                    • Reading Technical Books like Head First Design Patterns and Building
-                    Microservices
-                  </p>
-                  <p>• Deploying apps with Docker and exploring cloud-native workflows</p>
+                  <p>• Building production-ready APIs with Node.js (Express) and Python (FastAPI)</p>
+                  <p>• Exploring system design patterns and scalable backend architecture</p>
+                  <p>• Working with multi-database systems (PostgreSQL, Redis, MongoDB)</p>
+                  <p>• Developing algorithmic trading strategies using Python and pandas</p>
+                  <p>• Learning microservices patterns and distributed systems concepts</p>
+                  <p>• Deploying containerized applications with Docker</p>
                 </div>
               </CardContent>
             </Card>
 
             {/* Values */}
-            <div>
-              <h3 className="text-lg font-semibold text-foreground mb-4">What Drives Me</h3>
-              <div className="space-y-3">
-                {values.map((value, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: 0.1 + index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex items-center gap-3 text-muted-foreground"
-                  >
-                    <value.icon className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span className="text-sm">{value.text}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+            <Values />
 
             {/* CTA */}
             <div className="pt-4">
@@ -180,61 +138,11 @@ export const About = () => {
             </div>
 
             {/* Expertise Highlights */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-foreground">My Expertise</h3>
-              {highlights.map((highlight, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <Card className="border-border/50 hover:border-border transition-colors">
-                    <CardContent className="p-4">
-                      <div className="flex items-start gap-3">
-                        <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                          <highlight.icon className="w-4 h-4" />
-                        </div>
-                        <div>
-                          <h4 className="font-medium text-foreground text-sm mb-1">
-                            {highlight.title}
-                          </h4>
-                          <p className="text-xs text-muted-foreground leading-relaxed">
-                            {highlight.description}
-                          </p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
+            <Expertise />
 
             {/* Quick Stats */}
-            <Card className="border-border/50">
-              <CardContent className="p-6">
-                <h3 className="font-semibold text-foreground mb-4 text-center">Quick Stats</h3>
-                <div className="grid grid-cols-2 gap-4 text-center">
-                  <div>
-                    <div className="text-2xl font-bold text-primary">{TOTAL_EXPERIENCE}+</div>
-                    <div className="text-xs text-muted-foreground">Years Experience</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-primary">10+</div>
-                    <div className="text-xs text-muted-foreground">Technologies</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-primary">5+</div>
-                    <div className="text-xs text-muted-foreground">Projects Built</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-primary">∞</div>
-                    <div className="text-xs text-muted-foreground">Learning Mode</div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <QuickStats />
+
           </motion.div>
         </div>
       </div>
