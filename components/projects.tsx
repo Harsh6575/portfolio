@@ -25,6 +25,40 @@ const projectsData: {
   }[];
 }[] = [
     {
+      title: "Shortify - URL Shortener",
+      description: "A high-performance URL shortening service built to explore system design principles and scalable backend architecture. Features hash-based ID generation, multi-database integration (PostgreSQL + Redis + MongoDB), and optimized caching strategies for sub-millisecond redirects.",
+      technologies: [
+        "Python",
+        "FastAPI",
+        "PostgreSQL",
+        "Redis",
+        "MongoDB",
+        "SQLAlchemy",
+        "Docker",
+        "asyncpg"
+      ],
+      category: "Backend",
+      status: "In Progress",
+      date: "Nov 2025",
+      features: [
+        "Hash-based short ID generation using SHA-256 + Base62 encoding",
+        "Three-tier caching architecture with Redis (7-day TTL)",
+        "Async database operations with SQLAlchemy and asyncpg",
+        "RESTful API with automatic documentation (Swagger/OpenAPI)",
+        "Deterministic URL shortening with collision detection",
+        "Real-time cache invalidation and TTL management",
+        "Multi-database architecture exploring different use cases",
+        "Horizontal scalability with stateless API design"
+      ],
+      links: [
+        {
+          type: "github",
+          label: "View Source",
+          url: `${GITHUB_URL}/shortify`
+        }
+      ]
+    },
+    {
       title: "Tailor Management System",
       description:
         "A full-stack tailor shop management system with separate frontend and backend. Built to manage customer orders, measurements, billing, and inventory with a modern tech stack implementing RESTful APIs and responsive UI design.",
@@ -43,7 +77,7 @@ const projectsData: {
       ],
       category: "Full Stack",
       status: "In Progress",
-      date: "2025",
+      date: "Oct - Nov 2025",
       features: [
         "Customer order & measurement tracking",
         "Real-time inventory management",
@@ -124,30 +158,6 @@ const projectsData: {
         "Custom algorithm development interface",
       ],
       links: [],
-    },
-    {
-      title: "Library Management System",
-      description:
-        "A desktop application built with JavaFX for efficient library operations, featuring book management, user authentication, and borrowing system.",
-      technologies: ["Java", "JavaFX", "SQLite", "FXML", "CSS"],
-      category: "Desktop",
-      status: "Completed",
-      date: "2023",
-      features: [
-        "Complete book catalog management",
-        "Member registration and management",
-        "Borrowing and return system",
-        "Fine calculation and management",
-        "Search and filtering capabilities",
-        "Report generation",
-      ],
-      links: [
-        {
-          type: "github",
-          label: "Code",
-          url: GITHUB_URL + "/LibraryManagementSystemJava",
-        },
-      ],
     },
     {
       title: "Hotel Reservation Platform",
