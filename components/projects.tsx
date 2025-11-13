@@ -188,12 +188,7 @@ const projectsData: {
           type: "github",
           label: "Code",
           url: GITHUB_URL + "/airbnb-clone",
-        },
-        {
-          type: "live",
-          label: "Demo",
-          url: "https://hotel-reservation-harsh6575.vercel.app/",
-        },
+        }
       ],
     },
   ];
