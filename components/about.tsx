@@ -46,7 +46,7 @@ export const About = () => {
               <p className="text-muted-foreground leading-relaxed">
                 At{" "}
                 <span className="text-foreground font-semibold">AlgoAcharya (fintech startup)</span>
-                , I contributed to algorithmic trading platforms, working across the stack — from
+                , I contributed to algorithmic trading platforms, working across the stack, from
                 crafting responsive dashboards to optimizing APIs and database queries for
                 performance. This hands-on work gave me a solid understanding of how frontend and
                 backend connect in real-world systems.
@@ -62,9 +62,9 @@ export const About = () => {
                   system design, databases (PostgreSQL, Redis, MongoDB), and distributed systems
                 </span>
                 . I&apos;m also actively building{" "}
-                <span className="text-foreground font-medium">algorithmic trading systems</span> with
-                Python, pandas, and risk management strategies, combining my tech skills with my
-                passion for financial systems.
+                <span className="text-foreground font-medium">algorithmic trading systems</span>{" "}
+                with Python, pandas, and risk management strategies, combining my tech skills with
+                my passion for financial systems.
               </p>
             </div>
 
@@ -76,12 +76,12 @@ export const About = () => {
                   Currently Focusing On
                 </h3>
                 <div className="space-y-2 text-sm text-muted-foreground">
-                  <p>• Building production-ready APIs with Node.js (Express) and Python (FastAPI)</p>
-                  <p>• Exploring system design patterns and scalable backend architecture</p>
-                  <p>• Working with multi-database systems (PostgreSQL, Redis, MongoDB)</p>
-                  <p>• Developing algorithmic trading strategies using Python and pandas</p>
-                  <p>• Learning microservices patterns and distributed systems concepts</p>
-                  <p>• Deploying containerized applications with Docker</p>
+                  <p>• Building production-ready APIs with Node.js and Python</p>
+                  <p>• Digging into system design and scalable backend architecture</p>
+                  <p>• Working with PostgreSQL, Redis, and MongoDB in real projects</p>
+                  <p>• Creating algorithmic trading strategies using Python + pandas</p>
+                  <p>• Learning microservices concepts and distributed systems</p>
+                  <p>• Deploying containerized apps with Dockerx</p>
                 </div>
               </CardContent>
             </Card>
@@ -142,7 +142,6 @@ export const About = () => {
 
             {/* Quick Stats */}
             <QuickStats />
-
           </motion.div>
         </div>
       </div>

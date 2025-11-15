@@ -43,12 +43,12 @@ export const experiences = [
 
 export const Experience = () => {
   return (
-    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
+    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/20">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <SectionHeading
           title="Professional Experience"
-          subtitle="My journey in software development — building trading platforms and scalable web applications"
+          subtitle="My journey in software development: building trading platforms and scalable web applications"
         />
 
         {/* Experience Timeline */}

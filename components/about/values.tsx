@@ -1,9 +1,10 @@
-import { Heart, Target, Zap } from 'lucide-react'; import { motion } from "framer-motion";
+import { ArrowBigUp, Code2, PackageCheck } from "lucide-react";
+import { motion } from "framer-motion";
 
 const values = [
-  { icon: Heart, text: "Passionate about clean, maintainable code" },
-  { icon: Target, text: "Always learning and adapting to new technologies" },
-  { icon: Zap, text: "Building solutions that make a real impact" },
+  { icon: Code2, text: "Writing clean, maintainable code" },
+  { icon: ArrowBigUp, text: "Leveling up constantly" },
+  { icon: PackageCheck, text: "Shipping things that actually matter" },
 ];
 
 export const Values = () => {
@@ -26,5 +27,5 @@ export const Values = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};

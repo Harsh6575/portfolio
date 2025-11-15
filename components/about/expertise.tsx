@@ -2,23 +2,23 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Code2, Server, TrendingUp } from "lucide-react";
 
-const highlights = [
+const expertises = [
   {
     icon: Server,
-    title: "Backend Specialist",
+    title: "Backend Engineering",
     description:
-      "Building scalable APIs with Node.js and Python (FastAPI), exploring microservices and distributed systems",
+      "Building reliable, scalable APIs with Node.js and Python; exploring microservices and distributed systems",
   },
   {
     icon: TrendingUp,
-    title: "Algo Trading Enthusiast",
+    title: "Algo Trading",
     description:
-      "Developing trading strategies and data pipelines with Python, pandas, and market APIs",
+      "Designing trading strategies, automation pipelines, and data workflows with Python and pandas",
   },
   {
     icon: Code2,
     title: "Full-Stack Experience",
-    description: "Delivered fintech dashboards using React, Next.js, TypeScript, and Django",
+    description: "Built fintech dashboards using React, Next.js, TypeScript, and Django",
   },
 ];
 
@@ -26,7 +26,7 @@ export const Expertise = () => {
   return (
     <div className="space-y-4">
       <h3 className="text-lg font-semibold text-foreground">My Expertise</h3>
-      {highlights.map((highlight, index) => (
+      {expertises.map((expertise, index) => (
         <motion.div
           key={index}
           initial={{ opacity: 0, y: 20 }}
@@ -38,14 +38,12 @@ export const Expertise = () => {
             <CardContent className="p-4">
               <div className="flex items-start gap-3">
                 <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                  <highlight.icon className="w-4 h-4" />
+                  <expertise.icon className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="font-medium text-foreground text-sm mb-1">
-                    {highlight.title}
-                  </h4>
+                  <h4 className="font-medium text-foreground text-sm mb-1">{expertise.title}</h4>
                   <p className="text-xs text-muted-foreground leading-relaxed">
-                    {highlight.description}
+                    {expertise.description}
                   </p>
                 </div>
               </div>
@@ -54,6 +52,5 @@ export const Expertise = () => {
         </motion.div>
       ))}
     </div>
-
-  )
-}
+  );
+};

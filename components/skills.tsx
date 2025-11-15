@@ -2,7 +2,16 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Code, Database, Server, Wrench, Braces, TrendingUp, Calendar } from "lucide-react";
+import {
+  Code,
+  Database,
+  Server,
+  Wrench,
+  Braces,
+  Calendar,
+  CandlestickChart,
+  Terminal,
+} from "lucide-react";
 import { SectionHeading } from "./section-heading";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
@@ -11,25 +20,27 @@ export const skillsData = [
   {
     category: "Backend Focus",
     icon: Server,
-    period: "2024 - Present",
-    description: "Current specialization in scalable backend systems",
+    period: "2023 - Present",
+    description:
+      "Specializing in building scalable backend systems, high-performance APIs, and efficient service architectures.",
     items: [
       "Node.js",
       "Express.js",
-      "Django",
-      "Spring Boot",
-      "REST API",
+      "FastAPI / Django",
+      "REST APIs",
       "GraphQL",
       "PostgreSQL",
       "MongoDB",
+      "Redis",
     ],
     priority: true,
   },
   {
     category: "Algorithmic Trading",
-    icon: TrendingUp,
-    period: "2024 - Present",
-    description: "Market data analysis and automated strategies",
+    icon: CandlestickChart,
+    period: "2023 - Present",
+    description:
+      "Analyzing market data and building automated trading workflows and strategy pipelines.",
     items: ["Python", "pandas", "NumPy", "yfinance", "Jupyter Notebooks", "Data Analysis"],
     priority: false,
   },
@@ -37,8 +48,16 @@ export const skillsData = [
     category: "Frontend & Full-Stack",
     icon: Code,
     period: "2022 - Present",
-    description: "Modern web development with React ecosystem",
-    items: ["Next.js", "React", "TypeScript", "JavaScript (ES6+)", "Tailwind CSS", "shadcn/ui"],
+    description: "“Building modern, responsive web apps with the React and Next.js ecosystem.",
+    items: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "JavaScript (ES6+)",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "API Integration",
+    ],
     priority: true,
   },
   {
@@ -46,7 +65,14 @@ export const skillsData = [
     icon: Database,
     period: "2023 - Present",
     description: "Schema design, indexing, and query optimization for relational & NoSQL databases",
-    items: ["PostgreSQL", "MongoDB", "SQL Server", "Database Design", "Query Optimization"],
+    items: [
+      "PostgreSQL",
+      "MongoDB",
+      "SQL Server",
+      "Database Design",
+      "Query Optimization",
+      "Indexing",
+    ],
     priority: false,
   },
   {
@@ -56,9 +82,10 @@ export const skillsData = [
     description: "Development workflow and deployment tools",
     items: [
       "Git",
-      "Docker",
       "GitHub",
       "BitBucket",
+      "Docker",
+      "Docker Compose",
       "Postman",
       "VS Code",
       "Linux",
@@ -69,7 +96,7 @@ export const skillsData = [
   },
   {
     category: "Languages",
-    icon: Braces,
+    icon: Terminal,
     period: "2022 - Present",
     description: "Programming languages in active use",
     items: ["TypeScript", "JavaScript", "Python", "Java", "SQL"],
@@ -79,7 +106,7 @@ export const skillsData = [
 
 export const Skills = () => {
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
+    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <SectionHeading

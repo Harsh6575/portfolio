@@ -1,7 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { TOTAL_EXPERIENCE } from "@/constants";
 
-
 export const QuickStats = () => {
   return (
     <Card className="border-border/50">
@@ -27,5 +26,5 @@ export const QuickStats = () => {
         </div>
       </CardContent>
     </Card>
-  )
-}
+  );
+};
