@@ -44,7 +44,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-background/80 backdrop-blur-md border-b border-border/30 z-50">
+    <header className="fixed top-0 left-0 w-full bg-background/80 backdrop-blur-md border-b border-border/30 z-50">
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-3">
         {/* Logo */}
         <motion.button
@@ -63,9 +63,11 @@ export const Navbar = () => {
         </motion.button>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-6">
           {navItems.map(item => (
             <button
+              aria-label={item.label}
+              aria-current={active === item.href ? "page" : undefined}
               key={item.href}
               onClick={() => handleScroll(item.href)}
               className={`relative text-sm font-medium transition-colors ${
@@ -84,13 +86,15 @@ export const Navbar = () => {
             </button>
           ))}
           {/* <ThemeToggle /> */}
-        </div>
+        </nav>
 
         {/* Mobile Menu Button */}
         <button
           aria-expanded={open}
           className="md:hidden text-foreground hover:text-primary"
           onClick={() => setOpen(!open)}
+          aria-label="Toggle navigation"
+          aria-controls="mobile-nav"
         >
           {open ? <X size={26} /> : <Menu size={26} />}
         </button>
@@ -98,13 +102,16 @@ export const Navbar = () => {
 
       {/* Mobile Nav */}
       {open && (
-        <motion.div
+        <motion.nav
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           className="md:hidden bg-background/95 backdrop-blur-md border-t border-border/30 px-6 py-4 space-y-3"
+          aria-label="Mobile navigation"
         >
           {navItems.map(item => (
             <button
+              aria-label={item.label}
+              aria-current={active === item.href ? "page" : undefined}
               key={item.href}
               onClick={() => handleScroll(item.href)}
               className={`w-full text-left text-sm font-medium transition-colors ${
@@ -117,8 +124,8 @@ export const Navbar = () => {
             </button>
           ))}
           {/* <ThemeToggle /> */}
-        </motion.div>
+        </motion.nav>
       )}
-    </nav>
+    </header>
   );
 };
