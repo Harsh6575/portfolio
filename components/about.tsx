@@ -81,7 +81,7 @@ export const About = () => {
                   <p>• Working with PostgreSQL, Redis, and MongoDB in real projects</p>
                   <p>• Creating algorithmic trading strategies using Python + pandas</p>
                   <p>• Learning microservices concepts and distributed systems</p>
-                  <p>• Deploying containerized apps with Dockerx</p>
+                  <p>• Deploying containerized apps with Docker</p>
                 </div>
               </CardContent>
             </Card>
