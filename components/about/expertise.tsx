@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Code2, Server, TrendingUp } from "lucide-react";
 

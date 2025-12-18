@@ -1,5 +1,5 @@
 import { ArrowBigUp, Code2, PackageCheck } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const values = [
   { icon: Code2, text: "Writing clean, maintainable code" },

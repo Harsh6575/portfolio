@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import {
   Code,
   Database,
@@ -16,39 +16,43 @@ import { SectionHeading } from "./section-heading";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 
-export const skillsData = [
+export const skillsData: {
+  category: string;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  period: string;
+  description: string;
+  items: string[];
+  priority: boolean;
+}[] = [
   {
-    category: "Backend Focus",
+    category: "Backend Development",
     icon: Server,
     period: "2023 - Present",
     description:
-      "Specializing in building scalable backend systems, high-performance APIs, and efficient service architectures.",
+      "Building scalable backend systems, well-structured APIs, and production-ready service architectures.",
     items: [
       "Node.js",
       "Express.js",
-      "FastAPI / Django",
+      "FastAPI",
+      "Django",
       "REST APIs",
       "GraphQL",
       "PostgreSQL",
+      "MySQL",
       "MongoDB",
       "Redis",
+      "JWT Authentication",
+      "Caching Strategies",
+      "API Design",
     ],
     priority: true,
   },
   {
-    category: "Algorithmic Trading",
-    icon: CandlestickChart,
-    period: "2023 - Present",
-    description:
-      "Analyzing market data and building automated trading workflows and strategy pipelines.",
-    items: ["Python", "pandas", "NumPy", "yfinance", "Jupyter Notebooks", "Data Analysis"],
-    priority: false,
-  },
-  {
-    category: "Frontend & Full-Stack",
+    category: "Frontend Development",
     icon: Code,
     period: "2022 - Present",
-    description: "“Building modern, responsive web apps with the React and Next.js ecosystem.",
+    description:
+      "Developing modern, responsive user interfaces and integrating complex backend APIs.",
     items: [
       "Next.js",
       "React",
@@ -61,36 +65,50 @@ export const skillsData = [
     priority: true,
   },
   {
-    category: "Databases",
+    category: "Cloud & DevOps",
+    icon: Wrench,
+    period: "2023 - Present",
+    description: "Deploying, containerizing, and managing applications on cloud infrastructure.",
+    items: [
+      "AWS EC2",
+      "AWS S3",
+      "AWS IAM",
+      "Docker",
+      "Docker Compose",
+      "CI/CD",
+      "Linux",
+      "Vercel",
+      "Git",
+      "GitHub",
+      "Bitbucket",
+      "Postman",
+    ],
+    priority: true,
+  },
+  {
+    category: "Database & System Concepts",
     icon: Database,
     period: "2023 - Present",
-    description: "Schema design, indexing, and query optimization for relational & NoSQL databases",
-    items: [
-      "PostgreSQL",
-      "MongoDB",
-      "SQL Server",
-      "Database Design",
-      "Query Optimization",
-      "Indexing",
-    ],
+    description: "Designing efficient data models and optimizing database performance.",
+    items: ["Schema Design", "Query Optimization", "Indexing", "Transactions", "Normalization"],
     priority: false,
   },
   {
-    category: "Tools & DevOps",
-    icon: Wrench,
-    period: "2022 - Present",
-    description: "Development workflow and deployment tools",
+    category: "Python & Market Data Analysis",
+    icon: CandlestickChart,
+    period: "2023 - Present",
+    description:
+      "Working with market data to analyze trends, visualize insights, and experiment with trading strategies.",
     items: [
-      "Git",
-      "GitHub",
-      "BitBucket",
-      "Docker",
-      "Docker Compose",
-      "Postman",
-      "VS Code",
-      "Linux",
-      "Vercel",
-      "CI/CD",
+      "Python",
+      "pandas",
+      "NumPy",
+      "Matplotlib",
+      "Seaborn",
+      "yfinance",
+      "Jupyter Notebooks",
+      "Data Analysis",
+      "Basic Strategy Backtesting",
     ],
     priority: false,
   },
@@ -98,7 +116,7 @@ export const skillsData = [
     category: "Languages",
     icon: Terminal,
     period: "2022 - Present",
-    description: "Programming languages in active use",
+    description: "Programming languages used across backend, frontend, and automation projects.",
     items: ["TypeScript", "JavaScript", "Python", "Java", "SQL"],
     priority: false,
   },
@@ -166,8 +184,6 @@ export const Skills = () => {
                               transition={{ duration: 0.3, delay: 0.5 + idx * 0.05 }}
                               viewport={{ once: true }}
                             >
-                              {/* <Badge className="px-3 py-1 text-sm rounded-full bg-primary/10 text-primary border 
-                              border-primary/20 hover:bg-primary/20 transition-colors cursor-default"> */}
                               <Badge variant="my_primary">{skill}</Badge>
                             </motion.div>
                           ))}

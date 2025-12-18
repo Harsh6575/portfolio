@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "prepare": "husky"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.7",
@@ -18,8 +19,9 @@
     "@vercel/analytics": "^1.5.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "husky": "^9.1.7",
     "lucide-react": "^0.544.0",
-    "motion": "^12.23.21",
+    "motion": "^12.23.26",
     "next": "15.5.9",
     "react": "19.1.0",
     "react-dom": "19.1.0",
