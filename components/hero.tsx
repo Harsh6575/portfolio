@@ -1,11 +1,12 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { GITHUB_URL, LINKED_IN_URL, MAIL_URL, OPEN_TO_NEW_OP, TOTAL_EXPERIENCE } from "@/constants";
+import Image from "next/image";
 
 export const Hero = () => {
   const scrollToSection = (sectionId: string) => {
@@ -25,10 +26,7 @@ export const Hero = () => {
         animate={{ opacity: 0.1, scale: 1 }}
         transition={{ duration: 2, ease: "easeOut" }}
       >
-        <motion.img
-          src="/400X400.svg"
-          alt="HV Initials"
-          className="w-96 h-96 sm:w-[500px] sm:h-[500px] lg:w-[600px] lg:h-[600px] dark:invert"
+        <motion.div
           animate={{
             y: [0, -20, 0],
             rotate: [0, 2, -2, 0],
@@ -38,7 +36,16 @@ export const Hero = () => {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-        />
+        >
+          <Image
+            src="/400X400.svg"
+            alt="HV Initials"
+            width={600}
+            height={600}
+            className="w-96 h-96 sm:w-[500px] sm:h-[500px] lg:w-[600px] lg:h-[600px] dark:invert"
+            unoptimized={true}
+          />
+        </motion.div>
       </motion.div>
 
       {/* Main Content */}

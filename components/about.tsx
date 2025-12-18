@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/section-heading";
@@ -133,6 +132,7 @@ export const About = () => {
                   className="w-32 h-32 opacity-80 dark:invert"
                   height={132}
                   width={132}
+                  unoptimized={true}
                 />
               </motion.div>
             </div>
