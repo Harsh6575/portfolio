@@ -5,6 +5,8 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 
 import { Analytics } from "@vercel/analytics/next";
+import { TOTAL_EXPERIENCE } from "@/constants";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -14,8 +16,7 @@ const poppins = Poppins({
 
 const APP_URL = `https://harsh-vansjaliya.vercel.app`;
 const APP_NAME = "Harsh Vansjaliya";
-const APP_DESCRIPTION =
-  "Software Developer with 2+ years of experience, specializing in backend development and building scalable solutions. Experienced in Next.js, TypeScript, Spring Boot, and algorithmic trading systems.";
+const APP_DESCRIPTION = `Software Developer with ${TOTAL_EXPERIENCE}+ years of experience, specializing in backend development and building scalable solutions. Experienced in Next.js, TypeScript, Spring Boot, and algorithmic trading systems.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),
@@ -113,52 +114,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        {/* Core SEO */}
-        <title>Harsh Vansjaliya | Software Developer</title>
-        <meta
-          name="description"
-          content="Software Developer with 2+ years of experience, specializing in backend development and building scalable solutions. Experienced in Next.js, TypeScript, Spring Boot, and algorithmic trading systems."
-        />
-        <meta name="application-name" content="Harsh Vansjaliya Portfolio" />
-        <meta name="author" content="Harsh Vansjaliya" />
-        <meta name="publisher" content="Harsh Vansjaliya" />
-
-        {/* OpenGraph (Facebook, LinkedIn) */}
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:url" content="https://harsh-vansjaliya.vercel.app" />
-        <meta property="og:site_name" content="Harsh Vansjaliya Portfolio" />
-        <meta property="og:title" content="Harsh Vansjaliya | Software Developer" />
-        <meta
-          property="og:description"
-          content="Software Developer with 2+ years of experience, specializing in backend development and building scalable solutions."
-        />
-        <meta property="og:image" content="https://harsh-vansjaliya.vercel.app/preview.png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Harsh Vansjaliya | Software Developer" />
-        <meta
-          name="twitter:description"
-          content="Software Developer with 2+ years of experience, specializing in backend development and scalable web applications."
-        />
-        <meta name="twitter:image" content="https://harsh-vansjaliya.vercel.app/preview.png" />
-        <meta name="twitter:creator" content="@your_twitter_handle" />
-
-        {/* Favicon / App Icons */}
-        <link rel="icon" href="/400X400.svg" />
-        <link rel="apple-touch-icon" href="/400X400.svg" />
-        <link rel="canonical" href="https://harsh-vansjaliya.vercel.app" />
-      </head>
+    <html lang="en" suppressHydrationWarning>
       <body className={`${poppins.variable} antialiased font-poppins`}>
-        <Navbar />
-        {children}
-        <Footer />
-        <Analytics />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+          key={"harsh-vansjaliya-portfolio"}
+        >
+          <Navbar />
+          {children}
+          <Footer />
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   );
