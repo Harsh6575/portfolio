@@ -88,14 +88,15 @@ const projectsData: {
       "Responsive modern UI design",
     ],
     links: [
+      // {
+      //   type: "github",
+      //   label: "Backend Code",
+      //   url: GITHUB_URL + "/tailor-track-backend",
+      // },
       {
         type: "github",
-        label: "Backend Code",
-        url: GITHUB_URL + "/tailor-track-backend",
-      },
-      {
-        type: "github",
-        label: "Frontend Code",
+        label: "Code",
+        // label: "Frontend Code",
         url: GITHUB_URL + "/tailor-track-frontend",
       },
     ],
