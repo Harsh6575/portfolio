@@ -7,6 +7,7 @@ import { Footer } from "@/components/footer";
 import { Analytics } from "@vercel/analytics/next";
 import { TOTAL_EXPERIENCE } from "@/constants";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -126,6 +127,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
+          <ThemeToggle />
           <Analytics />
         </ThemeProvider>
       </body>
