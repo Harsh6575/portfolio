@@ -17,7 +17,7 @@ const poppins = Poppins({
 
 const APP_URL = `https://harsh-vansjaliya.vercel.app`;
 const APP_NAME = "Harsh Vansjaliya";
-const APP_DESCRIPTION = `Software Developer with ${TOTAL_EXPERIENCE}+ years of experience, specializing in backend development and building scalable solutions. Experienced in Next.js, TypeScript, Spring Boot, and algorithmic trading systems.`;
+const APP_DESCRIPTION = `Software Developer specializing in backend development and building scalable solutions. Experienced in Next.js, TypeScript, and algorithmic trading systems.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "vercel-deployment-url": APP_URL,
   },
   title: {
-    default: `${APP_NAME} | Software Developer`,
+    default: `${APP_NAME} | Backend Engineer & Software Developer`,
     template: `%s | ${APP_NAME}`,
   },
   description: APP_DESCRIPTION,
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: APP_URL,
     siteName: `${APP_NAME} Portfolio`,
-    title: `${APP_NAME} | Backend & Full Stack Developer`,
+    title: `${APP_NAME} | Backend Engineer & Software Developer`,
     description: APP_DESCRIPTION,
     images: [
       {
@@ -78,10 +78,10 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: `${APP_NAME} | Software Developer`,
+    title: `${APP_NAME} | Backend Engineer & Software Developer`,
     description: APP_DESCRIPTION,
     images: [`${APP_URL}/preview.png`],
-    creator: "@your_twitter_handle", // Add your Twitter handle
+    creator: "@HarshVansjaliya",
   },
 
   robots: {
@@ -94,12 +94,6 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-
-  verification: {
-    // Add these when you set them up
-    // google: 'your-google-verification-code',
-    // yandex: 'your-yandex-verification-code',
   },
 
   alternates: {
