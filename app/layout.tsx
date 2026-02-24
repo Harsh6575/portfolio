@@ -5,7 +5,6 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 
 import { Analytics } from "@vercel/analytics/next";
-import { TOTAL_EXPERIENCE } from "@/constants";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 
@@ -15,7 +14,7 @@ const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
-const APP_URL = `https://harsh-vansjaliya.vercel.app`;
+const APP_URL = `https://harshvansjaliya.com/`;
 const APP_NAME = "Harsh Vansjaliya";
 const APP_DESCRIPTION = `Software Developer specializing in backend development and building scalable solutions. Experienced in Next.js, TypeScript, and algorithmic trading systems.`;
 
