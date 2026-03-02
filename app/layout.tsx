@@ -7,16 +7,13 @@ import { Footer } from "@/components/footer";
 import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { APP_URL, APP_NAME, APP_DESCRIPTION } from "@/constants";
 
 const poppins = Poppins({
   subsets: ["latin"],
   variable: "--font-poppins",
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
-
-const APP_URL = `https://harshvansjaliya.com/`;
-const APP_NAME = "Harsh Vansjaliya";
-const APP_DESCRIPTION = `Software Developer specializing in backend development and building scalable solutions. Experienced in Next.js, TypeScript, and algorithmic trading systems.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),
@@ -45,7 +42,6 @@ export const metadata: Metadata = {
     "Full Stack Developer",
     "Next.js Developer",
     "TypeScript Developer",
-    "Spring Boot Developer",
     "React Developer",
     "Algorithmic Trading",
     "Gujarat Developer",
@@ -53,7 +49,6 @@ export const metadata: Metadata = {
     "Portfolio",
     "Web Development",
     "Microservices",
-    "Java Developer",
     "Python Developer",
   ],
 
@@ -83,18 +78,6 @@ export const metadata: Metadata = {
     creator: "@HarshVansjaliya",
   },
 
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-
   alternates: {
     canonical: APP_URL,
   },
@@ -119,8 +102,8 @@ export default function RootLayout({
         >
           <Navbar />
           {children}
-          <Footer />
           <ThemeToggle />
+          <Footer />
           <Analytics />
         </ThemeProvider>
       </body>

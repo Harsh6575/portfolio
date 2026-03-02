@@ -4,3 +4,9 @@ export const GITHUB_URL: string = "https://github.com/harsh6575";
 export const X_URL: string = "https://x.com/HarshVansjaliya";
 export const OPEN_TO_NEW_OP: boolean = false;
 export const TOTAL_EXPERIENCE: number = new Date().getFullYear() - 2023;
+
+export const CURRENT_COMPANY: string = "Alite Projects";
+export const PREV_COMPANY: string = "AlgoAcharya";
+export const APP_URL: string = "https://harshvansjaliya.com";
+export const APP_NAME: string = "Harsh Vansjaliya";
+export const APP_DESCRIPTION: string = `Software Developer specializing in backend development and building scalable solutions. Experienced in Next.js, TypeScript, and algorithmic trading systems.`;
