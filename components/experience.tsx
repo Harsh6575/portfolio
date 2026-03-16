@@ -11,11 +11,42 @@ import { CompanyLogo } from "./company-logo";
 export const experiences = [
   {
     role: "Software Developer",
+    company: "Alite Projects",
+    location: "Vadodara, India",
+    duration: "Dec 2025 - Present",
+    type: "Full-time",
+    logo: "/alite-projects-logo.svg",
+    description: [
+      "Working primarily on frontend development building scalable and responsive product interfaces.",
+      "Developing features and improving UI/UX across the platform using modern frontend tooling.",
+      "Contributing to performance improvements and reusable component architecture.",
+      "Collaborating on automation workflows and integrations using tools like n8n and MongoDB.",
+    ],
+    technologies: ["Next.js", "TypeScript", "Vite", "Tailwind CSS", "MUI", "n8n", "MongoDB"],
+  },
+  {
+    role: "Independent Software Developer",
+    company: "Self Employed",
+    location: "Vadodara, India",
+    duration: "May 2025 - Present",
+    type: "Self-employed",
+    logo: "/400X400.svg",
+    description: [
+      "Built and refined backend-focused projects using Node.js, FastAPI, PostgreSQL, Redis, and Docker.",
+      "Designed scalable REST APIs with modular backend architecture and clean architecture practices.",
+      "Developed Shortify, a high-performance URL shortener utilizing Redis caching for sub-millisecond redirects.",
+      "Started development of Tailor Track, a tailor management platform focused on customer, measurement, and order workflow management.",
+      "Focused on system design, backend performance optimization, and production-ready development practices.",
+    ],
+    technologies: ["Next.js", "TypeScript", "Node.js", "FastAPI", "PostgreSQL", "Redis", "Docker"],
+  },
+  {
+    role: "Software Developer",
     company: "Algoacharya",
-    location: "Ahmedabad",
+    location: "Ahmedabad, India",
     duration: "Sept 2023 - May 2025",
     type: "Full-time",
-    logo: "/algoacharya-logo.webp", // Add your company logo path
+    logo: "/algoacharya-logo.webp",
     description: [
       "Built and maintained an algo-based trading platform for the Indian stock market.",
       "Developed responsive UI with Next.js, TypeScript, and Tailwind CSS, including dark mode and a custom component library.",
@@ -28,10 +59,10 @@ export const experiences = [
   {
     role: ".NET Developer Intern",
     company: "Gujarat Informatics Limited (GIL)",
-    location: "Gandhinagar",
+    location: "Gandhinagar, India",
     duration: "Mar 2023 - May 2023",
     type: "Internship",
-    logo: "/gil-logo.png", // Add your company logo path
+    logo: "/gil-logo.png",
     description: [
       "Developed government web applications using .NET Core and SQL Server.",
       "Designed efficient database schemas, improving data retrieval speed by 25%.",
