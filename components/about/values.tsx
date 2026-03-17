@@ -1,11 +1,5 @@
-import { ArrowBigUp, Code2, PackageCheck } from "lucide-react";
 import { motion } from "motion/react";
-
-const values = [
-  { icon: Code2, text: "Writing clean, maintainable code" },
-  { icon: ArrowBigUp, text: "Leveling up constantly" },
-  { icon: PackageCheck, text: "Shipping things that actually matter" },
-];
+import { values } from "@/constants/about";
 
 export const Values = () => {
   return (

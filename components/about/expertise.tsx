@@ -1,26 +1,6 @@
 import { motion } from "motion/react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Code2, Server, TrendingUp } from "lucide-react";
-
-const expertises = [
-  {
-    icon: Server,
-    title: "Backend Engineering",
-    description:
-      "Building reliable, scalable APIs with Node.js and Python; exploring microservices and distributed systems",
-  },
-  {
-    icon: TrendingUp,
-    title: "Algo Trading",
-    description:
-      "Designing trading strategies, automation pipelines, and data workflows with Python and pandas",
-  },
-  {
-    icon: Code2,
-    title: "Full-Stack Experience",
-    description: "Built fintech dashboards using React, Next.js, TypeScript, and Django",
-  },
-];
+import { expertises } from "@/constants/about";
 
 export const Expertise = () => {
   return (
