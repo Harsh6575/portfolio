@@ -5,7 +5,18 @@ import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
-import { GITHUB_URL, LINKED_IN_URL, MAIL_URL, OPEN_TO_NEW_OP, TOTAL_EXPERIENCE } from "@/constants";
+import { SiLeetcode } from "react-icons/si";
+import {
+  GITHUB_URL,
+  LINKED_IN_URL,
+  MAIL_URL,
+  LEETCODE_URL,
+  OPEN_TO_NEW_OP,
+  APP_NAME,
+  APP_TITLE,
+  APP_SUBTITLE,
+  APP_TAGLINE,
+} from "@/constants";
 import Image from "next/image";
 
 export const Hero = () => {
@@ -42,7 +53,7 @@ export const Hero = () => {
             alt="HV Initials"
             width={600}
             height={600}
-            className="w-96 h-96 sm:w-[500px] sm:h-[500px] lg:w-[600px] lg:h-[600px] dark:invert"
+            className="w-96 h-96 sm:w-125 sm:h-125 lg:w-150 lg:h-150 dark:invert"
             unoptimized={true}
           />
         </motion.div>
@@ -70,9 +81,9 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-4 bg-gradient-to-r from-foreground via-foreground/80 to-foreground/60 bg-clip-text text-transparent px-2 py-4"
+          className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-4 bg-linear-to-r from-foreground via-foreground/80 to-foreground/60 bg-clip-text text-transparent px-2 py-4"
         >
-          Harsh Vansjaliya
+          {APP_NAME}
         </motion.h1>
 
         {/* Title & Subtitle */}
@@ -83,11 +94,9 @@ export const Hero = () => {
           className="mb-6"
         >
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-foreground/90 mb-2">
-            Software Developer
+            {APP_TITLE}
           </h2>
-          <h3 className="text-lg sm:text-xl lg:text-2xl text-muted-foreground">
-            Transitioning to Backend Development
-          </h3>
+          <h3 className="text-lg sm:text-xl lg:text-2xl text-muted-foreground">{APP_SUBTITLE}</h3>
         </motion.div>
 
         {/* Tagline */}
@@ -97,8 +106,7 @@ export const Hero = () => {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed"
         >
-          Building scalable backend solutions and trading systems with{" "}
-          <span className="text-primary font-medium">{TOTAL_EXPERIENCE}+ years</span> of experience
+          {APP_TAGLINE}
         </motion.p>
 
         {/* CTA Buttons */}
@@ -154,6 +162,17 @@ export const Hero = () => {
           >
             <FaLinkedin className="w-6 h-6" />
             <span className="sr-only">LinkedIn</span>
+          </motion.a>
+          <motion.a
+            href={LEETCODE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-foreground transition-colors p-2"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <SiLeetcode className="w-6 h-6" />
+            <span className="sr-only">LeetCode</span>
           </motion.a>
           <motion.a
             href={MAIL_URL}

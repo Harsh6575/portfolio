@@ -5,7 +5,16 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import { ArrowUp, Heart, Mail } from "lucide-react";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
-import { GITHUB_URL, LINKED_IN_URL, MAIL_URL, OPEN_TO_NEW_OP, X_URL } from "@/constants";
+import { SiLeetcode } from "react-icons/si";
+import {
+  GITHUB_URL,
+  LINKED_IN_URL,
+  MAIL_URL,
+  OPEN_TO_NEW_OP,
+  X_URL,
+  LEETCODE_URL,
+  APP_NAME,
+} from "@/constants";
 
 export const Footer = () => {
   const bgRef = useRef<HTMLDivElement | null>(null);
@@ -40,7 +49,7 @@ export const Footer = () => {
           className="text-[5rem] md:text-[10rem] font-extrabold uppercase tracking-widest opacity-[0.1] whitespace-nowrap select-none text-foreground"
           aria-hidden="true"
         >
-          Harsh&nbsp;Vansjaliya
+          {APP_NAME.split(" ").join(" ")}
         </motion.h1>
       </div>
 
@@ -85,6 +94,14 @@ export const Footer = () => {
               <FaLinkedin size={24} />
             </Link>
             <Link
+              href={LEETCODE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors"
+            >
+              <SiLeetcode size={24} />
+            </Link>
+            <Link
               href={MAIL_URL}
               className="text-muted-foreground hover:text-primary transition-colors"
             >
@@ -124,7 +141,7 @@ export const Footer = () => {
             viewport={{ once: true }}
             className="text-xs sm:text-sm  text-muted-foreground text-center"
           >
-            © {new Date().getFullYear()} Harsh Vansjaliya. All rights reserved.
+            © {new Date().getFullYear()} {APP_NAME}. All rights reserved.
           </motion.p>
 
           {/* Status */}

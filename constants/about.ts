@@ -2,21 +2,22 @@ import { Server, TrendingUp, Code2, ArrowBigUp, PackageCheck } from "lucide-reac
 
 export const expertises = [
   {
-    icon: Server,
-    title: "Backend Engineering",
+    icon: Code2,
+    title: "Frontend Engineering",
     description:
-      "Building reliable, scalable APIs with Node.js and Python; exploring microservices and distributed systems",
+      "Building responsive, accessible, and performant web interfaces using React, Next.js, and Tailwind CSS",
+  },
+  {
+    icon: Server,
+    title: "Backend Architecture",
+    description:
+      "Designing secure, scalable APIs with Node.js and Python, backed by PostgreSQL and Redis caches",
   },
   {
     icon: TrendingUp,
-    title: "Algo Trading",
+    title: "Financial Technology",
     description:
-      "Designing trading strategies, automation pipelines, and data workflows with Python and pandas",
-  },
-  {
-    icon: Code2,
-    title: "Full-Stack Experience",
-    description: "Built fintech dashboards using React, Next.js, TypeScript, and Django",
+      "Developing fintech dashboards and exploring data-driven trading strategies with Python and pandas",
   },
 ];
 

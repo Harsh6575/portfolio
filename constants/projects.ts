@@ -17,28 +17,19 @@ export const projectsData: {
   {
     title: "Shortify - URL Shortener",
     description:
-      "A high-performance URL shortening service built to explore system design principles and scalable backend architecture. Features hash-based ID generation, multi-database integration (PostgreSQL + Redis + MongoDB), and optimized caching strategies for sub-millisecond redirects.",
-    technologies: [
-      "Python",
-      "FastAPI",
-      "PostgreSQL",
-      "Redis",
-      "MongoDB",
-      "SQLAlchemy",
-      "Docker",
-      "asyncpg",
-    ],
+      "A high-performance URL shortening service built to explore system design principles and scalable backend architecture. Features hash-based ID generation, MongoDB database integration, and optimized Redis caching strategies for sub-millisecond redirects.",
+    technologies: ["Python", "FastAPI", "MongoDB", "Redis", "Docker"],
     category: "Backend",
-    status: "In Progress",
+    status: "Completed",
     date: "Nov 2025",
     features: [
       "Hash-based short ID generation using SHA-256 + Base62 encoding",
       "Three-tier caching architecture with Redis (7-day TTL)",
-      "Async database operations with SQLAlchemy and asyncpg",
+      "Async database operations using Motor (MongoDB async driver)",
       "RESTful API with automatic documentation (Swagger/OpenAPI)",
       "Deterministic URL shortening with collision detection",
       "Real-time cache invalidation and TTL management",
-      "Multi-database architecture exploring different use cases",
+      "Scalable MongoDB document storage for long-term URL mapping",
       "Horizontal scalability with stateless API design",
     ],
     links: [

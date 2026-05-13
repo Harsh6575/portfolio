@@ -8,16 +8,14 @@ import { SectionHeading } from "@/components/section-heading";
 import { MapPin, Calendar, Building, Briefcase, GraduationCap } from "lucide-react";
 import { CompanyLogo } from "./company-logo";
 import { experiences } from "@/constants/experience";
+import { EXPERIENCE_SUBTITLE } from "@/constants";
 
 export const Experience = () => {
   return (
     <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/20">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        <SectionHeading
-          title="Professional Experience"
-          subtitle="My journey in software development: building trading platforms and scalable web applications"
-        />
+        <SectionHeading title="Professional Experience" subtitle={EXPERIENCE_SUBTITLE} />
 
         {/* Experience Timeline */}
         <div className="relative">
@@ -45,13 +43,13 @@ export const Experience = () => {
                         <div className="flex-1">
                           <div className="flex items-start gap-3 mb-3">
                             {/* Company Logo */}
-                            <div className="w-12 h-12 rounded-lg bg-muted flex items-center justify-center flex-shrink-0">
+                            <div className="w-12 h-12 rounded-lg bg-muted flex items-center justify-center shrink-0">
                               <CompanyLogo
                                 src={exp.logo}
                                 alt={`${exp.company} logo`}
                                 fallback="/fallback-logo.png"
                               />
-                              <div className="w-8 h-8 bg-primary/10 text-primary rounded flex items-center justify-center text-sm font-semibold hidden">
+                              <div className="w-8 h-8 bg-primary/10 text-primary rounded items-center justify-center text-sm font-semibold hidden">
                                 {exp.company.charAt(0)}
                               </div>
                             </div>
@@ -112,7 +110,7 @@ export const Experience = () => {
                               viewport={{ once: true }}
                               className="flex items-start gap-3 text-muted-foreground"
                             >
-                              <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                              <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0"></span>
                               <span className="text-sm leading-relaxed">{item}</span>
                             </motion.li>
                           ))}
