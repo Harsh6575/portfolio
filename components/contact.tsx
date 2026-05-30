@@ -170,17 +170,17 @@ export const Contact = () => {
                       }`}
                     >
                       <CardContent className="p-4.5 flex items-center justify-between gap-4">
-                        <div className="flex items-center gap-3.5">
+                        <div className="flex items-center gap-3.5 min-w-0 flex-1">
                           {/* Glowing Icon Frame */}
                           <div className="p-2.5 rounded-xl bg-primary/10 text-primary border border-primary/20">
                             <info.icon className="w-4.5 h-4.5" />
                           </div>
 
-                          <div className="space-y-0.5">
+                          <div className="space-y-0.5 min-w-0 flex-1">
                             <span className="font-bold text-foreground/75 text-[10px] uppercase tracking-wider select-none">
                               {info.label}
                             </span>
-                            <div className="text-sm font-bold text-foreground tracking-wide">
+                            <div className="text-xs sm:text-sm font-bold text-foreground tracking-wide break-all">
                               {info.value}
                             </div>
                             <p className="text-[10px] text-muted-foreground font-medium">
@@ -267,8 +267,8 @@ export const Contact = () => {
                         Message Sent Successfully!
                       </h4>
                       <p className="text-xs text-muted-foreground max-w-sm leading-relaxed mb-6 font-semibold">
-                        Thank you for your message, Harsh will review your request and get back to
-                        you shortly.
+                        Thank you for your message! I will review your request and get back to you
+                        shortly.
                       </p>
 
                       <Button

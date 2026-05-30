@@ -43,7 +43,7 @@ export const About = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="lg:col-span-5 flex flex-col items-center justify-center space-y-6"
+            className="lg:col-span-5 w-full max-w-full overflow-hidden flex flex-col items-center justify-center space-y-6"
           >
             {/* Holographic Gyroscope Orbit Container */}
             <div className="relative w-64 h-64 sm:w-72 sm:h-72 flex items-center justify-center">
@@ -131,7 +131,7 @@ export const About = () => {
           </motion.div>
 
           {/* Right Column: Dynamic Interactive Tabbed Layout */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 w-full max-w-full overflow-hidden space-y-6">
             {/* Tabs Controller Menu */}
             <div className="flex bg-muted/40 p-1.5 rounded-full border border-border/30 gap-1 overflow-x-auto no-scrollbar">
               {[
@@ -187,9 +187,9 @@ export const About = () => {
                         </h3>
                         <div className="grid sm:grid-cols-2 gap-2 text-xs text-muted-foreground">
                           {FOCAL_POINTS.map((point: string, index: number) => (
-                            <div key={index} className="flex items-start gap-2">
-                              <span className="text-primary">•</span>
-                              <span>{point}</span>
+                            <div key={index} className="flex items-start gap-2 min-w-0 flex-1">
+                              <span className="text-primary shrink-0">•</span>
+                              <span className="flex-1 min-w-0 break-words">{point}</span>
                             </div>
                           ))}
                         </div>

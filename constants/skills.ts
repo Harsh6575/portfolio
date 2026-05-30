@@ -69,7 +69,7 @@ export const skillsData: {
       "Bitbucket",
       "Postman",
     ],
-    priority: false,
+    priority: true,
   },
   {
     category: "Database & System Concepts",
