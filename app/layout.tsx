@@ -7,7 +7,15 @@ import { Footer } from "@/components/footer";
 import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { APP_URL, APP_NAME, APP_DESCRIPTION } from "@/constants";
+import {
+  APP_URL,
+  APP_NAME,
+  APP_DESCRIPTION,
+  GITHUB_URL,
+  LINKED_IN_URL,
+  X_URL,
+  LEETCODE_URL,
+} from "@/constants";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -102,6 +110,36 @@ export default function RootLayout({
           disableTransitionOnChange
           key={"harsh-vansjaliya-portfolio"}
         >
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Person",
+                name: APP_NAME,
+                jobTitle: "Full-Stack Software Engineer",
+                url: APP_URL,
+                sameAs: [LINKED_IN_URL, GITHUB_URL, X_URL, LEETCODE_URL],
+                alumniOf: {
+                  "@type": "EducationalOrganization",
+                  name: "SVIT Vasad (GTU)",
+                },
+                knowsAbout: [
+                  "Full-Stack Development",
+                  "React",
+                  "Next.js",
+                  "TypeScript",
+                  "Node.js",
+                  "PostgreSQL",
+                  "Docker",
+                  "Redis",
+                  "BullMQ",
+                  "n8n Automation",
+                  "Stripe",
+                ],
+              }),
+            }}
+          />
           <Navbar />
           {children}
           <ThemeToggle />
