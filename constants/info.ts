@@ -12,9 +12,9 @@ export const RESUME_URL: string =
 
 export const ABOUT_BIO = {
   intro:
-    "I'm a Full-Stack Developer with {TOTAL_EXPERIENCE}+ years of experience building scalable, high-performance web applications. I specialize in turning complex requirements into seamless digital experiences, owning the development process from responsive frontend interfaces to robust backend architectures.",
+    "I am a high-impact Full-Stack Engineer with a proven track record of building scalable, low-latency web architectures. Specializing in the modern React/Next.js ecosystem and high-throughput Node.js/Python backends, I own the entire engineering lifecycle, from pixel-perfect, highly accessible user interfaces to robust, concurrent backend systems.",
   experience:
-    "With a strong background in fintech from AlgoAcharya, where I optimized APIs and dashboards for real-time financial trading systems, I'm highly focused on mastering advanced system design. Today, I build end-to-end systems using modern React ecosystems, microservices, and databases like PostgreSQL, MongoDB, and Redis.",
+    "My experience is anchored in building financial technology products at AlgoAcharya, where I architected high-frequency trading dashboards and optimized GraphQL/REST APIs to handle real-time market data. Today, I focus on building resilient backend architectures, designing optimized database schemas (PostgreSQL, MongoDB), and leveraging caching layers and message queues (Redis, BullMQ) to deliver sub-millisecond execution times.",
 };
 
 export const FOCAL_POINTS = [
@@ -26,8 +26,8 @@ export const FOCAL_POINTS = [
 
 export const EDUCATION = [
   {
-    degree: "Bachelor of Technology in Computer Science",
-    institution: "Gujarat Technological University",
+    degree: "Bachelor of Engineering in Computer Engineering",
+    institution: "SVIT Vasad (GTU)",
     duration: "2019 - 2023",
     description: "Focused on Software Engineering, Data Structures, and Algorithms.",
   },

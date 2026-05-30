@@ -17,7 +17,7 @@ export const projectsData: {
   {
     title: "Shortify - URL Shortener",
     description:
-      "A high-performance URL shortening service built to explore system design principles and scalable backend architecture. Features hash-based ID generation, MongoDB database integration, and optimized Redis caching strategies for sub-millisecond redirects.",
+      "A high-throughput URL shortening platform engineered to demonstrate advanced system design principles and scalable backend architecture. Features a collision-resistant custom hashing generator, scalable MongoDB persistence, and an optimized Redis caching hierarchy to achieve sub-millisecond redirect lookups.",
     technologies: ["Python", "FastAPI", "MongoDB", "Redis", "Docker"],
     category: "Backend",
     status: "Completed",
@@ -43,7 +43,7 @@ export const projectsData: {
   {
     title: "Tailor Management System",
     description:
-      "A full-stack tailor shop management system with separate frontend and backend. Built to manage customer orders, measurements, billing, and inventory with a modern tech stack implementing RESTful APIs and responsive UI design.",
+      "A modern full-stack SaaS platform designed for garment and tailor shop business automation. Integrates a rich, highly responsive Next.js frontend with a secure Express backend via type-safe Drizzle ORM, orchestrating customer measurements, order lifecycles, real-time inventory, and invoice generation.",
     technologies: [
       "Next.js",
       "React",
@@ -79,7 +79,7 @@ export const projectsData: {
   {
     title: "Patient Management System",
     description:
-      "A distributed healthcare management system built with Spring Boot microservices architecture. Designed to learn and implement enterprise-level backend patterns including API Gateway, service mesh communication, and event-driven architecture.",
+      "A highly available, distributed healthcare operations system built on a modern Spring Boot microservices architecture. Implements enterprise integration patterns including an API Gateway with rate limiting, secure gRPC inter-service communication, and real-time Kafka event streaming for asynchronous healthcare analytics.",
     technologies: [
       "Java",
       "Spring Boot",
@@ -112,7 +112,7 @@ export const projectsData: {
   {
     title: "Algorithmic Trading Platform",
     description:
-      "A sophisticated trading platform for the Indian stock market with automated strategies, real-time data analysis, and portfolio management capabilities.",
+      "A professional-grade algorithmic trading workstation tailored for the Indian equities market. Features real-time stock market data ingestion pipelines, automated strategy executions, detailed backtesting simulators, and multi-dimensional portfolio risk analytics.",
     technologies: [
       "Python",
       "Django",
@@ -139,7 +139,7 @@ export const projectsData: {
   {
     title: "Hotel Reservation Platform",
     description:
-      "A full-stack hotel booking application inspired by Airbnb, built with modern web technologies. Features complete user authentication, property listings, booking system, and payment integration.",
+      "A high-fidelity full-stack hospitality marketplace inspired by Airbnb. Powered by Next.js and Prisma, the platform includes complete session management, dynamic property listing grids, interactive geospatial map searching, and real-time booking reservation workflows.",
     technologies: [
       "Next.js",
       "TypeScript",

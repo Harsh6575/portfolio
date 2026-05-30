@@ -33,125 +33,112 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-background border-t border-border overflow-hidden">
-      {/* Background Watermark */}
-      <div ref={bgRef} className="absolute inset-0 flex items-center pointer-events-none">
+    <footer className="relative bg-background border-t border-border/40 overflow-hidden shrink-0 select-none">
+      {/* Background Animated Outline Text Watermark */}
+      <div ref={bgRef} className="absolute inset-0 flex items-center pointer-events-none -z-10">
         <motion.h1
           animate={{
-            x: ["30%", "-60%"],
+            x: ["10%", "-50%"],
           }}
           transition={{
-            duration: 30,
+            duration: 35,
             repeat: Infinity,
             repeatType: "reverse",
             ease: "linear",
           }}
-          className="text-[5rem] md:text-[10rem] font-extrabold uppercase tracking-widest opacity-[0.1] whitespace-nowrap select-none text-foreground"
+          className="text-[6rem] md:text-[11rem] font-black uppercase tracking-widest whitespace-nowrap select-none text-transparent [-webkit-text-stroke:1.5px_oklch(var(--foreground)/0.03)]"
           aria-hidden="true"
         >
-          {APP_NAME.split(" ").join(" ")}
+          {APP_NAME}
         </motion.h1>
       </div>
+
+      {/* Grid Overlay Mask */}
+      <div className="absolute inset-0 mesh-grid opacity-[0.02] dark:opacity-[0.01] pointer-events-none" />
 
       {/* Foreground Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col items-center space-y-6">
-          {/* Back to Top */}
+          {/* Floating Back to Top Button */}
           <motion.button
             onClick={scrollToTop}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
             viewport={{ once: true }}
-            className="p-3 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 group"
+            whileHover={{ y: -3, scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="p-3.5 rounded-full bg-primary/10 text-primary border border-primary/20 hover:bg-primary hover:text-primary-foreground hover:neon-glow-primary transition-all duration-300 group cursor-pointer"
           >
-            <ArrowUp className="w-5 h-5 transition-transform group-hover:-translate-y-1" />
+            <ArrowUp className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" />
             <span className="sr-only">Back to top</span>
           </motion.button>
 
-          {/* Social Links */}
+          {/* Social Links Row */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
             viewport={{ once: true }}
-            className="flex space-x-6 text-lg font-medium"
+            className="flex space-x-5 text-lg font-medium"
           >
-            <Link
-              href={GITHUB_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              <FaGithub size={24} />
-            </Link>
-            <Link
-              href={LINKED_IN_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              <FaLinkedin size={24} />
-            </Link>
-            <Link
-              href={LEETCODE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              <SiLeetcode size={24} />
-            </Link>
-            <Link
-              href={MAIL_URL}
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Mail size={24} />
-            </Link>
-            <Link
-              href={X_URL}
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              <FaXTwitter size={24} />
-            </Link>
+            {[
+              { url: GITHUB_URL, icon: FaGithub, label: "GitHub" },
+              { url: LINKED_IN_URL, icon: FaLinkedin, label: "LinkedIn" },
+              { url: LEETCODE_URL, icon: SiLeetcode, label: "LeetCode" },
+              { url: MAIL_URL, icon: Mail, label: "Email" },
+              { url: X_URL, icon: FaXTwitter, label: "Twitter" },
+            ].map((social, idx) => (
+              <Link
+                key={idx}
+                href={social.url}
+                target={social.url.startsWith("mailto:") ? undefined : "_blank"}
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full border border-border/60 hover:border-primary/40 text-muted-foreground hover:text-primary flex items-center justify-center bg-card/30 backdrop-blur-xs transition-all duration-300"
+              >
+                <social.icon size={16} />
+                <span className="sr-only">{social.label}</span>
+              </Link>
+            ))}
           </motion.div>
 
-          {/* Built With */}
+          {/* Built With Description Credits Ticker */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
             viewport={{ once: true }}
-            className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs sm:text-sm text-muted-foreground"
+            className="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-xs text-muted-foreground font-semibold"
           >
             <span>Built with</span>
-            <Heart className="w-3 h-3 text-red-500 fill-current" />
+            <Heart className="w-3.5 h-3.5 text-red-500 fill-current animate-pulse shrink-0" />
             <span>using</span>
-            <span className="text-foreground font-medium">Next.js</span>
+            <span className="text-foreground">Next.js</span>
             <span>•</span>
-            <span className="text-foreground font-medium">TypeScript</span>
+            <span className="text-foreground">TypeScript</span>
             <span>•</span>
-            <span className="text-foreground font-medium">Tailwind CSS</span>
+            <span className="text-foreground">Tailwind v4</span>
           </motion.div>
 
-          {/* Copyright */}
+          {/* Copyright line */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
             viewport={{ once: true }}
-            className="text-xs sm:text-sm  text-muted-foreground text-center"
+            className="text-[11px] font-bold text-muted-foreground/60 uppercase tracking-widest text-center"
           >
             © {new Date().getFullYear()} {APP_NAME}. All rights reserved.
           </motion.p>
 
-          {/* Status */}
+          {/* Availability Status line */}
           {OPEN_TO_NEW_OP && (
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.4, delay: 0.4 }}
               viewport={{ once: true }}
-              className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground"
+              className="flex items-center gap-2 text-xs font-semibold text-green-500 bg-green-500/5 border border-green-500/10 px-3.5 py-1.5 rounded-full"
             >
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
               <span>Available for backend opportunities</span>

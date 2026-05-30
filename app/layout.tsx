@@ -48,7 +48,9 @@ export const metadata: Metadata = {
     "India Developer",
     "Portfolio",
     "Web Development",
-    "Microservices",
+    "BullMQ",
+    "n8n",
+    "Stripe",
     "Python Developer",
   ],
 
