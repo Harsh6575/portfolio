@@ -76,18 +76,15 @@ export const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <div className="relative overflow-hidden w-8 h-8 md:w-9 md:h-9 rounded-full border border-primary/20 bg-primary/5 flex items-center justify-center">
+            <div className="relative overflow-hidden w-9 h-9 md:w-10 md:h-10 rounded-full border border-primary/20 bg-primary/5 flex items-center justify-center">
               <Image
                 src="/400X400.svg"
                 alt="Harsh Vansjaliya Logo"
                 className="w-full h-full object-cover dark:invert"
-                width={36}
-                height={36}
+                width={40}
+                height={40}
               />
             </div>
-            <span className="ml-2.5 font-bold text-sm tracking-wide hidden sm:block bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
-              HV
-            </span>
           </motion.button>
 
           {/* Desktop Nav */}
@@ -100,7 +97,7 @@ export const Navbar = () => {
                 onClick={() => handleScroll(item.href)}
                 className={`relative px-4 py-1.5 text-xs font-semibold rounded-full transition-colors cursor-pointer ${
                   active === item.href
-                    ? "text-primary-foreground dark:text-foreground"
+                    ? "text-primary-foreground"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >

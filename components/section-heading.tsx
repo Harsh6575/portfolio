@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "motion/react";
 
 interface SectionHeadingProps {
+  index?: string;
   title: string;
   subtitle?: string;
   align?: "left" | "center";
@@ -9,23 +10,40 @@ interface SectionHeadingProps {
 }
 
 export const SectionHeading: React.FC<SectionHeadingProps> = ({
+  index,
   title,
   subtitle,
   align = "center",
   className = "",
 }) => {
+  const isCenter = align === "center";
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.5 }}
       viewport={{ once: true }}
-      className={`mb-16 ${align === "center" ? "text-center" : "text-left"} ${className}`}
+      className={`mb-14 ${isCenter ? "text-center" : "text-left"} ${className}`}
     >
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-foreground via-foreground/80 to-foreground/60 bg-clip-text text-transparent">
+      {index && (
+        <div
+          className={`flex items-center gap-3 mb-3 ${isCenter ? "justify-center" : "justify-start"}`}
+        >
+          <span className="font-mono text-xs font-medium text-primary tracking-wider">{index}</span>
+          <span className="h-px w-8 bg-border" />
+        </div>
+      )}
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-foreground tracking-tight">
         {title}
       </h2>
-      {subtitle && <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{subtitle}</p>}
+      {subtitle && (
+        <p
+          className={`text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed ${isCenter ? "mx-auto" : ""}`}
+        >
+          {subtitle}
+        </p>
+      )}
     </motion.div>
   );
 };

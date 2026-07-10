@@ -16,17 +16,19 @@ export const Experience = () => {
       id="experience"
       className="py-24 px-4 sm:px-6 lg:px-8 bg-muted/10 relative overflow-hidden"
     >
-      {/* Background visual detail */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 blur-3xl rounded-full -z-10 pointer-events-none" />
-
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Section Header */}
-        <SectionHeading title="Professional Experience" subtitle={EXPERIENCE_SUBTITLE} />
+        <SectionHeading
+          index="03 — Experience"
+          title="Professional Experience"
+          subtitle={EXPERIENCE_SUBTITLE}
+          align="left"
+        />
 
         {/* Experience Timeline Container */}
         <div className="relative mt-8">
-          {/* Vertical Timeline Glow Line */}
-          <div className="absolute left-6 top-2 bottom-2 w-[2px] bg-linear-to-b from-primary via-fuchsia-500 to-border/30 hidden md:block" />
+          {/* Vertical Timeline Line */}
+          <div className="absolute left-6 top-2 bottom-2 w-px bg-border hidden md:block" />
 
           <div className="space-y-12">
             {experiences.map((exp, index) => (
@@ -49,16 +51,13 @@ export const Experience = () => {
                     whileHover={{ y: -4 }}
                     transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   >
-                    <Card className="border-border/40 bg-card/45 rounded-2xl glass-card hover:border-primary/25 hover:shadow-[0_12px_40px_-15px_oklch(var(--primary)/0.12)] transition-all duration-300 overflow-hidden">
-                      {/* Top Accent Gradient Border */}
-                      <div className="h-1 w-full bg-gradient-to-r from-primary/80 to-fuchsia-500/80" />
-
+                    <Card className="border-border bg-card rounded-2xl hover:border-primary/30 transition-all duration-300 overflow-hidden">
                       <CardHeader className="pb-4">
                         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                           {/* Company Logo and Role Title Info */}
                           <div className="flex items-start gap-4">
-                            {/* Glowing Company Logo Box */}
-                            <div className="w-12 h-12 rounded-xl bg-card border border-border/40 flex items-center justify-center shrink-0 shadow-xs relative overflow-hidden group">
+                            {/* Company Logo Box */}
+                            <div className="w-12 h-12 rounded-xl bg-white border border-border/40 flex items-center justify-center shrink-0 shadow-xs overflow-hidden p-1.5">
                               <CompanyLogo
                                 src={exp.logo}
                                 alt={`${exp.company} logo`}

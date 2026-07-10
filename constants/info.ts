@@ -12,9 +12,9 @@ export const RESUME_URL: string =
 
 export const ABOUT_BIO = {
   intro:
-    "I am a high-impact Full-Stack Engineer with a proven track record of building scalable, low-latency web architectures. Specializing in the modern React/Next.js ecosystem and high-throughput Node.js/Python backends, I own the entire engineering lifecycle, from pixel-perfect, highly accessible user interfaces to robust, concurrent backend systems.",
+    "I'm a full-stack developer with {TOTAL_EXPERIENCE}+ years of experience building web applications end-to-end, from React/Next.js frontends to Node.js and Python backends. I like owning a feature from database schema to shipped UI, and I care about the unglamorous parts (error handling, caching, migrations) as much as the visible ones.",
   experience:
-    "My experience is anchored in building financial technology products at AlgoAcharya, where I architected high-frequency trading dashboards and optimized GraphQL/REST APIs to handle real-time market data. Today, I focus on building resilient backend architectures, designing optimized database schemas (PostgreSQL, MongoDB), and leveraging caching layers and message queues (Redis, BullMQ) to deliver sub-millisecond execution times.",
+    "I spent my first two years at AlgoAcharya building trading dashboards and APIs for real-time market data - that's where I got serious about performance and API design. These days I mostly work on backend systems: database schemas, caching layers, and background job queues (Redis, BullMQ), with enough frontend work to stay comfortable across the stack.",
 };
 
 export const FOCAL_POINTS = [
@@ -35,10 +35,3 @@ export const EDUCATION = [
 
 export const EXPERIENCE_SUBTITLE: string =
   "My journey in software development: building trading platforms and scalable web applications";
-
-export const QUICK_STATS = [
-  { label: "Years Experience", value: `${TOTAL_EXPERIENCE}+` },
-  { label: "Technologies", value: "10+" },
-  { label: "Projects Built", value: "6+" },
-  { label: "Learning Mode", value: "∞" },
-];

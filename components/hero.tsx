@@ -18,7 +18,6 @@ import {
   APP_TAGLINE,
   TOTAL_EXPERIENCE,
 } from "@/constants";
-import Image from "next/image";
 import { TerminalWindow } from "@/components/terminal-window";
 
 type TabName = "profile.json" | "experience.ts" | "interests.py";
@@ -63,7 +62,7 @@ export const Hero = () => {
       lines: [
         <span key="1">{"{"}</span>,
         <span key="2">
-          {" "}
+          {"  "}
           <span className="text-violet-400">{'"name"'}</span>:{" "}
           <span className="text-cyan-400">
             {'"'}
@@ -73,7 +72,7 @@ export const Hero = () => {
           ,
         </span>,
         <span key="3">
-          {" "}
+          {"  "}
           <span className="text-violet-400">{'"role"'}</span>:{" "}
           <span className="text-cyan-400">
             {'"'}
@@ -83,7 +82,7 @@ export const Hero = () => {
           ,
         </span>,
         <span key="4">
-          {" "}
+          {"  "}
           <span className="text-violet-400">{'"experience"'}</span>:{" "}
           <span className="text-cyan-400">
             {'"'}
@@ -93,7 +92,7 @@ export const Hero = () => {
           ,
         </span>,
         <span key="5">
-          {" "}
+          {"  "}
           <span className="text-violet-400">{'"status"'}</span>:{" "}
           <span className="text-cyan-400">
             {'"'}
@@ -103,22 +102,22 @@ export const Hero = () => {
           ,
         </span>,
         <span key="6">
-          {" "}
+          {"  "}
           <span className="text-violet-400">{'"specialties"'}</span>: [
         </span>,
         <span key="7">
-          {" "}
+          {"    "}
           <span className="text-emerald-400">{'"Scalable API Architectures"'}</span>,
         </span>,
         <span key="8">
-          {" "}
+          {"    "}
           <span className="text-emerald-400">{'"High-Performance Frontends"'}</span>,
         </span>,
         <span key="9">
-          {" "}
+          {"    "}
           <span className="text-emerald-400">{'"Database Optimization"'}</span>
         </span>,
-        <span key="10"> ]</span>,
+        <span key="10">{"  ]"}</span>,
         <span key="11">{"}"}</span>,
       ],
     },
@@ -152,43 +151,43 @@ export class Portfolio extends Developer {
           <span className="text-amber-400">Developer</span> {"{"}
         </span>,
         <span key="4">
-          {" "}
+          {"  "}
           <span className="text-pink-400">readonly</span>{" "}
           <span className="text-cyan-400">current</span> = {"{"}
         </span>,
         <span key="5">
-          {" "}
+          {"    "}
           company: <span className="text-emerald-400">{'"Alite Projects"'}</span>,
         </span>,
         <span key="6">
-          {" "}
+          {"    "}
           role: <span className="text-emerald-400">{'"Software Developer"'}</span>,
         </span>,
         <span key="7">
-          {" "}
+          {"    "}
           stack: [<span className="text-emerald-400">{'"Node.js"'}</span>,{" "}
           <span className="text-emerald-400">{'"Redis"'}</span>,{" "}
           <span className="text-emerald-400">{'"Next.js"'}</span>,{" "}
           <span className="text-emerald-400">{'"PostgreSQL"'}</span>]
         </span>,
-        <span key="8"> {"};"}</span>,
+        <span key="8">{"  };"}</span>,
         <span key="9" />,
         <span key="10">
-          {" "}
+          {"  "}
           <span className="text-pink-400">async</span> <span className="text-amber-400">init</span>
           () {"{"}
         </span>,
         <span key="11">
-          {" "}
+          {"    "}
           <span className="text-pink-400">await</span> <span className="text-cyan-400">this</span>.
           <span className="text-violet-400">buildRobustScalableAPIs</span>();
         </span>,
         <span key="12">
-          {" "}
+          {"    "}
           <span className="text-pink-400">await</span> <span className="text-cyan-400">this</span>.
           <span className="text-violet-400">craftPremiumUserInterfaces</span>();
         </span>,
-        <span key="13"> {"}"}</span>,
+        <span key="13">{"  }"}</span>,
         <span key="14">{"}"}</span>,
       ],
     },
@@ -209,43 +208,43 @@ export class Portfolio extends Developer {
           <span className="text-violet-400">DevInterests</span>:
         </span>,
         <span key="2">
-          {" "}
+          {"    "}
           <span className="text-pink-400">def</span>{" "}
           <span className="text-amber-400">__init__</span>(
           <span className="text-cyan-400">self</span>):
         </span>,
         <span key="3">
-          {" "}
+          {"        "}
           <span className="text-cyan-400">self</span>.focus ={" "}
           <span className="text-emerald-400">{'"High Performance & Clean Code"'}</span>
         </span>,
         <span key="4">
-          {" "}
+          {"        "}
           <span className="text-cyan-400">self</span>.databases = [
           <span className="text-emerald-400">{'"PostgreSQL"'}</span>,{" "}
           <span className="text-emerald-400">{'"MongoDB"'}</span>,{" "}
           <span className="text-emerald-400">{'"Redis"'}</span>]
         </span>,
         <span key="5">
-          {" "}
+          {"        "}
           <span className="text-cyan-400">self</span>.fintech ={" "}
           <span className="text-emerald-400">{'"Algorithmic Trading & Stock Analytics"'}</span>
         </span>,
         <span key="6">
-          {" "}
+          {"        "}
           <span className="text-cyan-400">self</span>.philosophy ={" "}
           <span className="text-emerald-400">{'"Mastering system design & shipping value"'}</span>
         </span>,
         <span key="7" />,
         <span key="8">
-          {" "}
+          {"    "}
           <span className="text-pink-400">def</span>{" "}
           <span className="text-amber-400">is_learning_always</span>(
           <span className="text-cyan-400">self</span>) -&gt;{" "}
           <span className="text-violet-400">bool</span>:
         </span>,
         <span key="9">
-          {" "}
+          {"        "}
           <span className="text-pink-400">return</span> <span className="text-amber-400">True</span>
         </span>,
       ],
@@ -263,27 +262,8 @@ export class Portfolio extends Developer {
       id="hero"
       className="relative min-h-screen flex flex-col lg:flex-row lg:items-center justify-start lg:justify-center pt-32 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-background"
     >
-      {/* Grid Mesh & Ambient Glows */}
-      <div className="absolute inset-0 mesh-grid opacity-[0.06] dark:opacity-[0.03] pointer-events-none" />
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-violet-600/10 blur-3xl animate-pulse-slow pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-cyan-500/10 blur-3xl animate-pulse-slow pointer-events-none" />
-
-      {/* Background Initials Watermark */}
-      <motion.div
-        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.03] dark:opacity-[0.02]"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 0.04, scale: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-      >
-        <Image
-          src="/400X400.svg"
-          alt="HV Watermark"
-          width={600}
-          height={600}
-          className="w-120 h-120 sm:w-150 sm:h-150 object-contain dark:invert"
-          unoptimized
-        />
-      </motion.div>
+      {/* Grid Mesh */}
+      <div className="absolute inset-0 mesh-grid opacity-[0.05] dark:opacity-[0.03] pointer-events-none" />
 
       {/* Main Responsive Grid Layout */}
       <div className="max-w-6xl w-full mx-auto relative z-10 grid lg:grid-cols-12 gap-12 items-center">
@@ -311,10 +291,7 @@ export class Portfolio extends Developer {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 select-none leading-[1.1] py-1"
           >
-            Hi, {"I'm"}{" "}
-            <span className="bg-gradient-to-r from-violet-600 via-fuchsia-600 to-cyan-500 bg-clip-text text-transparent dark:from-violet-400 dark:via-fuchsia-400 dark:to-cyan-400">
-              {APP_NAME}
-            </span>
+            Hi, {"I'm"} <span className="text-primary">{APP_NAME}</span>
           </motion.h1>
 
           {/* Professional Titles */}
@@ -351,7 +328,7 @@ export class Portfolio extends Developer {
             <Button
               onClick={() => scrollToSection("projects")}
               size="lg"
-              className="group text-sm font-semibold px-8 py-3.5 h-auto rounded-full cursor-pointer hover:neon-glow-primary transition-all duration-300"
+              className="group text-sm font-semibold px-8 py-3.5 h-auto rounded-full cursor-pointer transition-all duration-300"
             >
               View Projects
               <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />

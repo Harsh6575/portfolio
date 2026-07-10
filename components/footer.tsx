@@ -68,7 +68,7 @@ export const Footer = () => {
             viewport={{ once: true }}
             whileHover={{ y: -3, scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="p-3.5 rounded-full bg-primary/10 text-primary border border-primary/20 hover:bg-primary hover:text-primary-foreground hover:neon-glow-primary transition-all duration-300 group cursor-pointer"
+            className="p-3.5 rounded-full bg-primary/10 text-primary border border-primary/20 hover:bg-primary hover:text-primary-foreground transition-all duration-300 group cursor-pointer"
           >
             <ArrowUp className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" />
             <span className="sr-only">Back to top</span>

@@ -10,7 +10,9 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import {
   APP_URL,
   APP_NAME,
+  APP_TITLE,
   APP_DESCRIPTION,
+  CURRENT_COMPANY,
   GITHUB_URL,
   LINKED_IN_URL,
   X_URL,
@@ -29,7 +31,7 @@ export const metadata: Metadata = {
     "vercel-deployment-url": APP_URL,
   },
   title: {
-    default: `${APP_NAME} | Backend Engineer & Software Developer`,
+    default: `${APP_NAME} | ${APP_TITLE}`,
     template: `%s | ${APP_NAME}`,
   },
   description: APP_DESCRIPTION,
@@ -67,7 +69,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: APP_URL,
     siteName: `${APP_NAME} Portfolio`,
-    title: `${APP_NAME} | Backend Engineer & Software Developer`,
+    title: `${APP_NAME} | ${APP_TITLE}`,
     description: APP_DESCRIPTION,
     images: [
       {
@@ -82,7 +84,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: `${APP_NAME} | Backend Engineer & Software Developer`,
+    title: `${APP_NAME} | ${APP_TITLE}`,
     description: APP_DESCRIPTION,
     images: [`${APP_URL}/preview.png`],
     creator: "@HarshVansjaliya",
@@ -116,26 +118,38 @@ export default function RootLayout({
               __html: JSON.stringify({
                 "@context": "https://schema.org",
                 "@type": "Person",
+                "@id": APP_URL,
                 name: APP_NAME,
-                jobTitle: "Full-Stack Software Engineer",
+                jobTitle: APP_TITLE,
+                description: APP_DESCRIPTION,
                 url: APP_URL,
+                image: `${APP_URL}/400X400.svg`,
                 sameAs: [LINKED_IN_URL, GITHUB_URL, X_URL, LEETCODE_URL],
+                worksFor: {
+                  "@type": "Organization",
+                  name: CURRENT_COMPANY,
+                },
                 alumniOf: {
                   "@type": "EducationalOrganization",
                   name: "SVIT Vasad (GTU)",
                 },
                 knowsAbout: [
                   "Full-Stack Development",
+                  "Backend Development",
                   "React",
                   "Next.js",
                   "TypeScript",
                   "Node.js",
+                  "Python",
                   "PostgreSQL",
                   "Docker",
                   "Redis",
                   "BullMQ",
                   "n8n Automation",
                   "Stripe",
+                  "System Design",
+                  "API Architecture",
+                  "Fintech Systems",
                 ],
               }),
             }}

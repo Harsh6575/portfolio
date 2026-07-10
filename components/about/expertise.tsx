@@ -15,7 +15,7 @@ export const Expertise = () => {
           whileHover={{ y: -3 }}
           className="h-full"
         >
-          <Card className="border-border/30 bg-card/25 rounded-2xl h-full glass-card hover:border-primary/30 transition-all duration-300">
+          <Card className="border-border bg-card rounded-2xl h-full hover:border-primary/30 transition-all duration-300">
             <CardContent className="p-5 flex flex-col items-center text-center space-y-3.5 h-full">
               <div className="p-3 rounded-xl bg-primary/10 text-primary border border-primary/20 shadow-inner">
                 <expertise.icon className="w-5 h-5 text-primary" />

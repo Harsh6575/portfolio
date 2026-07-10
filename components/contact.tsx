@@ -102,14 +102,13 @@ export const Contact = () => {
       id="contact"
       className="py-24 px-4 sm:px-6 lg:px-8 bg-muted/10 relative overflow-hidden"
     >
-      {/* Glow Backing */}
-      <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-primary/5 blur-3xl rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none -z-10" />
-
       <div className="max-w-5xl mx-auto relative z-10">
         {/* Section Header */}
         <SectionHeading
+          index="05 — Contact"
           title="Get In Touch"
           subtitle="Let's connect! I am always open to discussing new software engineering roles, system architectures, or collaborating on high-fidelity web projects."
+          align="left"
         />
 
         <div className="grid lg:grid-cols-12 gap-12 mt-6 items-start">
@@ -134,8 +133,7 @@ export const Contact = () => {
                       Available for Hire
                     </Badge>
                     <p className="text-xs text-green-700 dark:text-green-300 leading-relaxed font-semibold">
-                      Actively seeking backend developer roles or full-stack software engineering
-                      positions.
+                      Open to backend or full-stack roles - happy to chat.
                     </p>
                   </div>
                 </CardContent>
@@ -163,9 +161,9 @@ export const Contact = () => {
                   >
                     <Card
                       onClick={() => isClickable && copyToClipboard(info.copyValue!, index)}
-                      className={`border-border/30 bg-card/25 rounded-2xl glass-card transition-all duration-300 relative select-none ${
+                      className={`border-border bg-card rounded-2xl transition-all duration-200 relative select-none ${
                         isClickable
-                          ? "cursor-pointer hover:border-primary/30 hover:bg-card/40 active:scale-[0.99]"
+                          ? "cursor-pointer hover:border-primary/30 active:scale-[0.99]"
                           : "cursor-default"
                       }`}
                     >
@@ -233,14 +231,14 @@ export const Contact = () => {
             viewport={{ once: true }}
             className="lg:col-span-7"
           >
-            <Card className="border-border/40 bg-card/45 rounded-3xl glass-card overflow-hidden">
+            <Card className="border-border bg-card rounded-3xl overflow-hidden">
               <CardHeader className="pb-4">
                 <CardTitle className="flex items-center gap-2 font-extrabold text-foreground text-lg">
                   <Send className="w-5 h-5 text-primary" />
                   Send Me a Message
                 </CardTitle>
                 <CardDescription className="text-xs text-muted-foreground">
-                  Fill out the secure form below to initiate correspondence.
+                  Have a role, project, or question in mind? Fill out the form below.
                 </CardDescription>
               </CardHeader>
 
@@ -267,8 +265,7 @@ export const Contact = () => {
                         Message Sent Successfully!
                       </h4>
                       <p className="text-xs text-muted-foreground max-w-sm leading-relaxed mb-6 font-semibold">
-                        Thank you for your message! I will review your request and get back to you
-                        shortly.
+                        Thanks for reaching out - I&apos;ll get back to you within a day or two.
                       </p>
 
                       <Button
@@ -289,18 +286,16 @@ export const Contact = () => {
                       <Label htmlFor="name" className="text-xs font-bold text-foreground/80">
                         Name
                       </Label>
-                      <div className="relative rounded-xl border border-border/40 overflow-hidden neon-border-focus transition-all">
-                        <Input
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          placeholder="Your full name"
-                          required
-                          disabled={isSubmitting}
-                          className="border-0 bg-transparent text-xs font-semibold px-4.5 py-3.5 h-auto focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-0 rounded-xl"
-                        />
-                      </div>
+                      <Input
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        placeholder="Your full name"
+                        required
+                        disabled={isSubmitting}
+                        className="text-xs font-semibold px-4.5 py-3.5 h-auto rounded-xl"
+                      />
                     </div>
 
                     {/* Email Input field */}
@@ -308,19 +303,17 @@ export const Contact = () => {
                       <Label htmlFor="email" className="text-xs font-bold text-foreground/80">
                         Email Address
                       </Label>
-                      <div className="relative rounded-xl border border-border/40 overflow-hidden neon-border-focus transition-all">
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          placeholder="your@email.com"
-                          required
-                          disabled={isSubmitting}
-                          className="border-0 bg-transparent text-xs font-semibold px-4.5 py-3.5 h-auto focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-0 rounded-xl"
-                        />
-                      </div>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="your@email.com"
+                        required
+                        disabled={isSubmitting}
+                        className="text-xs font-semibold px-4.5 py-3.5 h-auto rounded-xl"
+                      />
                     </div>
                   </div>
 
@@ -329,18 +322,16 @@ export const Contact = () => {
                     <Label htmlFor="subject" className="text-xs font-bold text-foreground/80">
                       Subject
                     </Label>
-                    <div className="relative rounded-xl border border-border/40 overflow-hidden neon-border-focus transition-all">
-                      <Input
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleInputChange}
-                        placeholder="What is this regarding?"
-                        required
-                        disabled={isSubmitting}
-                        className="border-0 bg-transparent text-xs font-semibold px-4.5 py-3.5 h-auto focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-0 rounded-xl"
-                      />
-                    </div>
+                    <Input
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                      placeholder="What is this regarding?"
+                      required
+                      disabled={isSubmitting}
+                      className="text-xs font-semibold px-4.5 py-3.5 h-auto rounded-xl"
+                    />
                   </div>
 
                   {/* Message Text area field */}
@@ -348,19 +339,17 @@ export const Contact = () => {
                     <Label htmlFor="message" className="text-xs font-bold text-foreground/80">
                       Message Body
                     </Label>
-                    <div className="relative rounded-xl border border-border/40 overflow-hidden neon-border-focus transition-all">
-                      <Textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        placeholder="Detailed specifics about your role, collaboration scope, or question..."
-                        rows={4}
-                        required
-                        disabled={isSubmitting}
-                        className="border-0 bg-transparent text-xs font-semibold px-4.5 py-3.5 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-0 rounded-xl resize-none"
-                      />
-                    </div>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      placeholder="Tell me a bit about the role, project, or what's on your mind..."
+                      rows={4}
+                      required
+                      disabled={isSubmitting}
+                      className="text-xs font-semibold px-4.5 py-3.5 rounded-xl resize-none"
+                    />
                   </div>
 
                   {/* Error Notification Alert */}

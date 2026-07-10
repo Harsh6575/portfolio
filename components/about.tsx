@@ -26,85 +26,48 @@ export const About = () => {
 
   return (
     <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 bg-muted/10 relative overflow-hidden">
-      {/* Background glowing spheres */}
-      <div className="absolute top-1/2 left-0 w-80 h-80 rounded-full bg-primary/5 blur-3xl -translate-y-1/2 pointer-events-none" />
-
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Header */}
         <SectionHeading
+          index="01 — About"
           title="About Me"
           subtitle="A snapshot of my software engineering philosophy, background, and core metrics"
+          align="left"
         />
 
         <div className="grid lg:grid-cols-12 gap-12 items-start mt-4">
-          {/* Left Column: Interactive Gyroscope Initials Visualizer */}
+          {/* Left Column: Profile Card */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             className="lg:col-span-5 w-full max-w-full overflow-hidden flex flex-col items-center justify-center space-y-6"
           >
-            {/* Holographic Gyroscope Orbit Container */}
-            <div className="relative w-64 h-64 sm:w-72 sm:h-72 flex items-center justify-center">
-              {/* Outer Orbit Circle */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 rounded-full border border-dashed border-primary/20"
+            {/* Avatar */}
+            <div className="w-40 h-40 sm:w-44 sm:h-44 rounded-2xl bg-muted/40 flex items-center justify-center border border-border overflow-hidden">
+              <Image
+                src="/400X400.svg"
+                alt={APP_NAME}
+                className="w-20 h-20 sm:w-24 sm:h-24 opacity-90 dark:invert"
+                height={96}
+                width={96}
+                unoptimized
               />
-
-              {/* Mid Orbit Circle */}
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-4 rounded-full border border-primary/10"
-              />
-
-              {/* Inner Glowing Orbit Circle */}
-              <motion.div
-                animate={{ rotate: 180 }}
-                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-8 rounded-full border-2 border-dashed border-fuchsia-500/20 shadow-inner"
-              />
-
-              {/* Central Glowing Capsule */}
-              <motion.div
-                animate={{
-                  y: [0, -8, 0],
-                  rotate: [0, 1, -1, 0],
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="w-40 h-40 sm:w-44 sm:h-44 rounded-full bg-linear-to-br from-primary/15 to-fuchsia-500/5 backdrop-blur-md flex items-center justify-center border border-primary/30 relative group shadow-[0_0_50px_-12px_oklch(var(--primary)/0.3)] hover:shadow-[0_0_60px_-10px_oklch(var(--primary)/0.5)] transition-all duration-500"
-              >
-                <div className="absolute inset-2 rounded-full border border-white/5 bg-slate-900/40 dark:bg-black/20" />
-                <Image
-                  src="/400X400.svg"
-                  alt={APP_NAME}
-                  className="w-24 h-24 sm:w-28 sm:h-28 opacity-90 dark:invert transition-transform duration-500 group-hover:scale-105"
-                  height={112}
-                  width={112}
-                  unoptimized
-                />
-              </motion.div>
             </div>
 
-            {/* Quick Summary Info Panel under Central Avatar */}
-            <div className="text-center w-full max-w-xs bg-card/40 border border-border/30 rounded-2xl p-4 backdrop-blur-xs">
+            {/* Quick Summary Info Panel under Avatar */}
+            <div className="text-center w-full max-w-xs bg-card border border-border rounded-2xl p-4">
               <h4 className="font-bold text-sm text-foreground">{APP_NAME}</h4>
               <p className="text-xs text-muted-foreground mt-1">Based in Gujarat, India</p>
               <div className="flex justify-center gap-1.5 mt-3">
-                <span className="px-2 py-0.5 text-[10px] font-semibold rounded-full bg-primary/10 text-primary border border-primary/20">
+                <span className="px-2 py-0.5 text-[10px] font-semibold rounded-md bg-primary/10 text-primary border border-primary/20">
                   Full Stack
                 </span>
-                <span className="px-2 py-0.5 text-[10px] font-semibold rounded-full bg-fuchsia-500/10 text-fuchsia-400 border border-fuchsia-500/20">
+                <span className="px-2 py-0.5 text-[10px] font-semibold rounded-md bg-muted text-muted-foreground border border-border">
                   FinTech
                 </span>
-                <span className="px-2 py-0.5 text-[10px] font-semibold rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                <span className="px-2 py-0.5 text-[10px] font-semibold rounded-md bg-muted text-muted-foreground border border-border">
                   APIs
                 </span>
               </div>
@@ -133,7 +96,7 @@ export const About = () => {
           {/* Right Column: Dynamic Interactive Tabbed Layout */}
           <div className="lg:col-span-7 w-full max-w-full overflow-hidden space-y-6">
             {/* Tabs Controller Menu */}
-            <div className="flex bg-muted/40 p-1.5 rounded-full border border-border/30 gap-1 overflow-x-auto no-scrollbar">
+            <div className="inline-flex max-w-full bg-muted/40 p-1.5 rounded-full border border-border/30 gap-1 overflow-x-auto no-scrollbar">
               {[
                 { id: "story", label: "My Story", icon: BookOpen },
                 { id: "expertise", label: "My Expertise", icon: Sparkles },
