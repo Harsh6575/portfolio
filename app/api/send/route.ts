@@ -1,13 +1,59 @@
 import { EmailTemplate } from "@/components/email-template";
 import { MAIL_URL } from "@/constants";
+import { isRateLimited } from "@/lib/rate-limit";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function validateBody(body: unknown): string | null {
+  if (typeof body !== "object" || body === null) {
+    return "Invalid request body";
+  }
+
+  const { name, email, subject, message } = body as Record<string, unknown>;
+
+  if (typeof name !== "string" || name.trim().length === 0 || name.length > 100) {
+    return "Invalid name";
+  }
+  if (typeof email !== "string" || email.length > 254 || !EMAIL_REGEX.test(email)) {
+    return "Invalid email";
+  }
+  if (typeof subject !== "string" || subject.trim().length === 0 || subject.length > 200) {
+    return "Invalid subject";
+  }
+  if (typeof message !== "string" || message.trim().length === 0 || message.length > 5000) {
+    return "Invalid message";
+  }
+
+  return null;
+}
+
 export async function POST(req: Request) {
   try {
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+
+    if (isRateLimited(ip)) {
+      return Response.json(
+        { error: "Too many requests. Please try again later." },
+        { status: 429 },
+      );
+    }
+
     const body = await req.json();
-    const { name, email, subject, message } = body;
+    const validationError = validateBody(body);
+
+    if (validationError) {
+      return Response.json({ error: validationError }, { status: 400 });
+    }
+
+    const { name, email, subject, message } = body as {
+      name: string;
+      email: string;
+      subject: string;
+      message: string;
+    };
 
     const { error } = await resend.emails.send({
       from: "onboarding@resend.dev",
