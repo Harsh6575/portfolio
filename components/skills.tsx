@@ -10,7 +10,10 @@ import { skillsData } from "@/constants/skills";
 
 export const Skills = () => {
   return (
-    <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section
+      id="skills"
+      className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden scroll-mt-24"
+    >
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Header */}
         <SectionHeading
@@ -48,12 +51,12 @@ export const Skills = () => {
                         <div
                           className={`p-3 rounded-xl border shrink-0 flex items-center justify-center ${
                             group.priority
-                              ? "bg-primary/10 text-primary border-primary/30"
+                              ? "bg-muted text-foreground border-border"
                               : "bg-muted/40 text-muted-foreground border-border/10"
                           }`}
                         >
                           <Icon
-                            className={`w-5.5 h-5.5 ${group.priority ? "text-primary" : "text-muted-foreground/80"}`}
+                            className={`w-5.5 h-5.5 ${group.priority ? "text-foreground" : "text-muted-foreground/80"}`}
                           />
                         </div>
 

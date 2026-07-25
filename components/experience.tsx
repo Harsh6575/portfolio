@@ -14,9 +14,9 @@ export const Experience = () => {
   return (
     <section
       id="experience"
-      className="py-24 px-4 sm:px-6 lg:px-8 bg-muted/10 relative overflow-hidden"
+      className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden scroll-mt-24"
     >
-      <div className="max-w-4xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Header */}
         <SectionHeading
           index="03 — Experience"
@@ -51,7 +51,7 @@ export const Experience = () => {
                     whileHover={{ y: -4 }}
                     transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   >
-                    <Card className="border-border bg-card rounded-2xl hover:border-primary/30 transition-all duration-300 overflow-hidden">
+                    <Card className="border-border bg-card rounded-2xl hover:border-foreground/20 transition-all duration-300 overflow-hidden">
                       <CardHeader className="pb-4">
                         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                           {/* Company Logo and Role Title Info */}

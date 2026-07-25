@@ -21,11 +21,14 @@ import { QuickStats } from "./about/quick-stats";
 
 type TabOption = "story" | "expertise" | "stats";
 
-export const About = () => {
+export const About = ({ projectsCount }: { projectsCount: number }) => {
   const [activeTab, setActiveTab] = useState<TabOption>("story");
 
   return (
-    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 bg-muted/10 relative overflow-hidden">
+    <section
+      id="about"
+      className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden scroll-mt-24"
+    >
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Header */}
         <SectionHeading
@@ -105,16 +108,23 @@ export const About = () => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as TabOption)}
-                  className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                  className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold shrink-0 cursor-pointer ${
                     activeTab === tab.id
-                      ? "bg-card text-foreground shadow-sm"
-                      : "text-muted-foreground hover:text-foreground hover:bg-card/35"
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
+                  {activeTab === tab.id && (
+                    <motion.span
+                      layoutId="aboutActiveTab"
+                      className="absolute inset-0 bg-card rounded-full shadow-sm"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
                   <tab.icon
-                    className={`w-3.5 h-3.5 ${activeTab === tab.id ? "text-primary" : "text-muted-foreground"}`}
+                    className={`relative z-10 w-3.5 h-3.5 ${activeTab === tab.id ? "text-primary" : "text-muted-foreground"}`}
                   />
-                  <span>{tab.label}</span>
+                  <span className="relative z-10">{tab.label}</span>
                 </button>
               ))}
             </div>
@@ -188,7 +198,7 @@ export const About = () => {
                     className="space-y-6"
                   >
                     {/* Render Quick Stats Grid */}
-                    <QuickStats />
+                    <QuickStats projectsCount={projectsCount} />
 
                     {/* Render Education Timeline Node */}
                     <div className="space-y-4">

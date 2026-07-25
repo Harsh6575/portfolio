@@ -100,7 +100,7 @@ export const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-24 px-4 sm:px-6 lg:px-8 bg-muted/10 relative overflow-hidden"
+      className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden scroll-mt-24"
     >
       <div className="max-w-5xl mx-auto relative z-10">
         {/* Section Header */}
@@ -163,14 +163,14 @@ export const Contact = () => {
                       onClick={() => isClickable && copyToClipboard(info.copyValue!, index)}
                       className={`border-border bg-card rounded-2xl transition-all duration-200 relative select-none ${
                         isClickable
-                          ? "cursor-pointer hover:border-primary/30 active:scale-[0.99]"
+                          ? "cursor-pointer hover:border-foreground/20 active:scale-[0.99]"
                           : "cursor-default"
                       }`}
                     >
                       <CardContent className="p-4.5 flex items-center justify-between gap-4">
                         <div className="flex items-center gap-3.5 min-w-0 flex-1">
                           {/* Glowing Icon Frame */}
-                          <div className="p-2.5 rounded-xl bg-primary/10 text-primary border border-primary/20">
+                          <div className="p-2.5 rounded-xl bg-muted text-foreground border border-border">
                             <info.icon className="w-4.5 h-4.5" />
                           </div>
 
@@ -374,7 +374,7 @@ export const Contact = () => {
                   >
                     {isSubmitting ? (
                       <>
-                        <div className="w-3.5 h-3.5 border-2 border-primary-foreground border-t-transparent rounded-full animate-spin mr-2 shrink-0"></div>
+                        <div className="w-3.5 h-3.5 border-2 border-background border-t-transparent rounded-full animate-spin mr-2 shrink-0"></div>
                         <span>Sending Request...</span>
                       </>
                     ) : (

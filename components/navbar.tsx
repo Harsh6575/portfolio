@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { motion, useScroll, useMotionValueEvent } from "motion/react";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "motion/react";
 import Image from "next/image";
+import { useRouter, usePathname } from "next/navigation";
 
 const navItems = [
   { label: "About", href: "about" },
@@ -13,11 +14,17 @@ const navItems = [
   { label: "Contact", href: "contact" },
 ];
 
+const SCROLL_TARGET_KEY = "navScrollTarget";
+const SCROLL_TARGET_TS_KEY = "navScrollTargetTs";
+const SCROLL_TARGET_MAX_AGE_MS = 5000;
+
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("hero");
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const router = useRouter();
+  const pathname = usePathname();
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", latest => {
@@ -38,23 +45,47 @@ export const Navbar = () => {
     });
   });
 
+  // id travels via sessionStorage (not the URL hash) since pathname can update before the hash commits.
   const handleScroll = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      const offset = 80; // height offset of floating nav
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = el.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
+    setOpen(false);
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-
-      setOpen(false);
+    if (pathname !== "/") {
+      sessionStorage.setItem(SCROLL_TARGET_KEY, id);
+      sessionStorage.setItem(SCROLL_TARGET_TS_KEY, String(Date.now()));
+      router.push("/", { scroll: false });
+      return;
     }
+
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
+
+  // Home's sections may not be mounted yet after a cross-page nav (blocked on a data fetch), so wait for them.
+  useEffect(() => {
+    if (pathname !== "/") return;
+
+    const id = sessionStorage.getItem(SCROLL_TARGET_KEY);
+    const ts = Number(sessionStorage.getItem(SCROLL_TARGET_TS_KEY));
+    sessionStorage.removeItem(SCROLL_TARGET_KEY);
+    sessionStorage.removeItem(SCROLL_TARGET_TS_KEY);
+    if (!id || Date.now() - ts > SCROLL_TARGET_MAX_AGE_MS) return;
+
+    const existing = document.getElementById(id);
+    if (existing) {
+      existing.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+
+    const observer = new MutationObserver(() => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        observer.disconnect();
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return () => observer.disconnect();
+  }, [pathname]);
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 flex justify-center px-4 py-4 pointer-events-none">
@@ -76,7 +107,7 @@ export const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <div className="relative overflow-hidden w-9 h-9 md:w-10 md:h-10 rounded-full border border-primary/20 bg-primary/5 flex items-center justify-center">
+            <div className="relative overflow-hidden w-9 h-9 md:w-10 md:h-10 rounded-full border border-border bg-muted flex items-center justify-center">
               <Image
                 src="/400X400.svg"
                 alt="Harsh Vansjaliya Logo"
@@ -97,7 +128,7 @@ export const Navbar = () => {
                 onClick={() => handleScroll(item.href)}
                 className={`relative px-4 py-1.5 text-xs font-semibold rounded-full transition-colors cursor-pointer ${
                   active === item.href
-                    ? "text-primary-foreground"
+                    ? "text-background"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
@@ -105,7 +136,7 @@ export const Navbar = () => {
                 {active === item.href && (
                   <motion.span
                     layoutId="activeNav"
-                    className="absolute inset-0 bg-primary rounded-full border border-primary-foreground/10"
+                    className="absolute inset-0 bg-foreground rounded-full border border-background/10"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -126,30 +157,34 @@ export const Navbar = () => {
         </div>
 
         {/* Mobile Nav */}
-        {open && (
-          <motion.nav
-            initial={{ opacity: 0, y: -10, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            className="md:hidden absolute left-4 right-4 mt-3 bg-background/95 backdrop-blur-xl border border-border/40 rounded-3xl p-4 shadow-xl space-y-2 flex flex-col pointer-events-auto"
-            aria-label="Mobile navigation"
-          >
-            {navItems.map(item => (
-              <button
-                aria-label={item.label}
-                aria-current={active === item.href ? "page" : undefined}
-                key={item.href}
-                onClick={() => handleScroll(item.href)}
-                className={`w-full text-left px-4 py-2.5 text-sm font-semibold rounded-xl transition-all ${
-                  active === item.href
-                    ? "bg-primary/10 text-primary border border-primary/20"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground border border-transparent"
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
-          </motion.nav>
-        )}
+        <AnimatePresence>
+          {open && (
+            <motion.nav
+              initial={{ opacity: 0, y: -10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.95 }}
+              transition={{ duration: 0.15 }}
+              className="md:hidden absolute left-4 right-4 mt-3 bg-background/95 backdrop-blur-xl border border-border/40 rounded-3xl p-4 shadow-xl space-y-2 flex flex-col pointer-events-auto"
+              aria-label="Mobile navigation"
+            >
+              {navItems.map(item => (
+                <button
+                  aria-label={item.label}
+                  aria-current={active === item.href ? "page" : undefined}
+                  key={item.href}
+                  onClick={() => handleScroll(item.href)}
+                  className={`w-full text-left px-4 py-2.5 text-sm font-semibold rounded-xl transition-all ${
+                    active === item.href
+                      ? "bg-primary/10 text-primary border border-primary/20"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground border border-transparent"
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </motion.div>
     </header>
   );

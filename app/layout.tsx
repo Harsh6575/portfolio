@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Hind, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
@@ -19,10 +19,16 @@ import {
   LEETCODE_URL,
 } from "@/constants";
 
-const poppins = Poppins({
+const hind = Hind({
   subsets: ["latin"],
-  variable: "--font-poppins",
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-hind",
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  variable: "--font-space-mono",
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -54,6 +60,10 @@ export const metadata: Metadata = {
     "TypeScript Developer",
     "React Developer",
     "Algorithmic Trading",
+    "Fintech Software Engineer",
+    "REST API Developer",
+    "PostgreSQL Developer",
+    "Vadodara Developer",
     "Gujarat Developer",
     "India Developer",
     "Portfolio",
@@ -68,7 +78,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: APP_URL,
-    siteName: `${APP_NAME} Portfolio`,
+    siteName: APP_NAME,
     title: `${APP_NAME} | ${APP_TITLE}`,
     description: APP_DESCRIPTION,
     images: [
@@ -104,7 +114,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${poppins.variable} antialiased font-poppins`}>
+      <body className={`${hind.variable} ${spaceMono.variable} antialiased font-hind`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -112,6 +122,17 @@ export default function RootLayout({
           disableTransitionOnChange
           key={"harsh-vansjaliya-portfolio"}
         >
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                name: APP_NAME,
+                url: APP_URL,
+              }),
+            }}
+          />
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
@@ -125,6 +146,12 @@ export default function RootLayout({
                 url: APP_URL,
                 image: `${APP_URL}/400X400.svg`,
                 sameAs: [LINKED_IN_URL, GITHUB_URL, X_URL, LEETCODE_URL],
+                address: {
+                  "@type": "PostalAddress",
+                  addressLocality: "Vadodara",
+                  addressRegion: "Gujarat",
+                  addressCountry: "IN",
+                },
                 worksFor: {
                   "@type": "Organization",
                   name: CURRENT_COMPANY,

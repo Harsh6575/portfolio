@@ -260,7 +260,7 @@ export class Portfolio extends Developer {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col lg:flex-row lg:items-center justify-start lg:justify-center pt-32 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-background"
+      className="relative min-h-screen flex flex-col lg:flex-row lg:items-center justify-start lg:justify-center pt-32 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-background scroll-mt-24"
     >
       {/* Grid Mesh */}
       <div className="absolute inset-0 mesh-grid opacity-[0.05] dark:opacity-[0.03] pointer-events-none" />

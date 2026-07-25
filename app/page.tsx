@@ -4,15 +4,18 @@ import { Experience } from "@/components/experience";
 import { Hero } from "@/components/hero";
 import { Projects } from "@/components/projects";
 import { Skills } from "@/components/skills";
+import { getAllProjects } from "@/lib/projects";
 
-export default function Home() {
+export default async function Home() {
+  const projects = await getAllProjects();
+
   return (
     <>
       <Hero />
-      <About />
+      <About projectsCount={projects.length} />
       <Skills />
       <Experience />
-      <Projects />
+      <Projects projects={projects} />
       <Contact />
     </>
   );

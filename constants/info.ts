@@ -6,7 +6,7 @@ export const APP_NAME: string = "Harsh Vansjaliya";
 export const APP_TITLE: string = "Full-Stack Developer";
 export const APP_SUBTITLE: string = "Building High-Performance Web Applications";
 export const APP_TAGLINE: string = `From pixel-perfect frontends to robust scalable systems, with ${TOTAL_EXPERIENCE}+ years of engineering experience`;
-export const APP_DESCRIPTION: string = `Software Developer specializing in building modern, high-performance web applications. Experienced in Next.js, TypeScript, and full-stack development.`;
+export const APP_DESCRIPTION: string = `Harsh Vansjaliya is a full-stack developer in Gujarat, India, with ${TOTAL_EXPERIENCE}+ years building scalable web apps and fintech systems using Next.js, TypeScript, Node.js & PostgreSQL.`;
 export const RESUME_URL: string =
   "https://raw.githubusercontent.com/Harsh6575/portfolio-data/main/assets/Harsh_Vansjaliya_Resume.pdf";
 
