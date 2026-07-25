@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "motion/react";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 
@@ -25,25 +24,31 @@ export const Navbar = () => {
 
   const router = useRouter();
   const pathname = usePathname();
-  const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, "change", latest => {
-    setIsScrolled(latest > 20);
+  useEffect(() => {
+    const handleScroll = () => {
+      const latest = window.scrollY;
+      setIsScrolled(latest > 20);
 
-    if (latest < 100) {
-      setActive("hero");
-      return;
-    }
-    navItems.forEach(item => {
-      const section = document.getElementById(item.href);
-      if (section) {
-        const { top, bottom } = section.getBoundingClientRect();
-        if (top <= 180 && bottom >= 180) {
-          setActive(item.href);
-        }
+      if (latest < 100) {
+        setActive("hero");
+        return;
       }
-    });
-  });
+      navItems.forEach(item => {
+        const section = document.getElementById(item.href);
+        if (section) {
+          const { top, bottom } = section.getBoundingClientRect();
+          if (top <= 180 && bottom >= 180) {
+            setActive(item.href);
+          }
+        }
+      });
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // id travels via sessionStorage (not the URL hash) since pathname can update before the hash commits.
   const handleScroll = (id: string) => {
@@ -89,10 +94,7 @@ export const Navbar = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 flex justify-center px-4 py-4 pointer-events-none">
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+      <div
         className={`w-full max-w-5xl pointer-events-auto rounded-full transition-all duration-300 ${
           isScrolled
             ? "bg-background/70 backdrop-blur-md border border-border/40 shadow-lg px-6 py-2"
@@ -101,11 +103,9 @@ export const Navbar = () => {
       >
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <motion.button
+          <button
             onClick={() => handleScroll("hero")}
             className="flex items-center group relative cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
           >
             <div className="relative overflow-hidden w-9 h-9 md:w-10 md:h-10 rounded-full border border-border bg-muted flex items-center justify-center">
               <Image
@@ -116,7 +116,7 @@ export const Navbar = () => {
                 height={40}
               />
             </div>
-          </motion.button>
+          </button>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-1 bg-muted/40 p-1 rounded-full border border-border/10">
@@ -134,11 +134,7 @@ export const Navbar = () => {
               >
                 <span className="relative z-10">{item.label}</span>
                 {active === item.href && (
-                  <motion.span
-                    layoutId="activeNav"
-                    className="absolute inset-0 bg-foreground rounded-full border border-background/10"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
+                  <span className="absolute inset-0 bg-foreground rounded-full border border-background/10" />
                 )}
               </button>
             ))}
@@ -157,35 +153,29 @@ export const Navbar = () => {
         </div>
 
         {/* Mobile Nav */}
-        <AnimatePresence>
-          {open && (
-            <motion.nav
-              initial={{ opacity: 0, y: -10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              transition={{ duration: 0.15 }}
-              className="md:hidden absolute left-4 right-4 mt-3 bg-background/95 backdrop-blur-xl border border-border/40 rounded-3xl p-4 shadow-xl space-y-2 flex flex-col pointer-events-auto"
-              aria-label="Mobile navigation"
-            >
-              {navItems.map(item => (
-                <button
-                  aria-label={item.label}
-                  aria-current={active === item.href ? "page" : undefined}
-                  key={item.href}
-                  onClick={() => handleScroll(item.href)}
-                  className={`w-full text-left px-4 py-2.5 text-sm font-semibold rounded-xl transition-all ${
-                    active === item.href
-                      ? "bg-primary/10 text-primary border border-primary/20"
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground border border-transparent"
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </motion.nav>
-          )}
-        </AnimatePresence>
-      </motion.div>
+        {open && (
+          <nav
+            className="md:hidden absolute left-4 right-4 mt-3 bg-background/95 backdrop-blur-xl border border-border/40 rounded-3xl p-4 shadow-xl space-y-2 flex flex-col pointer-events-auto"
+            aria-label="Mobile navigation"
+          >
+            {navItems.map(item => (
+              <button
+                aria-label={item.label}
+                aria-current={active === item.href ? "page" : undefined}
+                key={item.href}
+                onClick={() => handleScroll(item.href)}
+                className={`w-full text-left px-4 py-2.5 text-sm font-semibold rounded-xl transition-all ${
+                  active === item.href
+                    ? "bg-primary/10 text-primary border border-primary/20"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground border border-transparent"
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
+        )}
+      </div>
     </header>
   );
 };

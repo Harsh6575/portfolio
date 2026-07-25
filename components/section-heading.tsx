@@ -1,7 +1,4 @@
-"use client";
-
 import React from "react";
-import { motion } from "motion/react";
 
 interface SectionHeadingProps {
   index?: string;
@@ -21,13 +18,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
   const isCenter = align === "center";
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
-      className={`mb-14 ${isCenter ? "text-center" : "text-left"} ${className}`}
-    >
+    <div className={`mb-14 ${isCenter ? "text-center" : "text-left"} ${className}`}>
       {index && (
         <div
           className={`flex items-center gap-3 mb-3 ${isCenter ? "justify-center" : "justify-start"}`}
@@ -46,6 +37,6 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
           {subtitle}
         </p>
       )}
-    </motion.div>
+    </div>
   );
 };

@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "motion/react";
 import { Terminal, FileJson, FileCode } from "lucide-react";
 
 interface TerminalWindowProps {
@@ -73,10 +72,7 @@ export const TerminalWindow: React.FC<TerminalWindowProps> = ({
               <span>{tab}</span>
 
               {activeTab === tab && (
-                <motion.div
-                  layoutId="activeTabUnderline"
-                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary"
-                />
+                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary" />
               )}
             </button>
           ))}

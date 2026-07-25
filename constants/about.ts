@@ -1,4 +1,4 @@
-import { Server, TrendingUp, Code2, ArrowBigUp, PackageCheck } from "lucide-react";
+import { Server, TrendingUp, Code2 } from "lucide-react";
 
 export const expertises = [
   {
@@ -19,10 +19,4 @@ export const expertises = [
     description:
       "Developing fintech dashboards and exploring data-driven trading strategies with Python and pandas",
   },
-];
-
-export const values = [
-  { icon: Code2, text: "Writing clean, maintainable code" },
-  { icon: ArrowBigUp, text: "Leveling up constantly" },
-  { icon: PackageCheck, text: "Shipping things that actually matter" },
 ];

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail, Check, Copy } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
@@ -133,8 +132,8 @@ export class Portfolio extends Developer {
   };
 
   async init() {
-    await this.buildRobustScalableAPIs();
-    await this.craftPremiumUserInterfaces();
+    await this.buildScalableAPIs();
+    await this.craftUserInterfaces();
   }
 }`,
       lines: [
@@ -180,12 +179,12 @@ export class Portfolio extends Developer {
         <span key="11">
           {"    "}
           <span className="text-pink-400">await</span> <span className="text-cyan-400">this</span>.
-          <span className="text-violet-400">buildRobustScalableAPIs</span>();
+          <span className="text-violet-400">buildScalableAPIs</span>();
         </span>,
         <span key="12">
           {"    "}
           <span className="text-pink-400">await</span> <span className="text-cyan-400">this</span>.
-          <span className="text-violet-400">craftPremiumUserInterfaces</span>();
+          <span className="text-violet-400">craftUserInterfaces</span>();
         </span>,
         <span key="13">{"  }"}</span>,
         <span key="14">{"}"}</span>,
@@ -271,60 +270,35 @@ export class Portfolio extends Developer {
         <div className="lg:col-span-7 w-full max-w-full overflow-hidden flex flex-col items-center lg:items-start text-center lg:text-left">
           {/* Status Badge */}
           {OPEN_TO_NEW_OP && (
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="mb-6"
-            >
+            <div className="mb-6">
               <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20 shadow-xs shadow-primary/5">
                 <span className="w-2 h-2 bg-green-500 rounded-full mr-2.5 animate-pulse"></span>
                 Open to New Opportunities
               </span>
-            </motion.div>
+            </div>
           )}
 
           {/* Headline Name */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 select-none leading-[1.1] py-1"
-          >
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 select-none leading-[1.1] py-1">
             Hi, {"I'm"} <span className="text-primary">{APP_NAME}</span>
-          </motion.h1>
+          </h1>
 
           {/* Professional Titles */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mb-5"
-          >
+          <div className="mb-5">
             <h2 className="text-xl sm:text-2xl font-bold text-foreground/90 tracking-wide mb-1">
               {APP_TITLE}
             </h2>
             <h3 className="text-base sm:text-lg text-muted-foreground font-medium">
               {APP_SUBTITLE}
             </h3>
-          </motion.div>
+          </div>
 
           {/* Core Tagline Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-8 max-w-xl"
-          >
+          <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-8 max-w-xl">
             {APP_TAGLINE}
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center lg:justify-start items-center sm:items-stretch mb-10"
-          >
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center lg:justify-start items-center sm:items-stretch mb-10">
             <Button
               onClick={() => scrollToSection("projects")}
               size="lg"
@@ -341,44 +315,32 @@ export class Portfolio extends Developer {
             >
               Get in Touch
             </Button>
-          </motion.div>
+          </div>
 
           {/* Social Icons Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex justify-center lg:justify-start gap-4"
-          >
+          <div className="flex justify-center lg:justify-start gap-4">
             {[
               { url: GITHUB_URL, icon: FaGithub, label: "GitHub" },
               { url: LINKED_IN_URL, icon: FaLinkedin, label: "LinkedIn" },
               { url: LEETCODE_URL, icon: SiLeetcode, label: "LeetCode" },
               { url: MAIL_URL, icon: Mail, label: "Email" },
             ].map((social, index) => (
-              <motion.a
+              <a
                 key={index}
                 href={social.url}
                 target={social.url.startsWith("mailto:") ? undefined : "_blank"}
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full border border-border/60 hover:border-primary/40 text-muted-foreground hover:text-foreground flex items-center justify-center bg-card/40 backdrop-blur-xs transition-all duration-300 shadow-xs hover:shadow-primary/5"
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.95 }}
               >
                 <social.icon className="w-4.5 h-4.5" />
                 <span className="sr-only">{social.label}</span>
-              </motion.a>
+              </a>
             ))}
-          </motion.div>
+          </div>
         </div>
 
         {/* Right Column: Simulated Developer Console Mock */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="lg:col-span-5 w-full max-w-full overflow-hidden flex justify-center px-2 sm:px-0"
-        >
+        <div className="lg:col-span-5 w-full max-w-full overflow-hidden flex justify-center px-2 sm:px-0">
           <TerminalWindow
             tabs={["profile.json", "experience.ts", "interests.py"]}
             activeTab={activeTab}
@@ -412,26 +374,16 @@ export class Portfolio extends Developer {
 
                 {/* Line Content Highlights Column */}
                 <div className="pl-4 flex-1 select-text overflow-x-auto min-w-0 no-scrollbar">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activeTab}
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -5 }}
-                      transition={{ duration: 0.15 }}
-                    >
-                      {codeSnippets[activeTab].lines.map((line, idx) => (
-                        <div key={idx} className="h-5 whitespace-pre">
-                          {line}
-                        </div>
-                      ))}
-                    </motion.div>
-                  </AnimatePresence>
+                  {codeSnippets[activeTab].lines.map((line, idx) => (
+                    <div key={idx} className="h-5 whitespace-pre">
+                      {line}
+                    </div>
+                  ))}
                 </div>
               </pre>
             </div>
           </TerminalWindow>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

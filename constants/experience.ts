@@ -51,9 +51,9 @@ export const experiences = [
     description: [
       "Co-engineered a high-frequency algorithmic trading platform for the Indian stock market, managing high-throughput real-time financial streams.",
       "Crafted a performant user interface using Next.js, TypeScript, and Tailwind CSS, implementing dark mode support and custom reusable UI component libraries.",
-      "Designed and integrated unified GraphQL and REST API layers, successfully reducing client data-fetch latency by 40%.",
+      "Designed and integrated unified GraphQL and REST API layers, reducing client data-fetch latency by 40%.",
       "Partnered with cross-functional product and design teams to deliver low-latency charting tools, trading terminals, and portfolio metrics.",
-      "Accelerated full-stack versatility by contributing robust database schemas in PostgreSQL and writing performant backend logic in Python/Django.",
+      "Extended into full-stack work, designing PostgreSQL database schemas and writing backend logic in Python/Django.",
     ],
     technologies: ["Next.js", "TypeScript", "Python", "Django", "PostgreSQL", "GraphQL"],
   },
@@ -65,7 +65,7 @@ export const experiences = [
     type: "Internship",
     logo: "/gil-logo.png",
     description: [
-      "Developed secure public-sector web applications leveraging the .NET Core framework and C#.",
+      "Developed secure public-sector web applications using the .NET Core framework and C#.",
       "Optimized relational database schemas and queries in SQL Server, increasing data retrieval speed by 25%.",
       "Implemented secure token-based authentication and designed RESTful endpoints to facilitate seamless data communication.",
     ],

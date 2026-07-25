@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -107,19 +106,13 @@ export const Contact = () => {
         <SectionHeading
           index="05 — Contact"
           title="Get In Touch"
-          subtitle="Let's connect! I am always open to discussing new software engineering roles, system architectures, or collaborating on high-fidelity web projects."
+          subtitle="Not on the job market right now, but always up for a good systems-design conversation or the right project. Reach out."
           align="left"
         />
 
-        <div className="grid lg:grid-cols-12 gap-12 mt-6 items-start">
+        <div className="grid lg:grid-cols-12 gap-12 mt-6 items-stretch">
           {/* Left Column: Contact Cards & Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="lg:col-span-5 space-y-8"
-          >
+          <div className="lg:col-span-5 space-y-8">
             {/* Availability Status Card */}
             {OPEN_TO_NEW_OP && (
               <Card className="border-green-500/20 bg-green-500/5 dark:border-green-500/10 dark:bg-green-950/20 rounded-2xl overflow-hidden">
@@ -133,7 +126,7 @@ export const Contact = () => {
                       Available for Hire
                     </Badge>
                     <p className="text-xs text-green-700 dark:text-green-300 leading-relaxed font-semibold">
-                      Open to backend or full-stack roles - happy to chat.
+                      Open to full-stack roles - happy to chat.
                     </p>
                   </div>
                 </CardContent>
@@ -152,13 +145,7 @@ export const Contact = () => {
                 const isCopied = copiedIndex === index;
 
                 return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 15 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.08 }}
-                    viewport={{ once: true }}
-                  >
+                  <div key={index}>
                     <Card
                       onClick={() => isClickable && copyToClipboard(info.copyValue!, index)}
                       className={`border-border bg-card rounded-2xl transition-all duration-200 relative select-none ${
@@ -190,48 +177,29 @@ export const Contact = () => {
                         {/* Copy click triggers visual badges */}
                         {isClickable && (
                           <div className="text-muted-foreground/60 hover:text-foreground shrink-0 pr-1 select-none">
-                            <AnimatePresence mode="wait">
-                              {isCopied ? (
-                                <motion.div
-                                  key="copied"
-                                  initial={{ scale: 0.7, opacity: 0 }}
-                                  animate={{ scale: 1, opacity: 1 }}
-                                  exit={{ scale: 0.7, opacity: 0 }}
-                                  className="flex items-center gap-1 text-[10px] font-black text-green-400 bg-green-500/10 px-2 py-0.5 rounded-full border border-green-500/20"
-                                >
-                                  <Check className="w-3 h-3" />
-                                  <span>Copied</span>
-                                </motion.div>
-                              ) : (
-                                <motion.div
-                                  key="copy"
-                                  initial={{ opacity: 0 }}
-                                  animate={{ opacity: 1 }}
-                                  className="p-1 rounded-md bg-muted/40"
-                                >
-                                  <Copy className="w-3.5 h-3.5 text-muted-foreground/40" />
-                                </motion.div>
-                              )}
-                            </AnimatePresence>
+                            {isCopied ? (
+                              <div className="flex items-center gap-1 text-[10px] font-black text-green-400 bg-green-500/10 px-2 py-0.5 rounded-full border border-green-500/20">
+                                <Check className="w-3 h-3" />
+                                <span>Copied</span>
+                              </div>
+                            ) : (
+                              <div className="p-1 rounded-md bg-muted/40">
+                                <Copy className="w-3.5 h-3.5 text-muted-foreground/40" />
+                              </div>
+                            )}
                           </div>
                         )}
                       </CardContent>
                     </Card>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Column: Contact Message Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            viewport={{ once: true }}
-            className="lg:col-span-7"
-          >
-            <Card className="border-border bg-card rounded-3xl overflow-hidden">
+          <div className="lg:col-span-7 h-full">
+            <Card className="border-border bg-card rounded-3xl overflow-hidden h-full flex flex-col">
               <CardHeader className="pb-4">
                 <CardTitle className="flex items-center gap-2 font-extrabold text-foreground text-lg">
                   <Send className="w-5 h-5 text-primary" />
@@ -242,44 +210,32 @@ export const Contact = () => {
                 </CardDescription>
               </CardHeader>
 
-              <CardContent className="relative">
+              <CardContent className="relative flex-1 flex flex-col">
                 {/* Beautiful Success Overlay Card upon submission completed */}
-                <AnimatePresence>
-                  {submitStatus === "success" && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      className="absolute inset-0 bg-background/95 dark:bg-card/95 backdrop-blur-md z-20 flex flex-col items-center justify-center text-center p-6"
+                {submitStatus === "success" && (
+                  <div className="absolute inset-0 bg-background/95 dark:bg-card/95 backdrop-blur-md z-20 flex flex-col items-center justify-center text-center p-6">
+                    <div className="w-16 h-16 rounded-full bg-green-500/10 text-green-400 border border-green-500/20 flex items-center justify-center mb-4 shadow-lg shadow-green-500/5">
+                      <CheckCircle className="w-9 h-9" />
+                    </div>
+
+                    <h4 className="text-lg font-black text-foreground mb-2">
+                      Message Sent Successfully!
+                    </h4>
+                    <p className="text-xs text-muted-foreground max-w-sm leading-relaxed mb-6 font-semibold">
+                      Thanks for reaching out - I&apos;ll get back to you within a day or two.
+                    </p>
+
+                    <Button
+                      onClick={() => setSubmitStatus("idle")}
+                      variant="outline"
+                      className="rounded-full text-xs font-bold px-6 py-2.5 h-auto cursor-pointer"
                     >
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.15 }}
-                        className="w-16 h-16 rounded-full bg-green-500/10 text-green-400 border border-green-500/20 flex items-center justify-center mb-4 shadow-lg shadow-green-500/5"
-                      >
-                        <CheckCircle className="w-9 h-9" />
-                      </motion.div>
+                      Send Another Message
+                    </Button>
+                  </div>
+                )}
 
-                      <h4 className="text-lg font-black text-foreground mb-2">
-                        Message Sent Successfully!
-                      </h4>
-                      <p className="text-xs text-muted-foreground max-w-sm leading-relaxed mb-6 font-semibold">
-                        Thanks for reaching out - I&apos;ll get back to you within a day or two.
-                      </p>
-
-                      <Button
-                        onClick={() => setSubmitStatus("idle")}
-                        variant="outline"
-                        className="rounded-full text-xs font-bold px-6 py-2.5 h-auto cursor-pointer"
-                      >
-                        Send Another Message
-                      </Button>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="flex flex-1 flex-col gap-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     {/* Name Input field */}
                     <div className="space-y-1.5">
@@ -335,7 +291,7 @@ export const Contact = () => {
                   </div>
 
                   {/* Message Text area field */}
-                  <div className="space-y-1.5">
+                  <div className="space-y-1.5 flex-1 flex flex-col">
                     <Label htmlFor="message" className="text-xs font-bold text-foreground/80">
                       Message Body
                     </Label>
@@ -345,25 +301,20 @@ export const Contact = () => {
                       value={formData.message}
                       onChange={handleInputChange}
                       placeholder="Tell me a bit about the role, project, or what's on your mind..."
-                      rows={4}
                       required
                       disabled={isSubmitting}
-                      className="text-xs font-semibold px-4.5 py-3.5 rounded-xl resize-none"
+                      className="flex-1 min-h-32 text-xs font-semibold px-4.5 py-3.5 rounded-xl resize-none"
                     />
                   </div>
 
                   {/* Error Notification Alert */}
                   {submitStatus === "error" && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="flex items-center gap-2 bg-red-500/10 text-red-500 border border-red-500/20 text-xs font-bold p-3.5 rounded-xl shadow-xs"
-                    >
+                    <div className="flex items-center gap-2 bg-red-500/10 text-red-500 border border-red-500/20 text-xs font-bold p-3.5 rounded-xl shadow-xs">
                       <AlertCircle className="w-4 h-4 shrink-0" />
                       <span>
                         An error occurred. Please try again or copy/send directly via email.
                       </span>
-                    </motion.div>
+                    </div>
                   )}
 
                   {/* Submit Button Trigger */}
@@ -387,7 +338,7 @@ export const Contact = () => {
                 </form>
               </CardContent>
             </Card>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,7 +1,4 @@
-"use client";
-
 import React from "react";
-import { motion } from "motion/react";
 import { Calendar, BookOpen } from "lucide-react";
 import { SectionHeading } from "./section-heading";
 import { Card, CardTitle } from "./ui/card";
@@ -25,18 +22,11 @@ export const Skills = () => {
 
         {/* 3x2 / 2x3 Skill Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-          {skillsData.map((group, groupIdx) => {
+          {skillsData.map(group => {
             const Icon = group.icon;
 
             return (
-              <motion.div
-                key={group.category}
-                initial={{ opacity: 0, scale: 0.95, y: 15 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: groupIdx * 0.08 }}
-                viewport={{ once: true }}
-                className="h-full flex"
-              >
+              <div key={group.category} className="h-full flex">
                 <Card
                   className={`w-full rounded-2xl transition-all duration-300 relative overflow-hidden flex flex-col p-0 ${
                     group.priority
@@ -87,24 +77,20 @@ export const Skills = () => {
 
                       <div className="flex flex-wrap gap-1.5">
                         {group.items.map(item => (
-                          <motion.div
-                            key={item}
-                            whileHover={{ scale: 1.05, y: -1 }}
-                            className="cursor-default select-none"
-                          >
+                          <div key={item} className="cursor-default select-none">
                             <Badge
                               variant="my_primary"
                               className="text-xs font-bold px-2.5 py-1 rounded-md bg-muted/65 hover:bg-primary hover:text-primary-foreground border border-border/40 hover:border-primary/30 transition-all text-muted-foreground"
                             >
                               {item}
                             </Badge>
-                          </motion.div>
+                          </div>
                         ))}
                       </div>
                     </div>
                   </div>
                 </Card>
-              </motion.div>
+              </div>
             );
           })}
         </div>

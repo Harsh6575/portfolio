@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
 import { ProjectCard } from "@/components/project-card";
 import type { Project } from "@/lib/projects";
 
@@ -48,23 +47,11 @@ export const ProjectsList = ({ projects }: { projects: Project[] }) => {
       </div>
 
       {/* Projects Cards Grid */}
-      <motion.div layout className="grid md:grid-cols-2 gap-8">
-        <AnimatePresence mode="popLayout">
-          {filteredProjects.map(project => (
-            <motion.div
-              layout
-              key={project.slug}
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="h-full"
-            >
-              <ProjectCard project={project} />
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </motion.div>
+      <div className="grid md:grid-cols-2 gap-8">
+        {filteredProjects.map(project => (
+          <ProjectCard key={project.slug} project={project} />
+        ))}
+      </div>
     </div>
   );
 };

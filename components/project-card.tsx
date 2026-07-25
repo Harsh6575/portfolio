@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExternalLink, Calendar, Star, ChevronDown, ChevronUp, FileText } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
@@ -60,24 +59,14 @@ export const ProjectCard = ({ project }: { project: Project }) => {
             Key Accomplishments
           </h4>
 
-          <motion.ul layout className="space-y-2">
-            <AnimatePresence initial={false}>
-              {displayFeatures.map((feature, idx) => (
-                <motion.li
-                  layout
-                  key={idx}
-                  initial={{ opacity: 0, x: -8 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -8 }}
-                  transition={{ duration: 0.2 }}
-                  className="flex items-start gap-2.5 text-xs text-muted-foreground"
-                >
-                  <Star className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                  <span className="leading-normal">{feature}</span>
-                </motion.li>
-              ))}
-            </AnimatePresence>
-          </motion.ul>
+          <ul className="space-y-2">
+            {displayFeatures.map((feature, idx) => (
+              <li key={idx} className="flex items-start gap-2.5 text-xs text-muted-foreground">
+                <Star className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                <span className="leading-normal">{feature}</span>
+              </li>
+            ))}
+          </ul>
 
           {/* Read more accomplishments expander button */}
           {hasMoreFeatures && (

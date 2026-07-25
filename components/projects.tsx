@@ -1,6 +1,5 @@
 import { SectionHeading } from "@/components/section-heading";
 import { ProjectCard } from "@/components/project-card";
-import { AnimatedCard } from "@/components/animated-card";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import type { Project } from "@/lib/projects";
@@ -20,16 +19,14 @@ export const Projects = ({ projects }: { projects: Project[] }) => {
         <SectionHeading
           index="04 — Projects"
           title="Featured Projects"
-          subtitle="A showcase of systems I have built, ranging from high-performance backend APIs and database designs to algorithmic stock market platforms."
+          subtitle="A few of the systems I've built: full-stack products, backend APIs, and an algorithmic trading platform for the Indian stock market."
           align="left"
         />
 
         {/* Projects Cards Grid */}
         <div className="grid md:grid-cols-2 gap-8">
-          {featuredProjects.map((project, index) => (
-            <AnimatedCard key={project.slug} index={index}>
-              <ProjectCard project={project} />
-            </AnimatedCard>
+          {featuredProjects.map(project => (
+            <ProjectCard key={project.slug} project={project} />
           ))}
         </div>
 

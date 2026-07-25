@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/section-heading";
@@ -15,7 +14,6 @@ import {
   APP_NAME,
   EDUCATION,
 } from "@/constants";
-import { Values } from "./about/values";
 import { Expertise } from "./about/expertise";
 import { QuickStats } from "./about/quick-stats";
 
@@ -34,19 +32,13 @@ export const About = ({ projectsCount }: { projectsCount: number }) => {
         <SectionHeading
           index="01 — About"
           title="About Me"
-          subtitle="A snapshot of my software engineering philosophy, background, and core metrics"
+          subtitle="Background, how I work, and the numbers behind it"
           align="left"
         />
 
         <div className="grid lg:grid-cols-12 gap-12 items-start mt-4">
           {/* Left Column: Profile Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="lg:col-span-5 w-full max-w-full overflow-hidden flex flex-col items-center justify-center space-y-6"
-          >
+          <div className="lg:col-span-5 w-full max-w-full overflow-hidden flex flex-col items-center justify-center space-y-6">
             {/* Avatar */}
             <div className="w-40 h-40 sm:w-44 sm:h-44 rounded-2xl bg-muted/40 flex items-center justify-center border border-border overflow-hidden">
               <Image
@@ -94,7 +86,7 @@ export const About = ({ projectsCount }: { projectsCount: number }) => {
                 </a>
               </Button>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Column: Dynamic Interactive Tabbed Layout */}
           <div className="lg:col-span-7 w-full max-w-full overflow-hidden space-y-6">
@@ -115,11 +107,7 @@ export const About = ({ projectsCount }: { projectsCount: number }) => {
                   }`}
                 >
                   {activeTab === tab.id && (
-                    <motion.span
-                      layoutId="aboutActiveTab"
-                      className="absolute inset-0 bg-card rounded-full shadow-sm"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
+                    <span className="absolute inset-0 bg-card rounded-full shadow-sm" />
                   )}
                   <tab.icon
                     className={`relative z-10 w-3.5 h-3.5 ${activeTab === tab.id ? "text-primary" : "text-muted-foreground"}`}
@@ -131,17 +119,10 @@ export const About = ({ projectsCount }: { projectsCount: number }) => {
 
             {/* Content Switcher Box */}
             <div className="min-h-[380px]">
-              <AnimatePresence mode="wait">
+              <>
                 {/* STORY TAB VIEW */}
                 {activeTab === "story" && (
-                  <motion.div
-                    key="story"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
-                    className="space-y-6"
-                  >
+                  <div className="space-y-6">
                     <div className="space-y-4">
                       <p className="text-sm sm:text-base text-foreground/90 leading-relaxed font-medium">
                         {ABOUT_BIO.intro.replace("{TOTAL_EXPERIENCE}", TOTAL_EXPERIENCE.toString())}
@@ -168,35 +149,19 @@ export const About = ({ projectsCount }: { projectsCount: number }) => {
                         </div>
                       </CardContent>
                     </Card>
-
-                    {/* Values Component */}
-                    <Values />
-                  </motion.div>
+                  </div>
                 )}
 
                 {/* EXPERTISE TAB VIEW */}
                 {activeTab === "expertise" && (
-                  <motion.div
-                    key="expertise"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
-                  >
+                  <div>
                     <Expertise />
-                  </motion.div>
+                  </div>
                 )}
 
                 {/* STATS & EDUCATION TAB VIEW */}
                 {activeTab === "stats" && (
-                  <motion.div
-                    key="stats"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
-                    className="space-y-6"
-                  >
+                  <div className="space-y-6">
                     {/* Render Quick Stats Grid */}
                     <QuickStats projectsCount={projectsCount} />
 
@@ -230,9 +195,9 @@ export const About = ({ projectsCount }: { projectsCount: number }) => {
                         </Card>
                       ))}
                     </div>
-                  </motion.div>
+                  </div>
                 )}
-              </AnimatePresence>
+              </>
             </div>
           </div>
         </div>
