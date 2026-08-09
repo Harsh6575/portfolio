@@ -95,7 +95,7 @@ export const Navbar = () => {
   return (
     <header className="fixed top-0 left-0 w-full z-50 flex justify-center px-4 py-4 pointer-events-none">
       <div
-        className={`w-full max-w-5xl pointer-events-auto rounded-full transition-all duration-300 ${
+        className={`w-full max-w-6xl pointer-events-auto rounded-full transition-all duration-300 ${
           isScrolled
             ? "bg-background/70 backdrop-blur-md border border-border/40 shadow-lg px-6 py-2"
             : "bg-transparent border border-transparent px-6 py-3"

@@ -101,7 +101,7 @@ export const Contact = () => {
       id="contact"
       className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden scroll-mt-24"
     >
-      <div className="max-w-5xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Header */}
         <SectionHeading
           index="05 — Contact"
