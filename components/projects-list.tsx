@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ProjectCard } from "@/components/project-card";
+import { TieredProjectList } from "@/components/projects/tiered-project-list";
 import type { Project } from "@/lib/projects";
 
 type ProjectCategory = "all" | "backend" | "fullstack" | "fintech";
@@ -46,12 +46,7 @@ export const ProjectsList = ({ projects }: { projects: Project[] }) => {
         ))}
       </div>
 
-      {/* Projects Cards Grid */}
-      <div className="grid md:grid-cols-2 gap-8">
-        {filteredProjects.map(project => (
-          <ProjectCard key={project.slug} project={project} />
-        ))}
-      </div>
+      <TieredProjectList projects={filteredProjects} className="divide-y divide-border" />
     </div>
   );
 };

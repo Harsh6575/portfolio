@@ -1,13 +1,14 @@
+"use client";
+
 import { SectionHeading } from "@/components/section-heading";
-import { ProjectCard } from "@/components/project-card";
+import { TieredProjectList } from "@/components/projects/tiered-project-list";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import type { Project } from "@/lib/projects";
-
-const HOMEPAGE_PROJECT_COUNT = 4;
+import { useInView } from "@/hooks/use-in-view";
 
 export const Projects = ({ projects }: { projects: Project[] }) => {
-  const featuredProjects = projects.slice(0, HOMEPAGE_PROJECT_COUNT);
+  const { ref, isInView } = useInView<HTMLDivElement>();
 
   return (
     <section
@@ -23,11 +24,16 @@ export const Projects = ({ projects }: { projects: Project[] }) => {
           align="left"
         />
 
-        {/* Projects Cards Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {featuredProjects.map(project => (
-            <ProjectCard key={project.slug} project={project} />
-          ))}
+        <div
+          ref={ref}
+          className={`transition-all duration-700 ease-out motion-reduce:transition-none ${
+            isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
+        >
+          <TieredProjectList
+            projects={projects}
+            className="border-t border-b border-border divide-y divide-border"
+          />
         </div>
 
         {/* View All Projects link */}

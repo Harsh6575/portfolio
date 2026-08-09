@@ -8,13 +8,14 @@ import { getAllProjects } from "@/lib/projects";
 
 export default async function Home() {
   const projects = await getAllProjects();
+  const projectSummaries = projects.map(({ slug, title }) => ({ slug, title }));
 
   return (
     <>
-      <Hero />
+      <Hero projectSummaries={projectSummaries} />
       <About projectsCount={projects.length} />
-      <Skills />
-      <Experience />
+      <Skills projects={projects} />
+      <Experience projectSummaries={projectSummaries} />
       <Projects projects={projects} />
       <Contact />
     </>

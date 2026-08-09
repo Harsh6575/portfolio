@@ -158,3 +158,13 @@
     display: none;
   }
 }
+
+@theme {
+  --animate-caret-blink: caret-blink 1.1s step-end infinite;
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}

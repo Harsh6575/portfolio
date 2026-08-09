@@ -31,6 +31,9 @@ export type Project = {
   content: string;
 };
 
+export type ProjectSummary = Pick<Project, "slug" | "title">;
+export type ProjectTechRef = Pick<Project, "slug" | "title" | "technologies">;
+
 type GithubContentEntry = {
   name: string;
   type: string;

@@ -11,6 +11,7 @@ export const experiences = [
       "Develop scalable web architectures using TypeScript, establishing a reusable component library, and optimizing client-side performance.",
       "Design complex third-party API integrations, orchestrating automated workflows with n8n, and managing scalable data models in PostgreSQL and MongoDB.",
     ],
+    highlight: 2,
     technologies: [
       "Next.js",
       "React",
@@ -31,7 +32,7 @@ export const experiences = [
     location: "Vadodara, India",
     duration: "May 2025 - Present",
     type: "Self-employed",
-    logo: "/400X400.svg",
+    logo: "/hv-logo.svg",
     description: [
       "Architect independent full-stack applications end-to-end, from API design through deployment, using Node.js, FastAPI, MongoDB, Redis, and Docker.",
       "Apply Domain-Driven Design and clean architecture principles to keep growing codebases maintainable.",
@@ -39,6 +40,8 @@ export const experiences = [
       "Building Tailor Track, a SaaS platform for tailor shops to manage orders, measurements, and inventory.",
       "Study system design, async message queues (BullMQ), and performance profiling in my own time.",
     ],
+    highlight: 2,
+    relatedProjects: ["shortify", "tailor-track"],
     technologies: ["Next.js", "TypeScript", "Node.js", "FastAPI", "MongoDB", "Redis", "Docker"],
   },
   {
@@ -55,6 +58,8 @@ export const experiences = [
       "Partnered with cross-functional product and design teams to deliver low-latency charting tools, trading terminals, and portfolio metrics.",
       "Extended into full-stack work, designing PostgreSQL database schemas and writing backend logic in Python/Django.",
     ],
+    highlight: 2,
+    relatedProjects: ["algorithmic-trading-platform"],
     technologies: ["Next.js", "TypeScript", "Python", "Django", "PostgreSQL", "GraphQL"],
   },
   {
@@ -69,6 +74,7 @@ export const experiences = [
       "Optimized relational database schemas and queries in SQL Server, increasing data retrieval speed by 25%.",
       "Implemented secure token-based authentication and designed RESTful endpoints to facilitate seamless data communication.",
     ],
+    highlight: 1,
     technologies: [".NET Core", "SQL Server", "REST API", "C#"],
   },
 ];

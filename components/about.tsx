@@ -16,11 +16,16 @@ import {
 } from "@/constants";
 import { Expertise } from "./about/expertise";
 import { QuickStats } from "./about/quick-stats";
+import { useInView } from "@/hooks/use-in-view";
+import { useSlidingIndicator } from "@/hooks/use-sliding-indicator";
 
 type TabOption = "story" | "expertise" | "stats";
 
 export const About = ({ projectsCount }: { projectsCount: number }) => {
   const [activeTab, setActiveTab] = useState<TabOption>("story");
+  const { ref: contentRef, isInView } = useInView<HTMLDivElement>();
+  const { containerRef, registerItem, indicatorRect } =
+    useSlidingIndicator<HTMLDivElement>(activeTab);
 
   return (
     <section
@@ -42,7 +47,7 @@ export const About = ({ projectsCount }: { projectsCount: number }) => {
             {/* Avatar */}
             <div className="w-40 h-40 sm:w-44 sm:h-44 rounded-2xl bg-muted/40 flex items-center justify-center border border-border overflow-hidden">
               <Image
-                src="/400X400.svg"
+                src="/hv-logo.svg"
                 alt={APP_NAME}
                 className="w-20 h-20 sm:w-24 sm:h-24 opacity-90 dark:invert"
                 height={96}
@@ -91,7 +96,17 @@ export const About = ({ projectsCount }: { projectsCount: number }) => {
           {/* Right Column: Dynamic Interactive Tabbed Layout */}
           <div className="lg:col-span-7 w-full max-w-full overflow-hidden space-y-6">
             {/* Tabs Controller Menu */}
-            <div className="inline-flex max-w-full bg-muted/40 p-1.5 rounded-full border border-border/30 gap-1 overflow-x-auto no-scrollbar">
+            <div
+              ref={containerRef}
+              className="relative inline-flex max-w-full bg-muted/40 p-1.5 rounded-full border border-border/30 gap-1 overflow-x-auto no-scrollbar"
+            >
+              {indicatorRect && (
+                <span
+                  aria-hidden="true"
+                  className="absolute top-1.5 bottom-1.5 bg-card rounded-full shadow-sm transition-[left,width] duration-300 ease-out motion-reduce:transition-none"
+                  style={{ left: indicatorRect.left, width: indicatorRect.width }}
+                />
+              )}
               {[
                 { id: "story", label: "My Story", icon: BookOpen },
                 { id: "expertise", label: "My Expertise", icon: Sparkles },
@@ -99,16 +114,14 @@ export const About = ({ projectsCount }: { projectsCount: number }) => {
               ].map(tab => (
                 <button
                   key={tab.id}
+                  ref={registerItem(tab.id)}
                   onClick={() => setActiveTab(tab.id as TabOption)}
-                  className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold shrink-0 cursor-pointer ${
+                  className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold shrink-0 cursor-pointer focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] ${
                     activeTab === tab.id
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  {activeTab === tab.id && (
-                    <span className="absolute inset-0 bg-card rounded-full shadow-sm" />
-                  )}
                   <tab.icon
                     className={`relative z-10 w-3.5 h-3.5 ${activeTab === tab.id ? "text-primary" : "text-muted-foreground"}`}
                   />
@@ -118,7 +131,12 @@ export const About = ({ projectsCount }: { projectsCount: number }) => {
             </div>
 
             {/* Content Switcher Box */}
-            <div className="min-h-[380px]">
+            <div
+              ref={contentRef}
+              className={`min-h-[380px] transition-all duration-700 ease-out motion-reduce:transition-none ${
+                isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+            >
               <>
                 {/* STORY TAB VIEW */}
                 {activeTab === "story" && (

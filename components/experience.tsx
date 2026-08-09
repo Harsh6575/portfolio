@@ -1,20 +1,138 @@
+"use client";
+
 import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { SectionHeading } from "@/components/section-heading";
 import { MapPin, Calendar, Building } from "lucide-react";
 import { CompanyLogo } from "./company-logo";
+import { TechLayerList } from "./tech-layer-list";
 import { experiences } from "@/constants/experience";
 import { EXPERIENCE_SUBTITLE } from "@/constants";
+import { useInView } from "@/hooks/use-in-view";
+import type { ProjectSummary } from "@/lib/projects";
 
-export const Experience = () => {
+type ExperienceEntry = (typeof experiences)[number];
+
+const ExperienceRow = ({
+  exp,
+  index,
+  projectTitles,
+}: {
+  exp: ExperienceEntry;
+  index: number;
+  projectTitles: Map<string, string>;
+}) => {
+  const { ref, isInView } = useInView<HTMLDivElement>();
+  const highlightIndex = exp.highlight ?? 0;
+  const highlight = exp.description[highlightIndex];
+  const supporting = exp.description.filter((_, i) => i !== highlightIndex);
+  const relatedProjects = (exp.relatedProjects ?? [])
+    .map(slug => ({ slug, title: projectTitles.get(slug) }))
+    .filter((p): p is { slug: string; title: string } => Boolean(p.title));
+
+  return (
+    <article
+      ref={ref}
+      className={`py-10 grid grid-cols-1 sm:grid-cols-[80px_1fr] gap-x-6 gap-y-4 transition-all duration-700 ease-out motion-reduce:transition-none ${
+        isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+      }`}
+    >
+      {/* Meta rail */}
+      <span
+        aria-hidden="true"
+        className="font-mono text-4xl sm:text-5xl font-bold text-foreground/20 leading-none select-none"
+      >
+        {String(index + 1).padStart(2, "0")}
+      </span>
+
+      {/* Narrative content */}
+      <div className="space-y-4 min-w-0">
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 rounded-xl bg-white border border-border/40 flex items-center justify-center shrink-0 shadow-xs overflow-hidden p-1.5">
+              <CompanyLogo src={exp.logo} alt={`${exp.company} logo`} fallback="/hv-logo.svg" />
+            </div>
+
+            <div className="space-y-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <h3 className="text-lg font-extrabold text-foreground leading-snug">{exp.role}</h3>
+                <Badge
+                  variant={exp.type === "Full-time" ? "default" : "secondary"}
+                  className="text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider w-fit"
+                >
+                  {exp.type}
+                </Badge>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-muted-foreground text-xs font-semibold">
+                <div className="flex items-center gap-1">
+                  <Building className="w-3.5 h-3.5 text-primary/80" />
+                  <span className="text-foreground/95 font-bold">{exp.company}</span>
+                </div>
+                <span className="hidden sm:inline text-muted-foreground/40">•</span>
+                <div className="flex items-center gap-1">
+                  <MapPin className="w-3.5 h-3.5" />
+                  <span>{exp.location}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-1.5 text-xs font-mono text-muted-foreground shrink-0">
+            <Calendar className="w-3.5 h-3.5 text-primary/70" />
+            <span>{exp.duration}</span>
+          </div>
+        </div>
+
+        {/* Pull-quote: the single most concrete engineering line from this role */}
+        <p className="border-l-2 border-primary pl-4 text-sm sm:text-base text-foreground font-medium leading-relaxed">
+          {highlight}
+        </p>
+
+        {supporting.length > 0 && (
+          <ul className="space-y-1.5">
+            {supporting.map((item, idx) => (
+              <li key={idx} className="flex items-start gap-2 text-xs text-muted-foreground">
+                <span className="w-1 h-1 rounded-full bg-muted-foreground/50 mt-1.5 shrink-0" />
+                <span className="leading-relaxed">{item}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <TechLayerList technologies={exp.technologies} className="pt-1" />
+
+        {relatedProjects.length > 0 && (
+          <p className="text-xs text-muted-foreground">
+            Related work:{" "}
+            {relatedProjects.map((p, idx) => (
+              <span key={p.slug}>
+                <Link
+                  href={`/projects/${p.slug}`}
+                  className="text-primary hover:underline focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] rounded-xs"
+                >
+                  {p.title}
+                </Link>
+                {idx < relatedProjects.length - 1 ? ", " : ""}
+              </span>
+            ))}
+          </p>
+        )}
+      </div>
+    </article>
+  );
+};
+
+export const Experience = ({ projectSummaries }: { projectSummaries: ProjectSummary[] }) => {
+  const projectTitles = new Map(projectSummaries.map(p => [p.slug, p.title]));
+
   return (
     <section
       id="experience"
       className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden scroll-mt-24"
     >
       <div className="max-w-6xl mx-auto relative z-10">
-        {/* Section Header */}
         <SectionHeading
           index="03 — Experience"
           title="Professional Experience"
@@ -22,113 +140,10 @@ export const Experience = () => {
           align="left"
         />
 
-        {/* Experience Timeline Container */}
-        <div className="relative mt-8">
-          {/* Vertical Timeline Line */}
-          <div className="absolute left-6 top-2 bottom-2 w-px bg-border hidden md:block" />
-
-          <div className="space-y-12">
-            {experiences.map((exp, index) => (
-              <div key={index} className="relative">
-                {/* Desktop Circle Node centered on line */}
-                <div className="absolute left-[10px] top-6 w-7 h-7 rounded-full bg-background border-2 border-primary flex items-center justify-center shadow-lg hidden md:flex z-10 group-hover:scale-110 transition-transform duration-300">
-                  <div className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse" />
-                </div>
-
-                {/* Experience Card Wrapper */}
-                <div className="md:ml-14">
-                  <Card className="border-border bg-card rounded-2xl hover:border-foreground/20 transition-all duration-300 overflow-hidden">
-                    <CardHeader className="pb-4">
-                      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                        {/* Company Logo and Role Title Info */}
-                        <div className="flex items-start gap-4">
-                          {/* Company Logo Box */}
-                          <div className="w-12 h-12 rounded-xl bg-white border border-border/40 flex items-center justify-center shrink-0 shadow-xs overflow-hidden p-1.5">
-                            <CompanyLogo
-                              src={exp.logo}
-                              alt={`${exp.company} logo`}
-                              fallback="/400X400.svg"
-                            />
-                          </div>
-
-                          <div className="space-y-1">
-                            <div className="flex flex-wrap items-center gap-2">
-                              <CardTitle className="text-lg font-extrabold text-foreground flex items-center gap-1.5 leading-snug">
-                                {exp.role}
-                              </CardTitle>
-
-                              <Badge
-                                variant={exp.type === "Full-time" ? "default" : "secondary"}
-                                className="text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider w-fit"
-                              >
-                                {exp.type}
-                              </Badge>
-                            </div>
-
-                            {/* Company details list metadata */}
-                            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-muted-foreground text-xs font-semibold">
-                              <div className="flex items-center gap-1">
-                                <Building className="w-3.5 h-3.5 text-primary/80" />
-                                <span className="text-foreground/95 font-bold">{exp.company}</span>
-                              </div>
-                              <span className="hidden sm:inline text-muted-foreground/40">•</span>
-                              <div className="flex items-center gap-1">
-                                <MapPin className="w-3.5 h-3.5" />
-                                <span>{exp.location}</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Duration Stamp Label Badge */}
-                        <div className="flex items-center gap-1.5 text-xs font-bold text-primary bg-primary/10 border border-primary/20 px-3.5 py-1.5 rounded-full w-fit shrink-0 select-none shadow-inner">
-                          <Calendar className="w-3.5 h-3.5" />
-                          <span>{exp.duration}</span>
-                        </div>
-                      </div>
-                    </CardHeader>
-
-                    <CardContent className="pt-0 space-y-5">
-                      {/* Description Bullet Items */}
-                      <div className="space-y-2.5">
-                        <h4 className="text-[10px] font-bold uppercase tracking-wider text-foreground/80">
-                          Key Accomplishments & Responsibilities
-                        </h4>
-                        <ul className="space-y-2">
-                          {exp.description.map((item, idx) => (
-                            <li
-                              key={idx}
-                              className="flex items-start gap-2.5 text-muted-foreground"
-                            >
-                              <span className="w-1.5 h-1.5 rounded-full bg-primary/80 mt-1.5 shrink-0" />
-                              <span className="text-xs sm:text-sm leading-relaxed">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Reworked Technologies Pill Badges */}
-                      <div className="space-y-2 pt-2 border-t border-border/10">
-                        <h4 className="text-[10px] font-bold uppercase tracking-wider text-foreground/80">
-                          Technologies Deployed
-                        </h4>
-                        <div className="flex flex-wrap gap-1.5">
-                          {exp.technologies.map((tech, idx) => (
-                            <span
-                              key={idx}
-                              className="px-2.5 py-1 text-[11px] font-bold rounded-md bg-muted/65 hover:bg-primary/10 hover:text-primary border border-border/40 hover:border-primary/30 transition-all text-muted-foreground cursor-default select-none"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="border-t border-border divide-y divide-border">
+          {experiences.map((exp, index) => (
+            <ExperienceRow key={index} exp={exp} index={index} projectTitles={projectTitles} />
+          ))}
         </div>
       </div>
     </section>

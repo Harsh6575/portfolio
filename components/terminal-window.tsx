@@ -11,6 +11,7 @@ interface TerminalWindowProps {
   onTabChange?: (tab: string) => void;
   rightAction?: React.ReactNode;
   children: React.ReactNode;
+  footer?: React.ReactNode;
   className?: string;
 }
 
@@ -22,6 +23,7 @@ export const TerminalWindow: React.FC<TerminalWindowProps> = ({
   onTabChange,
   rightAction,
   children,
+  footer,
   className = "",
 }) => {
   return (
@@ -59,7 +61,7 @@ export const TerminalWindow: React.FC<TerminalWindowProps> = ({
             <button
               key={tab}
               onClick={() => onTabChange(tab)}
-              className={`flex items-center gap-1.5 px-4 py-2.5 border-r border-white/5 cursor-pointer font-medium relative transition-colors ${
+              className={`flex items-center gap-1.5 px-4 py-2.5 border-r border-white/5 cursor-pointer font-medium relative transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-inset ${
                 activeTab === tab
                   ? "text-primary bg-slate-950 font-semibold"
                   : "text-slate-400 hover:bg-slate-900/60 hover:text-slate-200"
@@ -81,6 +83,9 @@ export const TerminalWindow: React.FC<TerminalWindowProps> = ({
 
       {/* Main content body container */}
       <div className="flex-1 flex flex-col relative overflow-hidden bg-slate-950">{children}</div>
+
+      {/* Optional pinned footer (e.g. an interactive prompt) */}
+      {footer && <div className="shrink-0 border-t border-white/5 bg-slate-900/60">{footer}</div>}
     </div>
   );
 };

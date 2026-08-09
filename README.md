@@ -1,6 +1,6 @@
 # Harsh Vansjaliya – Portfolio
 
-This repository contains the source code for my personal portfolio. It is a high-performance, SEO-optimized web application built with Next.js 15 (App Router) and Tailwind CSS v4, showcasing my journey from full-stack development to backend specialization.
+This repository contains the source code for my personal portfolio. It is a high-performance, SEO-optimized web application built with Next.js 15 (App Router) and Tailwind CSS v4, showcasing my work as a full-stack developer with a growing focus on backend systems and API design.
 
 ## 🚀 Overview
 
@@ -18,9 +18,9 @@ The portfolio is designed to be a clean, minimalist reflection of my technical e
 - **Framework:** Next.js 15 (App Router)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS v4, shadcn/ui
-- **Animations:** Framer Motion
+- **Animations:** CSS transitions & `IntersectionObserver`-based scroll reveals
 
-### Current Focus (Backend & Systems)
+### Backend & Systems
 
 - **Languages:** Node.js, Python (FastAPI/Django)
 - **Databases:** PostgreSQL, Redis, MongoDB
@@ -60,7 +60,7 @@ pnpm dev
 The site uses modern Next.js features to ensure top-tier performance:
 
 - **Image Optimization:** Automated via next/image.
-- **Font Optimization:** Using next/font for Poppins.
+- **Font Optimization:** Using next/font for Hind & Space Mono.
 - **Analytics:** Integrated Vercel Analytics for tracking engagement.
 
 ## Screenshots
@@ -71,7 +71,7 @@ The site uses modern Next.js features to ensure top-tier performance:
 
 Email: [harshvansjaliya3@gmail.com](mailto:harshvansjaliya3@gmail.com)
 LinkedIn: [harsh-vansjaliya](https://linkedin.com/in/harsh-vansjaliya-904825226/)
-Portfolio: [harsh-vansjaliya.vercel.app](https://harsh-vansjaliya.vercel.app)
+Portfolio: [harshvansjaliya.com](https://harshvansjaliya.com)
 
 ---
 

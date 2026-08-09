@@ -47,8 +47,8 @@ export const metadata: Metadata = {
   publisher: APP_NAME,
 
   icons: {
-    icon: "/400X400.svg",
-    apple: "/400X400.svg",
+    icon: "/hv-logo.svg",
+    apple: "/hv-logo.svg",
   },
 
   keywords: [
@@ -144,7 +144,7 @@ export default function RootLayout({
                 jobTitle: APP_TITLE,
                 description: APP_DESCRIPTION,
                 url: APP_URL,
-                image: `${APP_URL}/400X400.svg`,
+                image: `${APP_URL}/hv-logo.svg`,
                 sameAs: [LINKED_IN_URL, GITHUB_URL, X_URL, LEETCODE_URL],
                 address: {
                   "@type": "PostalAddress",

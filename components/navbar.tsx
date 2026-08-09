@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
+import { useSlidingIndicator } from "@/hooks/use-sliding-indicator";
+import { scrollToSection } from "@/lib/utils";
 
 const navItems = [
   { label: "About", href: "about" },
@@ -19,19 +21,26 @@ const SCROLL_TARGET_MAX_AGE_MS = 5000;
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<string>("hero");
+  const [sectionActive, setSectionActive] = useState<string>("hero");
   const [isScrolled, setIsScrolled] = useState(false);
 
   const router = useRouter();
   const pathname = usePathname();
+  const routeActive = pathname.startsWith("/projects") ? "projects" : "";
+  const active = pathname === "/" ? sectionActive : routeActive;
+  const { containerRef, registerItem, indicatorRect } = useSlidingIndicator<HTMLElement>(active);
 
+  // Section tracking only applies on "/"; other routes derive active state from pathname.
   useEffect(() => {
     const handleScroll = () => {
-      const latest = window.scrollY;
-      setIsScrolled(latest > 20);
+      setIsScrolled(window.scrollY > 20);
 
-      if (latest < 100) {
-        setActive("hero");
+      if (pathname !== "/") return;
+
+      // Ties the hero reset to real section position instead of a fixed scrollY guess.
+      const firstSection = document.getElementById(navItems[0].href);
+      if (firstSection && firstSection.getBoundingClientRect().top > 180) {
+        setSectionActive("hero");
         return;
       }
       navItems.forEach(item => {
@@ -39,7 +48,7 @@ export const Navbar = () => {
         if (section) {
           const { top, bottom } = section.getBoundingClientRect();
           if (top <= 180 && bottom >= 180) {
-            setActive(item.href);
+            setSectionActive(item.href);
           }
         }
       });
@@ -48,10 +57,10 @@ export const Navbar = () => {
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
 
   // id travels via sessionStorage (not the URL hash) since pathname can update before the hash commits.
-  const handleScroll = (id: string) => {
+  const handleNavClick = (id: string) => {
     setOpen(false);
 
     if (pathname !== "/") {
@@ -61,7 +70,7 @@ export const Navbar = () => {
       return;
     }
 
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    scrollToSection(id);
   };
 
   // Home's sections may not be mounted yet after a cross-page nav (blocked on a data fetch), so wait for them.
@@ -74,16 +83,14 @@ export const Navbar = () => {
     sessionStorage.removeItem(SCROLL_TARGET_TS_KEY);
     if (!id || Date.now() - ts > SCROLL_TARGET_MAX_AGE_MS) return;
 
-    const existing = document.getElementById(id);
-    if (existing) {
-      existing.scrollIntoView({ behavior: "smooth" });
+    if (document.getElementById(id)) {
+      scrollToSection(id);
       return;
     }
 
     const observer = new MutationObserver(() => {
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
+      if (document.getElementById(id)) {
+        scrollToSection(id);
         observer.disconnect();
       }
     });
@@ -104,12 +111,12 @@ export const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <button
-            onClick={() => handleScroll("hero")}
+            onClick={() => handleNavClick("hero")}
             className="flex items-center group relative cursor-pointer"
           >
             <div className="relative overflow-hidden w-9 h-9 md:w-10 md:h-10 rounded-full border border-border bg-muted flex items-center justify-center">
               <Image
-                src="/400X400.svg"
+                src="/hv-logo.svg"
                 alt="Harsh Vansjaliya Logo"
                 className="w-full h-full object-cover dark:invert"
                 width={40}
@@ -119,23 +126,31 @@ export const Navbar = () => {
           </button>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1 bg-muted/40 p-1 rounded-full border border-border/10">
+          <nav
+            ref={containerRef}
+            className="relative hidden md:flex items-center gap-1 bg-muted/40 p-1 rounded-full border border-border/10"
+          >
+            {indicatorRect && (
+              <span
+                aria-hidden="true"
+                className="absolute top-1 bottom-1 bg-foreground rounded-full border border-background/10 transition-[left,width] duration-300 ease-out motion-reduce:transition-none"
+                style={{ left: indicatorRect.left, width: indicatorRect.width }}
+              />
+            )}
             {navItems.map(item => (
               <button
                 aria-label={item.label}
                 aria-current={active === item.href ? "page" : undefined}
                 key={item.href}
-                onClick={() => handleScroll(item.href)}
-                className={`relative px-4 py-1.5 text-xs font-semibold rounded-full transition-colors cursor-pointer ${
+                ref={registerItem(item.href)}
+                onClick={() => handleNavClick(item.href)}
+                className={`relative z-10 px-4 py-1.5 text-xs font-semibold rounded-full transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] ${
                   active === item.href
                     ? "text-background"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                <span className="relative z-10">{item.label}</span>
-                {active === item.href && (
-                  <span className="absolute inset-0 bg-foreground rounded-full border border-background/10" />
-                )}
+                {item.label}
               </button>
             ))}
           </nav>
@@ -163,7 +178,7 @@ export const Navbar = () => {
                 aria-label={item.label}
                 aria-current={active === item.href ? "page" : undefined}
                 key={item.href}
-                onClick={() => handleScroll(item.href)}
+                onClick={() => handleNavClick(item.href)}
                 className={`w-full text-left px-4 py-2.5 text-sm font-semibold rounded-xl transition-all ${
                   active === item.href
                     ? "bg-primary/10 text-primary border border-primary/20"
