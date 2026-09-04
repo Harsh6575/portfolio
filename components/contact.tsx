@@ -44,8 +44,8 @@ export const Contact = () => {
     {
       icon: MapPin,
       label: "Current Location",
-      value: "Gujarat, India",
-      copyValue: "Gujarat, India",
+      value: "India",
+      copyValue: "India",
       description: "Available for remote contracts",
       clickable: true,
     },

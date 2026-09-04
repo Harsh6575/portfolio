@@ -63,8 +63,6 @@ export const metadata: Metadata = {
     "Fintech Software Engineer",
     "REST API Developer",
     "PostgreSQL Developer",
-    "Vadodara Developer",
-    "Gujarat Developer",
     "India Developer",
     "Portfolio",
     "Web Development",
@@ -148,8 +146,6 @@ export default function RootLayout({
                 sameAs: [LINKED_IN_URL, GITHUB_URL, X_URL, LEETCODE_URL],
                 address: {
                   "@type": "PostalAddress",
-                  addressLocality: "Vadodara",
-                  addressRegion: "Gujarat",
                   addressCountry: "IN",
                 },
                 worksFor: {

@@ -23,7 +23,9 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
         <div
           className={`flex items-center gap-3 mb-3 ${isCenter ? "justify-center" : "justify-start"}`}
         >
-          <span className="font-mono text-xs font-medium text-primary tracking-wider">{index}</span>
+          <span className="font-sans text-xs font-bold text-accent tracking-widest uppercase tabular-nums">
+            {index}
+          </span>
           <span className="h-px w-8 bg-border" />
         </div>
       )}

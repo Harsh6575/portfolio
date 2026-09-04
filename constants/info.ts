@@ -6,7 +6,7 @@ export const APP_NAME: string = "Harsh Vansjaliya";
 export const APP_TITLE: string = "Full-Stack Developer";
 export const APP_SUBTITLE: string = "Building High-Performance Web Applications";
 export const APP_TAGLINE: string = `I build products end to end: React/Next.js frontends, Node.js APIs, and the PostgreSQL schemas underneath, with ${TOTAL_EXPERIENCE}+ years shipping production code`;
-export const APP_DESCRIPTION: string = `Harsh Vansjaliya is a full-stack developer in Gujarat, India, with ${TOTAL_EXPERIENCE}+ years building scalable web apps and fintech systems using Next.js, TypeScript, Node.js & PostgreSQL.`;
+export const APP_DESCRIPTION: string = `Harsh Vansjaliya is a full-stack developer in India, with ${TOTAL_EXPERIENCE}+ years building scalable web apps and fintech systems using Next.js, TypeScript, Node.js & PostgreSQL.`;
 export const RESUME_URL: string =
   "https://raw.githubusercontent.com/Harsh6575/portfolio-data/main/assets/Harsh_Vansjaliya_Resume.pdf";
 
@@ -14,7 +14,7 @@ export const ABOUT_BIO = {
   intro:
     "I'm a full-stack developer with {TOTAL_EXPERIENCE}+ years of experience building web applications end-to-end, from React/Next.js frontends to Node.js and Python backends. I like owning a feature from database schema to shipped UI, and I care about the unglamorous parts (error handling, caching, migrations) as much as the visible ones.",
   experience:
-    "I spent my first two years at AlgoAcharya building trading dashboards and APIs for real-time market data - that's where I got serious about performance and API design. Now at Alite Projects, I own features end to end: React/Next.js frontends, Node.js APIs, Redis caching, and the PostgreSQL/MongoDB schemas underneath. I still gravitate toward backend problems when they show up - job queues, caching, data modeling - but I'm not choosing sides anymore.",
+    "My journey started in fintech building trading dashboards and APIs for real-time market data - that's where I got serious about performance and API design. Over the years, I've engineered high-throughput Node.js services, Redis caching pipelines, and clean PostgreSQL/MongoDB schemas. I gravitate toward backend problems - job queues, caching, data modeling - while shipping intuitive, responsive frontend interfaces.",
 };
 
 export const FOCAL_POINTS = [

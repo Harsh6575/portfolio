@@ -1,75 +1,109 @@
 import Link from "next/link";
-import { ChevronRight, ExternalLink, Calendar } from "lucide-react";
+import { ExternalLink, Calendar, ArrowRight } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
+import { Badge } from "@/components/ui/badge";
 import type { Project } from "@/lib/projects";
 import { groupByLayer } from "@/lib/tech-layers";
 
 export const ProjectRow = ({ project, index }: { project: Project; index: number }) => {
   const layers = groupByLayer(project.technologies);
   const techSummary = layers.map(({ layer, items }) => `${layer}: ${items.join(", ")}`).join(" · ");
+  const formattedIndex = String(index + 1).padStart(2, "0");
 
   return (
-    <article className="py-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-3 flex-wrap">
-          <span
-            aria-hidden="true"
-            className="font-mono text-base font-bold text-foreground/20 leading-none select-none"
-          >
-            {String(index + 1).padStart(2, "0")}
-          </span>
-          <Link
-            href={`/projects/${project.slug}`}
-            className="group inline-flex items-center gap-1 rounded-xs focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px]"
-          >
-            <span className="font-bold text-foreground group-hover:text-primary transition-colors">
-              {project.title}
+    <article className="py-6 md:py-8 md:grid md:grid-cols-[48px_1fr] lg:grid-cols-[56px_1fr] gap-x-6 gap-y-3">
+      {/* Desktop Meta rail */}
+      <span
+        aria-hidden="true"
+        className="hidden md:block font-sans text-3xl lg:text-4xl font-black text-accent/40 leading-none select-none tabular-nums tracking-tight"
+      >
+        {formattedIndex}
+      </span>
+
+      {/* Narrative content */}
+      <div className="space-y-3 min-w-0">
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            {/* Mobile Index inline */}
+            <span
+              aria-hidden="true"
+              className="md:hidden font-sans font-black text-xl text-accent/40 tabular-nums shrink-0"
+            >
+              {formattedIndex}
             </span>
-            <ChevronRight className="w-3.5 h-3.5 text-primary opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 group-focus-within:opacity-100 group-focus-within:translate-x-0 transition-all duration-200 motion-reduce:transition-none" />
-          </Link>
-          <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-muted-foreground">
-            {project.status}
-          </span>
-          <span className="text-[10px] font-mono text-muted-foreground/70 flex items-center gap-1">
-            <Calendar className="w-3 h-3" />
-            {project.date}
-          </span>
+
+            <Link
+              href={`/projects/${project.slug}`}
+              className="group inline-block rounded-xs focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px]"
+            >
+              <h3 className="text-sm sm:text-base font-bold text-foreground group-hover:text-primary transition-colors leading-snug">
+                {project.title}
+              </h3>
+            </Link>
+            <Badge
+              variant={project.status === "In Progress" ? "secondary" : "default"}
+              className="text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider w-fit"
+            >
+              {project.status}
+            </Badge>
+            {project.category && (
+              <span className="text-[10px] font-mono text-muted-foreground px-2 py-0.5 rounded-md bg-muted border border-border/50">
+                {project.category}
+              </span>
+            )}
+          </div>
+
+          <div className="flex items-center gap-1.5 text-xs font-mono text-muted-foreground shrink-0">
+            <Calendar className="w-3.5 h-3.5 text-primary/70" />
+            <span>{project.date}</span>
+          </div>
         </div>
 
-        <p className="mt-1 text-sm text-muted-foreground leading-relaxed line-clamp-1">
+        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
           {project.description}
         </p>
 
         {techSummary && (
-          <p className="mt-1 text-xs text-muted-foreground/80 leading-relaxed">{techSummary}</p>
+          <p className="text-xs text-muted-foreground/80 font-mono leading-relaxed">
+            {techSummary}
+          </p>
         )}
-      </div>
 
-      {project.links.length > 0 && (
-        <div className="flex items-center gap-1 shrink-0">
-          {project.links.map((link, idx) => (
-            <a
-              key={idx}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={
-                link.label ||
-                (link.type === "github"
-                  ? `${project.title} source code`
-                  : `${project.title} live link`)
-              }
-              className="text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] rounded-xs p-1.5"
-            >
-              {link.type === "github" ? (
-                <FaGithub className="w-4 h-4" />
-              ) : (
-                <ExternalLink className="w-4 h-4" />
-              )}
-            </a>
-          ))}
+        <div className="pt-1 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            {project.links.map((link, idx) => (
+              <a
+                key={idx}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={
+                  link.label ||
+                  (link.type === "github"
+                    ? `${project.title} source code`
+                    : `${project.title} live link`)
+                }
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] rounded-xs"
+              >
+                {link.type === "github" ? (
+                  <FaGithub className="w-3.5 h-3.5" />
+                ) : (
+                  <ExternalLink className="w-3.5 h-3.5" />
+                )}
+                <span>{link.label || (link.type === "github" ? "Source Code" : "Live Demo")}</span>
+              </a>
+            ))}
+          </div>
+
+          <Link
+            href={`/projects/${project.slug}`}
+            className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] rounded-xs group"
+          >
+            <span>Read case study</span>
+            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+          </Link>
         </div>
-      )}
+      </div>
     </article>
   );
 };

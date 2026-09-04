@@ -12,8 +12,8 @@ export default async function Home() {
 
   return (
     <>
-      <Hero projectSummaries={projectSummaries} />
-      <About projectsCount={projects.length} />
+      <Hero />
+      <About />
       <Skills projects={projects} />
       <Experience projectSummaries={projectSummaries} />
       <Projects projects={projects} />

@@ -16,11 +16,10 @@ import {
   APP_SUBTITLE,
   APP_TAGLINE,
 } from "@/constants";
-import { DevConsole } from "@/components/console/dev-console";
+import { HeroCard } from "@/components/hero-card";
 import { scrollToSection } from "@/lib/utils";
-import type { ProjectSummary } from "@/lib/projects";
 
-export const Hero = ({ projectSummaries }: { projectSummaries: ProjectSummary[] }) => {
+export const Hero = () => {
   return (
     <section
       id="hero"
@@ -104,9 +103,9 @@ export const Hero = ({ projectSummaries }: { projectSummaries: ProjectSummary[] 
           </div>
         </div>
 
-        {/* Right Column: Interactive Developer Console */}
+        {/* Right Column: High-Craft Engineering Stack Card */}
         <div className="lg:col-span-5 w-full max-w-full overflow-hidden flex justify-center px-2 sm:px-0">
-          <DevConsole projectSummaries={projectSummaries} />
+          <HeroCard />
         </div>
       </div>
     </section>

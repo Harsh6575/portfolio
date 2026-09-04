@@ -31,67 +31,82 @@ const ExperienceRow = ({
     .map(slug => ({ slug, title: projectTitles.get(slug) }))
     .filter((p): p is { slug: string; title: string } => Boolean(p.title));
 
+  const formattedIndex = String(index + 1).padStart(2, "0");
+
   return (
     <article
       ref={ref}
-      className={`py-10 grid grid-cols-1 sm:grid-cols-[80px_1fr] gap-x-6 gap-y-4 transition-all duration-700 ease-out motion-reduce:transition-none ${
+      className={`py-8 md:py-10 md:grid md:grid-cols-[48px_1fr] lg:grid-cols-[56px_1fr] gap-x-6 gap-y-4 transition-all duration-700 ease-out motion-reduce:transition-none ${
         isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       }`}
     >
-      {/* Meta rail */}
+      {/* Desktop Meta rail */}
       <span
         aria-hidden="true"
-        className="font-mono text-4xl sm:text-5xl font-bold text-foreground/20 leading-none select-none"
+        className="hidden md:block font-sans text-3xl lg:text-4xl font-black text-accent/40 leading-none select-none tabular-nums tracking-tight"
       >
-        {String(index + 1).padStart(2, "0")}
+        {formattedIndex}
       </span>
 
-      {/* Narrative content */}
+      {/* Narrative content (takes full width on mobile/tablet) */}
       <div className="space-y-4 min-w-0">
-        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+        <div className="flex flex-col gap-2.5">
+          {/* Row 1: Index + Logo + Role */}
           <div className="flex items-start gap-3">
+            {/* Mobile Index inline */}
+            <span
+              aria-hidden="true"
+              className="md:hidden font-sans font-black text-xl text-accent/40 tabular-nums shrink-0 mt-0.5"
+            >
+              {formattedIndex}
+            </span>
+
             <div className="w-10 h-10 rounded-xl bg-white border border-border/40 flex items-center justify-center shrink-0 shadow-xs overflow-hidden p-1.5">
               <CompanyLogo src={exp.logo} alt={`${exp.company} logo`} fallback="/hv-logo.svg" />
             </div>
 
-            <div className="space-y-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <h3 className="text-lg font-extrabold text-foreground leading-snug">{exp.role}</h3>
+            <div className="space-y-1 min-w-0 flex-1">
+              <h3 className="text-base sm:text-lg font-extrabold text-foreground leading-snug">
+                {exp.role}
+              </h3>
+
+              {/* Row 2: Company · Location */}
+              <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-muted-foreground text-xs font-semibold">
+                <div className="flex items-center gap-1">
+                  <Building className="w-3.5 h-3.5 text-primary/80" />
+                  <span className="text-foreground/95 font-bold">{exp.company}</span>
+                </div>
+                <span className="text-muted-foreground/40">•</span>
+                <div className="flex items-center gap-1">
+                  <MapPin className="w-3.5 h-3.5" />
+                  <span>{exp.location}</span>
+                </div>
+              </div>
+
+              {/* Row 3: Badge + Date — always inline, no offset hack */}
+              <div className="flex flex-wrap items-center gap-3">
                 <Badge
                   variant={exp.type === "Full-time" ? "default" : "secondary"}
                   className="text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider w-fit"
                 >
                   {exp.type}
                 </Badge>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-muted-foreground text-xs font-semibold">
-                <div className="flex items-center gap-1">
-                  <Building className="w-3.5 h-3.5 text-primary/80" />
-                  <span className="text-foreground/95 font-bold">{exp.company}</span>
-                </div>
-                <span className="hidden sm:inline text-muted-foreground/40">•</span>
-                <div className="flex items-center gap-1">
-                  <MapPin className="w-3.5 h-3.5" />
-                  <span>{exp.location}</span>
+                <div className="flex items-center gap-1.5 text-xs font-mono text-muted-foreground">
+                  <Calendar className="w-3.5 h-3.5 text-primary/70" />
+                  <span>{exp.duration}</span>
                 </div>
               </div>
             </div>
           </div>
-
-          <div className="flex items-center gap-1.5 text-xs font-mono text-muted-foreground shrink-0">
-            <Calendar className="w-3.5 h-3.5 text-primary/70" />
-            <span>{exp.duration}</span>
-          </div>
         </div>
 
-        {/* Pull-quote: the single most concrete engineering line from this role */}
-        <p className="border-l-2 border-primary pl-4 text-sm sm:text-base text-foreground font-medium leading-relaxed">
+        {/* Pull-quote */}
+        <p className="border-l-2 border-accent pl-4 text-xs sm:text-sm text-foreground font-medium leading-relaxed">
           {highlight}
         </p>
 
         {supporting.length > 0 && (
-          <ul className="space-y-1.5">
+          <ul className="space-y-1.5 pl-1">
             {supporting.map((item, idx) => (
               <li key={idx} className="flex items-start gap-2 text-xs text-muted-foreground">
                 <span className="w-1 h-1 rounded-full bg-muted-foreground/50 mt-1.5 shrink-0" />

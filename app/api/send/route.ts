@@ -3,7 +3,7 @@ import { MAIL_URL } from "@/constants";
 import { isRateLimited } from "@/lib/rate-limit";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY || "re_placeholder");
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -54,6 +54,14 @@ export async function POST(req: Request) {
       subject: string;
       message: string;
     };
+
+    if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY === "re_placeholder") {
+      console.error("Missing RESEND_API_KEY environment variable");
+      return Response.json(
+        { error: "Email service is temporarily unavailable. Please email directly." },
+        { status: 503 },
+      );
+    }
 
     const { error } = await resend.emails.send({
       from: "onboarding@resend.dev",

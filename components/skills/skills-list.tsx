@@ -50,18 +50,6 @@ function SkillDomainRow({
   const Icon = group.icon;
   const isPrimary = variant === "primary";
 
-  // Evidenced items (real project matches) surface first — that's the real
-  // signal doing the hierarchy work, not an arbitrary curation choice.
-  const items = useMemo(() => {
-    const evidenced: string[] = [];
-    const plain: string[] = [];
-    for (const item of group.items) {
-      if (skillProjectIndex.get(normalizeTech(item))?.length) evidenced.push(item);
-      else plain.push(item);
-    }
-    return [...evidenced, ...plain];
-  }, [group.items, skillProjectIndex]);
-
   const activeMatches = activeItem ? skillProjectIndex.get(normalizeTech(activeItem)) : undefined;
 
   return (
@@ -96,16 +84,16 @@ function SkillDomainRow({
           <p
             className={`leading-relaxed ${isPrimary ? "mt-3 text-sm sm:text-[15px]" : "mt-1.5 text-xs sm:text-sm"}`}
           >
-            {items.map((item, idx) => {
+            {group.items.map((item, idx) => {
               const matches = skillProjectIndex.get(normalizeTech(item));
               const isActive = activeItem === item;
-              const separator = idx < items.length - 1 ? " · " : "";
+              const separator = idx < group.items.length - 1 ? " · " : "";
 
               if (!matches?.length) {
                 return (
-                  <span key={item} className="text-muted-foreground/70">
+                  <span key={item} className="text-foreground/80 font-medium">
                     {item}
-                    {separator}
+                    <span className="text-muted-foreground/50">{separator}</span>
                   </span>
                 );
               }
@@ -122,11 +110,13 @@ function SkillDomainRow({
                     onKeyDown={e => {
                       if (e.key === "Escape" && isActive) setActiveItem(null);
                     }}
-                    className="font-semibold text-foreground underline decoration-dotted decoration-muted-foreground/50 underline-offset-4 hover:text-primary hover:decoration-primary transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] rounded-xs"
+                    className={`font-medium transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[2px] rounded-xs ${
+                      isActive ? "text-primary font-bold" : "text-foreground hover:text-primary"
+                    }`}
                   >
                     {item}
                   </button>
-                  {separator}
+                  <span className="text-muted-foreground/50">{separator}</span>
                 </span>
               );
             })}
@@ -135,16 +125,20 @@ function SkillDomainRow({
           {activeItem && activeMatches?.length ? (
             <div
               id={panelId(group.category, activeItem)}
-              className="mt-2 flex items-start gap-1.5 text-xs text-muted-foreground"
+              className="mt-3 p-2.5 px-3 rounded-lg bg-muted/40 border border-border/50 flex items-start gap-2 text-xs text-muted-foreground animate-in fade-in-50 duration-200"
             >
               <Folder className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-              <p>
-                Used in:{" "}
+              <p className="leading-relaxed">
+                <span className="font-semibold text-foreground">Used in: </span>
                 {activeMatches.map((project, idx) => (
                   <span key={project.slug}>
                     <Link
-                      href={`/projects/${project.slug}`}
-                      className="text-primary hover:underline focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] rounded-xs"
+                      href={
+                        project.slug.startsWith("#")
+                          ? `/${project.slug}`
+                          : `/projects/${project.slug}`
+                      }
+                      className="text-primary hover:underline font-medium focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[2px] rounded-xs"
                     >
                       {project.title}
                     </Link>

@@ -29,7 +29,7 @@ export const experiences = [
   {
     role: "Software Developer",
     company: "Self Employed",
-    location: "Vadodara, India",
+    location: "Remote · India",
     duration: "May 2025 - Present",
     type: "Self-employed",
     logo: "/hv-logo.svg",
