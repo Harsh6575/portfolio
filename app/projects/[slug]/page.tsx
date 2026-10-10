@@ -7,6 +7,7 @@ import { FaGithub } from "react-icons/fa6";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { Metadata } from "next";
+import { MermaidDiagram } from "@/components/projects/mermaid-diagram";
 
 const markdownComponents: Components = {
   h2: props => <h2 className="text-xl font-bold text-foreground mt-10 mb-4" {...props} />,
@@ -35,12 +36,23 @@ const markdownComponents: Components = {
   code: props => (
     <code className="bg-muted text-foreground px-1.5 py-0.5 rounded text-xs font-mono" {...props} />
   ),
-  pre: props => (
-    <pre
-      className="bg-muted border border-border rounded-xl p-4 overflow-x-auto text-xs font-mono mb-4"
-      {...props}
-    />
-  ),
+  pre: ({ node, ...props }) => {
+    const code = node?.children[0];
+    if (
+      code?.type === "element" &&
+      code.tagName === "code" &&
+      (code.properties.className as string[] | undefined)?.includes("language-mermaid")
+    ) {
+      const chart = code.children.map(child => (child.type === "text" ? child.value : "")).join("");
+      return <MermaidDiagram chart={chart} />;
+    }
+    return (
+      <pre
+        className="bg-muted border border-border rounded-xl p-4 overflow-x-auto text-xs font-mono mb-4"
+        {...props}
+      />
+    );
+  },
   strong: props => <strong className="text-foreground font-bold" {...props} />,
 };
 
