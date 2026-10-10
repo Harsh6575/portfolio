@@ -1,5 +1,5 @@
 import React from "react";
-import { Code, Database, Server, Wrench, CandlestickChart, Terminal } from "lucide-react";
+import { Code, Database, Server, Wrench, Workflow, CandlestickChart, Terminal } from "lucide-react";
 
 export const skillsData: {
   category: string;
@@ -29,7 +29,6 @@ export const skillsData: {
       "BullMQ",
       "NextAuth.js",
       "Stripe",
-      "n8n Automation",
       "JWT Authentication",
       "Caching Strategies",
       "API Design",
@@ -74,6 +73,15 @@ export const skillsData: {
       "Postman",
     ],
     priority: true,
+  },
+  {
+    category: "Automation & Integrations",
+    icon: Workflow,
+    period: "2025 - Present",
+    description:
+      "Automating business workflows and connecting products with third-party tools and CRMs.",
+    items: ["n8n Automation", "Zapier", "HubSpot", "Third-party API Integrations"],
+    priority: false,
   },
   {
     category: "Database & System Concepts",

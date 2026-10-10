@@ -24,6 +24,10 @@ export const experiences = [
       "MUI",
       "n8n",
       "MongoDB",
+      "BullMQ",
+      "Docker",
+      "Zapier",
+      "HubSpot",
     ],
   },
   {
