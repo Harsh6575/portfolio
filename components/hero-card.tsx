@@ -27,7 +27,7 @@ const STACK_PILLARS = [
 
 export const HeroCard = () => {
   return (
-    <div className="w-full max-w-[520px] rounded-2xl border border-border/70 bg-card/60 backdrop-blur-xl p-6 sm:p-7 shadow-xl shadow-primary/5 transition-all relative overflow-hidden">
+    <div className="w-full max-w-[520px] rounded-2xl border border-border/70 bg-card/60 backdrop-blur-xl p-6 sm:p-7 shadow-xl shadow-primary/5 relative overflow-hidden">
       {/* Subtle top ambient glow */}
       <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 

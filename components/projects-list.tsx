@@ -34,8 +34,10 @@ export const ProjectsList = ({ projects }: { projects: Project[] }) => {
         {filterTabs.map(tab => (
           <button
             key={tab.id}
+            type="button"
+            aria-pressed={selectedFilter === tab.id}
             onClick={() => setSelectedFilter(tab.id)}
-            className={`px-1 pb-3 -mb-px text-xs font-bold transition-colors shrink-0 cursor-pointer border-b-2 mr-6 ${
+            className={`px-1 pb-3 -mb-px text-xs font-bold transition-colors shrink-0 cursor-pointer border-b-2 mr-6 focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] rounded-xs ${
               selectedFilter === tab.id
                 ? "text-foreground border-primary"
                 : "text-muted-foreground border-transparent hover:text-foreground"
@@ -46,7 +48,13 @@ export const ProjectsList = ({ projects }: { projects: Project[] }) => {
         ))}
       </div>
 
-      <TieredProjectList projects={filteredProjects} className="divide-y divide-border" />
+      {filteredProjects.length === 0 ? (
+        <p className="py-12 text-sm text-muted-foreground">
+          No projects in this category yet. Try All Projects.
+        </p>
+      ) : (
+        <TieredProjectList projects={filteredProjects} className="divide-y divide-border" />
+      )}
     </div>
   );
 };

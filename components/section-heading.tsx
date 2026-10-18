@@ -29,7 +29,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
           <span className="h-px w-8 bg-border" />
         </div>
       )}
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-foreground tracking-tight">
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-foreground tracking-tight text-balance">
         {title}
       </h2>
       {subtitle && (

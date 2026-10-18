@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Hind, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
@@ -105,6 +105,13 @@ export const metadata: Metadata = {
   category: "technology",
 };
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FDFCFA" },
+    { media: "(prefers-color-scheme: dark)", color: "#090D16" },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -177,8 +184,14 @@ export default function RootLayout({
               }),
             }}
           />
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-full focus:bg-foreground focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-background"
+          >
+            Skip to content
+          </a>
           <Navbar />
-          {children}
+          <main id="main-content">{children}</main>
           <ThemeToggle />
           <Footer />
           <Analytics />

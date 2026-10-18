@@ -86,7 +86,7 @@ export const About = () => {
 
         <div
           ref={ref}
-          className={`grid lg:grid-cols-12 gap-8 lg:gap-12 items-start mt-8 transition-all duration-700 ease-out motion-reduce:transition-none ${
+          className={`grid lg:grid-cols-12 gap-8 lg:gap-12 items-start mt-8 transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none ${
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
@@ -158,12 +158,7 @@ export const About = () => {
                     className="w-full rounded-full text-xs font-semibold py-3.5 h-auto cursor-pointer group"
                     asChild
                   >
-                    <a
-                      href={RESUME_URL}
-                      download="Harsh_Vansjaliya_Resume.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <a href={RESUME_URL} target="_blank" rel="noopener noreferrer">
                       <Download className="w-4 h-4 mr-2 transition-transform group-hover:translate-y-0.5" />
                       Download Resume
                     </a>
@@ -195,7 +190,7 @@ export const About = () => {
                 {DOMAINS.map((domain, idx) => (
                   <div
                     key={idx}
-                    className="p-5 rounded-2xl border border-border/60 bg-card/40 hover:border-border transition-all duration-200"
+                    className="p-5 rounded-2xl border border-border/60 bg-card/40 hover:border-border transition-colors duration-200"
                   >
                     <div className="flex items-start gap-4">
                       <div className="p-2.5 rounded-xl bg-muted text-primary border border-border/60 shrink-0 mt-0.5">

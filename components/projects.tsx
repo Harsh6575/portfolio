@@ -26,7 +26,7 @@ export const Projects = ({ projects }: { projects: Project[] }) => {
 
         <div
           ref={ref}
-          className={`transition-all duration-700 ease-out motion-reduce:transition-none ${
+          className={`transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none ${
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
@@ -40,7 +40,7 @@ export const Projects = ({ projects }: { projects: Project[] }) => {
         <div className="flex justify-center mt-12">
           <Link
             href="/projects"
-            className="group inline-flex items-center gap-2 rounded-full text-sm font-semibold px-6 py-3 border border-border hover:border-foreground/30 hover:bg-muted transition-all"
+            className="group inline-flex items-center gap-2 rounded-full text-sm font-semibold px-6 py-3 border border-border hover:border-foreground/30 hover:bg-muted transition-colors"
           >
             View All Projects
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

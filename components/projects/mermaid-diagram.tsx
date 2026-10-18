@@ -41,6 +41,8 @@ export const MermaidDiagram = ({ chart }: { chart: string }) => {
 
   return (
     <div
+      role="img"
+      aria-label="Architecture diagram"
       className="bg-muted/40 border border-border rounded-xl p-4 mb-6 overflow-x-auto flex justify-center [&_svg]:max-w-full [&_svg]:h-auto"
       dangerouslySetInnerHTML={{ __html: svg }}
     />

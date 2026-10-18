@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useSlidingIndicator } from "@/hooks/use-sliding-indicator";
 import { scrollToSection } from "@/lib/utils";
@@ -73,6 +74,23 @@ export const Navbar = () => {
     scrollToSection(id);
   };
 
+  // Real links keep Cmd/Ctrl/middle-click and shareable /#section URLs; plain clicks still scroll smoothly.
+  const handleNavLinkClick = (e: MouseEvent<HTMLAnchorElement>, id: string) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    e.preventDefault();
+    handleNavClick(id);
+  };
+
+  // Close the mobile menu on Escape.
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
   // Home's sections may not be mounted yet after a cross-page nav (blocked on a data fetch), so wait for them.
   useEffect(() => {
     if (pathname !== "/") return;
@@ -102,7 +120,7 @@ export const Navbar = () => {
   return (
     <header className="fixed top-0 left-0 w-full z-50 flex justify-center px-4 py-4 pointer-events-none">
       <div
-        className={`w-full max-w-6xl pointer-events-auto rounded-full transition-all duration-300 ${
+        className={`w-full max-w-6xl pointer-events-auto rounded-full transition-[background-color,border-color,box-shadow,padding] duration-300 ${
           isScrolled
             ? "bg-background/70 backdrop-blur-md border border-border/40 shadow-lg px-6 py-2"
             : "bg-transparent border border-transparent px-6 py-3"
@@ -110,20 +128,22 @@ export const Navbar = () => {
       >
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <button
-            onClick={() => handleNavClick("hero")}
-            className="flex items-center group relative cursor-pointer"
+          <Link
+            href="/#hero"
+            aria-label="Harsh Vansjaliya, back to top"
+            onClick={e => handleNavLinkClick(e, "hero")}
+            className="flex items-center group relative cursor-pointer rounded-full focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px]"
           >
             <div className="relative overflow-hidden w-9 h-9 md:w-10 md:h-10 rounded-full border border-border bg-muted flex items-center justify-center">
               <Image
                 src="/hv-logo.svg"
-                alt="Harsh Vansjaliya Logo"
+                alt=""
                 className="w-full h-full object-cover dark:invert"
                 width={40}
                 height={40}
               />
             </div>
-          </button>
+          </Link>
 
           {/* Desktop Nav */}
           <nav
@@ -138,12 +158,12 @@ export const Navbar = () => {
               />
             )}
             {navItems.map(item => (
-              <button
-                aria-label={item.label}
+              <Link
+                href={`/#${item.href}`}
                 aria-current={active === item.href ? "page" : undefined}
                 key={item.href}
                 ref={registerItem(item.href)}
-                onClick={() => handleNavClick(item.href)}
+                onClick={e => handleNavLinkClick(e, item.href)}
                 className={`relative z-10 px-4 py-1.5 text-xs font-semibold rounded-full transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] ${
                   active === item.href
                     ? "text-background"
@@ -151,14 +171,14 @@ export const Navbar = () => {
                 }`}
               >
                 {item.label}
-              </button>
+              </Link>
             ))}
           </nav>
 
           {/* Mobile Menu Button */}
           <button
             aria-expanded={open}
-            className="md:hidden p-2 rounded-full border border-border/30 hover:bg-muted text-foreground transition-colors cursor-pointer"
+            className="md:hidden p-2 rounded-full border border-border/30 hover:bg-muted text-foreground transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px]"
             onClick={() => setOpen(!open)}
             aria-label="Toggle navigation"
             aria-controls="mobile-nav"
@@ -170,23 +190,24 @@ export const Navbar = () => {
         {/* Mobile Nav */}
         {open && (
           <nav
+            id="mobile-nav"
             className="md:hidden absolute left-4 right-4 mt-3 bg-background/95 backdrop-blur-xl border border-border/40 rounded-3xl p-4 shadow-xl space-y-2 flex flex-col pointer-events-auto"
             aria-label="Mobile navigation"
           >
             {navItems.map(item => (
-              <button
-                aria-label={item.label}
+              <Link
+                href={`/#${item.href}`}
                 aria-current={active === item.href ? "page" : undefined}
                 key={item.href}
-                onClick={() => handleNavClick(item.href)}
-                className={`w-full text-left px-4 py-2.5 text-sm font-semibold rounded-xl transition-all ${
+                onClick={e => handleNavLinkClick(e, item.href)}
+                className={`w-full text-left px-4 py-2.5 text-sm font-semibold rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] ${
                   active === item.href
                     ? "bg-primary/10 text-primary border border-primary/20"
                     : "text-muted-foreground hover:bg-muted hover:text-foreground border border-transparent"
                 }`}
               >
                 {item.label}
-              </button>
+              </Link>
             ))}
           </nav>
         )}

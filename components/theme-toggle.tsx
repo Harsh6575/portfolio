@@ -29,7 +29,7 @@ export const ThemeToggle = () => {
         onClick={toggleTheme}
         variant="outline"
         size="icon"
-        className="w-12 h-12 rounded-full shadow-lg backdrop-blur-sm bg-background/80 border-border/50 hover:bg-accent hover:text-accent-foreground transition-all duration-200"
+        className="w-12 h-12 rounded-full shadow-lg backdrop-blur-sm bg-background/80 border-border/50 hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
       >
         {isLight ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
 

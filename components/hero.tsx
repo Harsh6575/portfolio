@@ -36,25 +36,26 @@ export const Hero = () => {
           {OPEN_TO_NEW_OP && (
             <div className="mb-6">
               <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20 shadow-xs shadow-primary/5">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2.5 animate-pulse"></span>
+                <span
+                  aria-hidden="true"
+                  className="w-2 h-2 bg-green-500 rounded-full mr-2.5 animate-pulse motion-reduce:animate-none"
+                ></span>
                 Open to New Opportunities
               </span>
             </div>
           )}
 
           {/* Headline Name */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 select-none leading-[1.1] py-1">
-            Hi, {"I'm"} <span className="text-primary">{APP_NAME}</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-balance mb-4 leading-[1.1] py-1">
+            Hi, I’m <span className="text-primary">{APP_NAME}</span>
           </h1>
 
           {/* Professional Titles */}
           <div className="mb-5">
-            <h2 className="text-xl sm:text-2xl font-bold text-foreground/90 tracking-wide mb-1">
+            <p className="text-xl sm:text-2xl font-bold text-foreground/90 tracking-wide mb-1">
               {APP_TITLE}
-            </h2>
-            <h3 className="text-base sm:text-lg text-muted-foreground font-medium">
-              {APP_SUBTITLE}
-            </h3>
+            </p>
+            <p className="text-base sm:text-lg text-muted-foreground font-medium">{APP_SUBTITLE}</p>
           </div>
 
           {/* Core Tagline Description */}
@@ -66,7 +67,7 @@ export const Hero = () => {
             <Button
               onClick={() => scrollToSection("projects", 80)}
               size="lg"
-              className="group text-sm font-semibold px-8 py-3.5 h-auto rounded-full cursor-pointer transition-all duration-300"
+              className="group text-sm font-semibold px-8 py-3.5 h-auto rounded-full cursor-pointer transition-colors duration-300"
             >
               View Projects
               <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -75,7 +76,7 @@ export const Hero = () => {
               onClick={() => scrollToSection("contact", 80)}
               variant="outline"
               size="lg"
-              className="text-sm font-semibold px-8 py-3.5 h-auto rounded-full cursor-pointer backdrop-blur-xs border-border/60 hover:bg-muted transition-all"
+              className="text-sm font-semibold px-8 py-3.5 h-auto rounded-full cursor-pointer backdrop-blur-xs border-border/60 hover:bg-muted transition-colors"
             >
               Get in Touch
             </Button>
@@ -94,9 +95,9 @@ export const Hero = () => {
                 href={social.url}
                 target={social.url.startsWith("mailto:") ? undefined : "_blank"}
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-border/60 hover:border-primary/40 text-muted-foreground hover:text-foreground flex items-center justify-center bg-card/40 backdrop-blur-xs transition-all duration-300 shadow-xs hover:shadow-primary/5"
+                className="w-10 h-10 rounded-full border border-border/60 hover:border-primary/40 text-muted-foreground hover:text-foreground flex items-center justify-center bg-card/40 backdrop-blur-xs transition-[color,border-color,box-shadow] duration-300 shadow-xs hover:shadow-primary/5 focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px]"
               >
-                <social.icon className="w-4.5 h-4.5" />
+                <social.icon aria-hidden="true" className="w-4.5 h-4.5" />
                 <span className="sr-only">{social.label}</span>
               </a>
             ))}

@@ -10,8 +10,12 @@ import type { Metadata } from "next";
 import { MermaidDiagram } from "@/components/projects/mermaid-diagram";
 
 const markdownComponents: Components = {
-  h2: props => <h2 className="text-xl font-bold text-foreground mt-10 mb-4" {...props} />,
-  h3: props => <h3 className="text-lg font-bold text-foreground mt-8 mb-3" {...props} />,
+  h2: props => (
+    <h2 className="text-xl font-bold text-foreground mt-10 mb-4 scroll-mt-24" {...props} />
+  ),
+  h3: props => (
+    <h3 className="text-lg font-bold text-foreground mt-8 mb-3 scroll-mt-24" {...props} />
+  ),
   p: props => (
     <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-4" {...props} />
   ),
@@ -25,14 +29,17 @@ const markdownComponents: Components = {
     />
   ),
   li: props => <li className="leading-relaxed" {...props} />,
-  a: props => (
-    <a
-      className="text-primary underline underline-offset-4 hover:text-primary/80"
-      target="_blank"
-      rel="noopener noreferrer"
-      {...props}
-    />
-  ),
+  a: ({ href, ...props }) => {
+    const isExternal = href?.startsWith("http");
+    return (
+      <a
+        href={href}
+        className="text-primary underline underline-offset-4 hover:text-primary/80"
+        {...(isExternal && { target: "_blank", rel: "noopener noreferrer" })}
+        {...props}
+      />
+    );
+  },
   code: props => (
     <code className="bg-muted text-foreground px-1.5 py-0.5 rounded text-xs font-mono" {...props} />
   ),
@@ -132,7 +139,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           </span>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight mb-3">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight text-balance mb-3">
           {project.title}
         </h1>
 
@@ -145,7 +152,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           {project.technologies.map(tech => (
             <span
               key={tech}
-              className="text-[10px] font-bold rounded-md bg-muted border border-border text-muted-foreground select-none px-2.5 py-1"
+              className="text-[10px] font-bold rounded-md bg-muted border border-border text-muted-foreground px-2.5 py-1"
             >
               {tech}
             </span>
@@ -160,7 +167,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 rounded-full text-xs font-semibold px-4.5 py-2.5 border transition-all duration-200 bg-foreground border-foreground text-background hover:bg-foreground/90"
+                className="flex items-center gap-1.5 rounded-full text-xs font-semibold px-4.5 py-2.5 border transition-colors duration-200 bg-foreground border-foreground text-background hover:bg-foreground/90"
               >
                 {link.type === "github" ? (
                   <FaGithub className="w-4 h-4" />

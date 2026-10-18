@@ -19,7 +19,7 @@ export const SkillsList = ({ projectRefs }: { projectRefs: ProjectTechRef[] }) =
   return (
     <div
       ref={ref}
-      className={`border-t border-b border-border divide-y divide-border transition-all duration-700 ease-out motion-reduce:transition-none ${
+      className={`border-t border-b border-border divide-y divide-border transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none ${
         isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       }`}
     >
@@ -125,7 +125,7 @@ function SkillDomainRow({
           {activeItem && activeMatches?.length ? (
             <div
               id={panelId(group.category, activeItem)}
-              className="mt-3 p-2.5 px-3 rounded-lg bg-muted/40 border border-border/50 flex items-start gap-2 text-xs text-muted-foreground animate-in fade-in-50 duration-200"
+              className="mt-3 p-2.5 px-3 rounded-lg bg-muted/40 border border-border/50 flex items-start gap-2 text-xs text-muted-foreground animate-in fade-in-50 duration-200 motion-reduce:animate-none"
             >
               <Folder className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
               <p className="leading-relaxed">

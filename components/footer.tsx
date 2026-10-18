@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { ArrowUp, Mail } from "lucide-react";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
@@ -16,22 +16,13 @@ import {
 } from "@/constants";
 
 export const Footer = () => {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return null;
-  }
-
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
   };
 
   return (
-    <footer className="relative bg-background border-t border-border/40 overflow-hidden shrink-0 select-none py-10">
+    <footer className="relative bg-background border-t border-border/40 overflow-hidden shrink-0 py-10">
       {/* Grid Overlay Mask */}
       <div className="absolute inset-0 mesh-grid opacity-[0.03] dark:opacity-[0.02] pointer-events-none" />
 
@@ -55,9 +46,9 @@ export const Footer = () => {
                     href={social.url}
                     target={social.url.startsWith("mailto:") ? undefined : "_blank"}
                     rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-full border border-border/60 hover:border-primary/40 text-muted-foreground hover:text-foreground flex items-center justify-center bg-card/40 backdrop-blur-xs transition-all duration-300 shadow-xs hover:shadow-primary/5"
+                    className="w-9 h-9 rounded-full border border-border/60 hover:border-primary/40 text-muted-foreground hover:text-foreground flex items-center justify-center bg-card/40 backdrop-blur-xs transition-[color,border-color,box-shadow] duration-300 shadow-xs hover:shadow-primary/5 focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px]"
                   >
-                    <social.icon size={15} />
+                    <social.icon aria-hidden="true" size={15} />
                     <span className="sr-only">{social.label}</span>
                   </Link>
                 ))}
@@ -67,7 +58,7 @@ export const Footer = () => {
             {/* Back to Top */}
             <button
               onClick={scrollToTop}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/60 hover:bg-muted text-xs font-mono text-muted-foreground hover:text-foreground border border-border/60 transition-all duration-300 cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/60 hover:bg-muted text-xs font-mono text-muted-foreground hover:text-foreground border border-border/60 transition-colors duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px]"
             >
               <span>Back to Top</span>
               <ArrowUp className="w-3.5 h-3.5" />
@@ -77,12 +68,15 @@ export const Footer = () => {
           {/* Bottom Row: Copyright & Status */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 w-full pt-6 border-t border-border/40 text-xs text-muted-foreground">
             <p className="font-mono text-[11px]">
-              © {new Date().getFullYear()} {APP_NAME} · India
+              © <span suppressHydrationWarning>{new Date().getFullYear()}</span> {APP_NAME} · India
             </p>
 
             {OPEN_TO_NEW_OP ? (
               <div className="flex items-center gap-2 text-[11px] font-mono text-emerald-500 bg-emerald-500/5 border border-emerald-500/15 px-3 py-1 rounded-full">
-                <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+                <span
+                  aria-hidden="true"
+                  className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse motion-reduce:animate-none"
+                />
                 <span>Available for new roles</span>
               </div>
             ) : (

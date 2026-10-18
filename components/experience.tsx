@@ -36,7 +36,7 @@ const ExperienceRow = ({
   return (
     <article
       ref={ref}
-      className={`py-8 md:py-10 md:grid md:grid-cols-[48px_1fr] lg:grid-cols-[56px_1fr] gap-x-6 gap-y-4 transition-all duration-700 ease-out motion-reduce:transition-none ${
+      className={`py-8 md:py-10 md:grid md:grid-cols-[48px_1fr] lg:grid-cols-[56px_1fr] gap-x-6 gap-y-4 transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none ${
         isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       }`}
     >

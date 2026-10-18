@@ -64,8 +64,13 @@ export const Contact = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const copyToClipboard = (text: string, index: number) => {
-    navigator.clipboard.writeText(text);
+  const copyToClipboard = async (text: string, index: number) => {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      // Clipboard is unavailable on plain HTTP or when denied; the address is still selectable on the card.
+      return;
+    }
     setCopiedIndex(index);
     setTimeout(() => setCopiedIndex(null), 1800);
   };
@@ -106,7 +111,7 @@ export const Contact = () => {
         <SectionHeading
           index="05 — Contact"
           title="Get In Touch"
-          subtitle="Not on the job market right now, but always up for a good systems-design conversation or the right project. Reach out."
+          subtitle="Open to the right full-stack role, a good systems-design conversation, or an interesting project. Reach out."
           align="left"
         />
 
@@ -117,7 +122,7 @@ export const Contact = () => {
             {OPEN_TO_NEW_OP && (
               <Card className="border-green-500/20 bg-green-500/5 dark:border-green-500/10 dark:bg-green-950/20 rounded-2xl overflow-hidden">
                 <CardContent className="p-5 flex gap-3.5 items-start">
-                  <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse mt-1.5 shrink-0" />
+                  <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse motion-reduce:animate-none mt-1.5 shrink-0" />
                   <div className="space-y-1">
                     <Badge
                       variant="outline"
@@ -147,10 +152,9 @@ export const Contact = () => {
                 return (
                   <div key={index}>
                     <Card
-                      onClick={() => isClickable && copyToClipboard(info.copyValue!, index)}
-                      className={`border-border bg-card rounded-2xl transition-all duration-200 relative select-none ${
+                      className={`border-border bg-card rounded-2xl transition-[border-color,transform] duration-200 relative ${
                         isClickable
-                          ? "cursor-pointer hover:border-foreground/20 active:scale-[0.99]"
+                          ? "cursor-pointer hover:border-foreground/20 active:scale-[0.99] has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-ring/50"
                           : "cursor-default"
                       }`}
                     >
@@ -162,7 +166,7 @@ export const Contact = () => {
                           </div>
 
                           <div className="space-y-0.5 min-w-0 flex-1">
-                            <span className="font-bold text-foreground/75 text-[10px] uppercase tracking-wider select-none">
+                            <span className="font-bold text-foreground/75 text-[10px] uppercase tracking-wider">
                               {info.label}
                             </span>
                             <div className="text-xs sm:text-sm font-bold text-foreground tracking-wide break-all">
@@ -174,21 +178,29 @@ export const Contact = () => {
                           </div>
                         </div>
 
-                        {/* Copy click triggers visual badges */}
+                        {/* before:inset-0 stretches the button's hit area over the whole card. */}
                         {isClickable && (
-                          <div className="text-muted-foreground/60 hover:text-foreground shrink-0 pr-1 select-none">
+                          <button
+                            type="button"
+                            onClick={() => copyToClipboard(info.copyValue!, index)}
+                            aria-label={`Copy ${info.label.toLowerCase()}`}
+                            className="text-muted-foreground/60 hover:text-foreground shrink-0 pr-1 cursor-pointer outline-none before:absolute before:inset-0 before:rounded-2xl before:content-['']"
+                          >
                             {isCopied ? (
-                              <div className="flex items-center gap-1 text-[10px] font-black text-green-400 bg-green-500/10 px-2 py-0.5 rounded-full border border-green-500/20">
+                              <span className="flex items-center gap-1 text-[10px] font-black text-green-600 dark:text-green-400 bg-green-500/10 px-2 py-0.5 rounded-full border border-green-500/20">
                                 <Check className="w-3 h-3" />
                                 <span>Copied</span>
-                              </div>
+                              </span>
                             ) : (
-                              <div className="p-1 rounded-md bg-muted/40">
+                              <span className="block p-1 rounded-md bg-muted/40">
                                 <Copy className="w-3.5 h-3.5 text-muted-foreground/40" />
-                              </div>
+                              </span>
                             )}
-                          </div>
+                          </button>
                         )}
+                        <span className="sr-only" aria-live="polite">
+                          {isCopied ? `${info.label} copied` : ""}
+                        </span>
                       </CardContent>
                     </Card>
                   </div>
@@ -213,8 +225,11 @@ export const Contact = () => {
               <CardContent className="relative flex-1 flex flex-col">
                 {/* Beautiful Success Overlay Card upon submission completed */}
                 {submitStatus === "success" && (
-                  <div className="absolute inset-0 bg-background/95 dark:bg-card/95 backdrop-blur-md z-20 flex flex-col items-center justify-center text-center p-6">
-                    <div className="w-16 h-16 rounded-full bg-green-500/10 text-green-400 border border-green-500/20 flex items-center justify-center mb-4 shadow-lg shadow-green-500/5">
+                  <div
+                    role="status"
+                    className="absolute inset-0 bg-background/95 dark:bg-card/95 backdrop-blur-md z-20 flex flex-col items-center justify-center text-center p-6"
+                  >
+                    <div className="w-16 h-16 rounded-full bg-green-500/10 text-green-600 dark:text-green-400 border border-green-500/20 flex items-center justify-center mb-4 shadow-lg shadow-green-500/5">
                       <CheckCircle className="w-9 h-9" />
                     </div>
 
@@ -226,6 +241,7 @@ export const Contact = () => {
                     </p>
 
                     <Button
+                      autoFocus
                       onClick={() => setSubmitStatus("idle")}
                       variant="outline"
                       className="rounded-full text-xs font-bold px-6 py-2.5 h-auto cursor-pointer"
@@ -245,9 +261,10 @@ export const Contact = () => {
                       <Input
                         id="name"
                         name="name"
+                        autoComplete="name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        placeholder="Your full name"
+                        placeholder="Jane Doe…"
                         required
                         disabled={isSubmitting}
                         className="text-xs font-semibold px-4.5 py-3.5 h-auto rounded-xl"
@@ -263,9 +280,11 @@ export const Contact = () => {
                         id="email"
                         name="email"
                         type="email"
+                        autoComplete="email"
+                        spellCheck={false}
                         value={formData.email}
                         onChange={handleInputChange}
-                        placeholder="your@email.com"
+                        placeholder="jane@company.com…"
                         required
                         disabled={isSubmitting}
                         className="text-xs font-semibold px-4.5 py-3.5 h-auto rounded-xl"
@@ -281,9 +300,10 @@ export const Contact = () => {
                     <Input
                       id="subject"
                       name="subject"
+                      autoComplete="off"
                       value={formData.subject}
                       onChange={handleInputChange}
-                      placeholder="What is this regarding?"
+                      placeholder="Full-stack role at Acme…"
                       required
                       disabled={isSubmitting}
                       className="text-xs font-semibold px-4.5 py-3.5 h-auto rounded-xl"
@@ -300,7 +320,7 @@ export const Contact = () => {
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
-                      placeholder="Tell me a bit about the role, project, or what's on your mind..."
+                      placeholder="Tell me a bit about the role, project, or what's on your mind…"
                       required
                       disabled={isSubmitting}
                       className="flex-1 min-h-32 text-xs font-semibold px-4.5 py-3.5 rounded-xl resize-none"
@@ -309,7 +329,10 @@ export const Contact = () => {
 
                   {/* Error Notification Alert */}
                   {submitStatus === "error" && (
-                    <div className="flex items-center gap-2 bg-red-500/10 text-red-500 border border-red-500/20 text-xs font-bold p-3.5 rounded-xl shadow-xs">
+                    <div
+                      role="alert"
+                      className="flex items-center gap-2 bg-red-500/10 text-red-500 border border-red-500/20 text-xs font-bold p-3.5 rounded-xl shadow-xs"
+                    >
                       <AlertCircle className="w-4 h-4 shrink-0" />
                       <span>
                         An error occurred. Please try again or copy/send directly via email.
@@ -320,13 +343,13 @@ export const Contact = () => {
                   {/* Submit Button Trigger */}
                   <Button
                     type="submit"
-                    className="w-full text-xs font-bold rounded-full py-4 h-auto cursor-pointer shadow-md select-none transition-all duration-300"
+                    className="w-full text-xs font-bold rounded-full py-4 h-auto cursor-pointer shadow-md select-none transition-colors duration-300"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
                       <>
                         <div className="w-3.5 h-3.5 border-2 border-background border-t-transparent rounded-full animate-spin mr-2 shrink-0"></div>
-                        <span>Sending Request...</span>
+                        <span>Sending…</span>
                       </>
                     ) : (
                       <>
