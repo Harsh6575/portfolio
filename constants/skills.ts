@@ -1,9 +1,5 @@
-import React from "react";
-import { Code, Database, Server, Wrench, Workflow, CandlestickChart, Terminal } from "lucide-react";
-
 export const skillsData: {
   category: string;
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   period: string;
   description: string;
   items: string[];
@@ -11,7 +7,6 @@ export const skillsData: {
 }[] = [
   {
     category: "Backend Development",
-    icon: Server,
     period: "2023 - Present",
     description:
       "Building scalable backend systems, well-structured APIs, and production-ready service architectures.",
@@ -37,7 +32,6 @@ export const skillsData: {
   },
   {
     category: "Frontend Development",
-    icon: Code,
     period: "2022 - Present",
     description:
       "Developing modern, responsive user interfaces and integrating complex backend APIs.",
@@ -55,7 +49,6 @@ export const skillsData: {
   },
   {
     category: "Cloud & DevOps",
-    icon: Wrench,
     period: "2023 - Present",
     description: "Deploying, containerizing, and managing applications on cloud infrastructure.",
     items: [
@@ -76,7 +69,6 @@ export const skillsData: {
   },
   {
     category: "Automation & Integrations",
-    icon: Workflow,
     period: "2025 - Present",
     description:
       "Automating business workflows and connecting products with third-party tools and CRMs.",
@@ -85,7 +77,6 @@ export const skillsData: {
   },
   {
     category: "Database & System Concepts",
-    icon: Database,
     period: "2023 - Present",
     description: "Designing efficient data models and optimizing database performance.",
     items: ["Schema Design", "Query Optimization", "Indexing", "Transactions", "Normalization"],
@@ -93,7 +84,6 @@ export const skillsData: {
   },
   {
     category: "Python & Market Data Analysis",
-    icon: CandlestickChart,
     period: "2023 - Present",
     description:
       "Working with market data to analyze trends, visualize insights, and experiment with trading strategies.",
@@ -112,10 +102,16 @@ export const skillsData: {
   },
   {
     category: "Languages",
-    icon: Terminal,
     period: "2022 - Present",
     description: "Programming languages used across backend, frontend, and automation projects.",
     items: ["TypeScript", "JavaScript", "Python", "Java", "SQL"],
     priority: false,
   },
+];
+
+export const coreStack: { layer: string; items: string[] }[] = [
+  { layer: "Backend", items: ["Node.js", "Express", "FastAPI", "Django", "BullMQ", "GraphQL"] },
+  { layer: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Zustand"] },
+  { layer: "Data", items: ["PostgreSQL", "MongoDB", "Redis", "Prisma"] },
+  { layer: "Infra", items: ["Docker", "AWS", "Vercel", "n8n"] },
 ];

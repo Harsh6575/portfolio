@@ -1,156 +1,137 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@theme {
-  --font-hind: var(--font-hind), sans-serif;
-}
-
-@custom-variant dark (&:is(.dark *));
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-space-mono), ui-monospace, "SFMono-Regular", monospace;
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-league-spartan), var(--font-figtree), sans-serif;
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
   --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
   --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
 }
 
+@theme {
+  --text-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --text-small--line-height: 1.5;
+  --text-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --text-body--line-height: 1.55;
+  --text-lead: clamp(1.375rem, 1.2rem + 0.6vw, 1.75rem);
+  --text-lead--line-height: 1.15;
+  --text-head: clamp(1.75rem, 1.3rem + 1.4vw, 2.25rem);
+  --text-head--line-height: 1.12;
+  --text-display: clamp(2.75rem, 1rem + 4.8vw, 5.5rem);
+  --text-display--line-height: 0.88;
+
+  --ease-out-strong: cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-rise: rise 900ms var(--ease-out-strong) both;
+  --animate-fade-up: fade-up 700ms var(--ease-out-strong) both;
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+/* Soot and lime: soot opens and closes the page, white fields carry the middle. */
 :root {
-  /* Bauhaus Klein Blue & Solar Tangerine — Light Mode */
-  --radius: 0.65rem;
-  --background: oklch(0.99 0.003 80);         /* Warm Milk-White #FDFCFA */
-  --foreground: oklch(0.13 0.02 255);         /* Deep Ink Navy #090D16 */
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.13 0.02 255);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.13 0.02 255);
-  --primary: oklch(0.55 0.26 260);            /* Klein Blue #2E5BFF */
-  --primary-foreground: oklch(0.99 0 0);      /* White on Klein Blue */
-  --secondary: oklch(0.94 0.004 255);
-  --secondary-foreground: oklch(0.15 0.02 255);
-  --muted: oklch(0.93 0.004 255);
-  --muted-foreground: oklch(0.45 0.01 255);
-  --accent: oklch(0.68 0.22 45);              /* Solar Tangerine #FF6B35 */
-  --accent-foreground: oklch(0.99 0 0);       /* White on tangerine */
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.88 0.005 255);
-  --input: oklch(0.90 0.005 255);
-  --ring: oklch(0.55 0.26 260);
-  --chart-1: oklch(0.55 0.26 260);
-  --chart-2: oklch(0.68 0.22 45);
-  --chart-3: oklch(0.65 0.20 260);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.94 0.004 255);
-  --sidebar-foreground: oklch(0.13 0.02 255);
-  --sidebar-primary: oklch(0.55 0.26 260);
-  --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.68 0.22 45);
-  --sidebar-accent-foreground: oklch(0.99 0 0);
-  --sidebar-border: oklch(0.88 0.005 255);
-  --sidebar-ring: oklch(0.55 0.26 260);
+  --background: #0f0f0f;
+  --foreground: #ffffff;
+  --card: #1a1a1a;
+  --card-foreground: #ffffff;
+  --muted: #1a1a1a;
+  --muted-foreground: #8f8f8f;
+  --primary: #dafa9c;
+  --primary-foreground: #0f0f0f;
+  --destructive: #ff8a80;
+  --border: #3a3a3a;
+  --input: #3a3a3a;
+  --ring: #dafa9c;
 }
 
-.dark {
-  /* Bauhaus Klein Blue & Solar Tangerine — Dark Mode */
-  --background: oklch(0.12 0.02 255);         /* Deep Ink Navy-Black #090D16 */
-  --foreground: oklch(0.97 0.003 80);         /* Crisp Ice-White #F8FAFC */
-  --card: oklch(0.16 0.025 255);              /* Dark Indigo-Slate #101726 */
-  --card-foreground: oklch(0.97 0.003 80);
-  --popover: oklch(0.16 0.025 255);
-  --popover-foreground: oklch(0.97 0.003 80);
-  --primary: oklch(0.62 0.26 260);            /* Bright Klein Blue — pops on dark */
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.20 0.025 255);         /* Elevated indigo surface */
-  --secondary-foreground: oklch(0.93 0.003 80);
-  --muted: oklch(0.20 0.025 255);
-  --muted-foreground: oklch(0.58 0.01 255);
-  --accent: oklch(0.68 0.22 45);              /* Solar Tangerine #FF6B35 */
-  --accent-foreground: oklch(0.99 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.62 0.26 260);
-  --chart-1: oklch(0.62 0.26 260);
-  --chart-2: oklch(0.68 0.22 45);
-  --chart-3: oklch(0.72 0.20 260);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.16 0.025 255);
-  --sidebar-foreground: oklch(0.97 0.003 80);
-  --sidebar-primary: oklch(0.62 0.26 260);
-  --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.68 0.22 45);
-  --sidebar-accent-foreground: oklch(0.99 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.62 0.26 260);
+/* Re-scopes the same tokens so anything inside a white band inverts without extra classes. */
+.field-light {
+  --background: #ffffff;
+  --foreground: #0f0f0f;
+  --card: #f2f2f2;
+  --card-foreground: #0f0f0f;
+  --muted: #f2f2f2;
+  --muted-foreground: #5f5f5f;
+  --destructive: #b3261e;
+  --border: #c9c9c9;
+  --input: #c9c9c9;
+  --ring: #0f0f0f;
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring;
+  }
+  html {
+    background-color: var(--background);
   }
   body {
-    @apply bg-background text-foreground antialiased relative min-h-screen overflow-x-hidden;
+    @apply bg-background text-foreground font-sans text-body antialiased relative min-h-svh overflow-x-hidden;
+  }
+  ::selection {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+  /* Browsers ignore background-color on autofilled fields, so an inset shadow paints over their blue. */
+  input:-webkit-autofill,
+  textarea:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 100px var(--background) inset;
+    -webkit-text-fill-color: var(--foreground);
+    caret-color: var(--foreground);
   }
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: color-mix(in oklch, var(--primary) 15%, transparent);
-  border-radius: 9999px;
-  border: 2px solid transparent;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: color-mix(in oklch, var(--primary) 30%, transparent);
+/* The single reading column every section hangs from: ~22% from the left on wide screens. */
+@utility column {
+  width: 100%;
+  max-width: calc(35rem + 2.5rem);
+  padding-inline: 1.25rem;
+  @media (width >= 64rem) {
+    margin-left: 22vw;
+    padding-inline: 0;
+    max-width: 35rem;
+  }
 }
 
-@utility mesh-grid {
-  background-image: radial-gradient(
-    circle at 1px 1px,
-    color-mix(in oklch, var(--foreground) 5%, transparent) 1px,
-    transparent 0
-  );
-  background-size: 24px 24px;
+/* Scroll-driven entrance with no script; browsers without view timelines just show the content. */
+@utility on-view {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: fade-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
 }
 
 @utility no-scrollbar {

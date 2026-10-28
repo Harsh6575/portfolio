@@ -46,3 +46,5 @@ sonar-scanner.properties
 
 # superpowers brainstorming companion
 .superpowers/
+# local plans and working notes
+docs/plans/

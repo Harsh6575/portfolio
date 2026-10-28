@@ -7,11 +7,11 @@ export const TechLayerList = ({
   technologies: string[];
   className?: string;
 }) => (
-  <div className={`flex flex-wrap gap-x-4 gap-y-1 text-xs ${className}`}>
+  <p className={`text-small text-muted-foreground ${className}`}>
     {groupByLayer(technologies).map(({ layer, items }) => (
-      <span key={layer} className="text-muted-foreground">
-        <span className="font-mono text-accent/80">{layer}:</span> {items.join(", ")}
+      <span key={layer} className="mr-2">
+        <span className="font-semibold text-foreground">{layer}</span> {items.join(", ")}.
       </span>
     ))}
-  </div>
+  </p>
 );

@@ -5,14 +5,12 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { useSlidingIndicator } from "@/hooks/use-sliding-indicator";
 import { scrollToSection } from "@/lib/utils";
 
 const navItems = [
   { label: "About", href: "about" },
-  { label: "Skills", href: "skills" },
   { label: "Experience", href: "experience" },
-  { label: "Projects", href: "projects" },
+  { label: "Work", href: "projects" },
   { label: "Contact", href: "contact" },
 ];
 
@@ -22,43 +20,10 @@ const SCROLL_TARGET_MAX_AGE_MS = 5000;
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const [sectionActive, setSectionActive] = useState<string>("hero");
-  const [isScrolled, setIsScrolled] = useState(false);
 
   const router = useRouter();
   const pathname = usePathname();
-  const routeActive = pathname.startsWith("/projects") ? "projects" : "";
-  const active = pathname === "/" ? sectionActive : routeActive;
-  const { containerRef, registerItem, indicatorRect } = useSlidingIndicator<HTMLElement>(active);
-
-  // Section tracking only applies on "/"; other routes derive active state from pathname.
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-
-      if (pathname !== "/") return;
-
-      // Ties the hero reset to real section position instead of a fixed scrollY guess.
-      const firstSection = document.getElementById(navItems[0].href);
-      if (firstSection && firstSection.getBoundingClientRect().top > 180) {
-        setSectionActive("hero");
-        return;
-      }
-      navItems.forEach(item => {
-        const section = document.getElementById(item.href);
-        if (section) {
-          const { top, bottom } = section.getBoundingClientRect();
-          if (top <= 180 && bottom >= 180) {
-            setSectionActive(item.href);
-          }
-        }
-      });
-    };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [pathname]);
+  const onProjectsRoute = pathname.startsWith("/projects");
 
   // id travels via sessionStorage (not the URL hash) since pathname can update before the hash commits.
   const handleNavClick = (id: string) => {
@@ -81,7 +46,6 @@ export const Navbar = () => {
     handleNavClick(id);
   };
 
-  // Close the mobile menu on Escape.
   useEffect(() => {
     if (!open) return;
     const onKeyDown = (e: KeyboardEvent) => {
@@ -117,101 +81,63 @@ export const Navbar = () => {
     return () => observer.disconnect();
   }, [pathname]);
 
+  const linkClass =
+    "underline-offset-[6px] decoration-1 hover:underline aria-[current=page]:underline transition-colors";
+
   return (
-    <header className="fixed top-0 left-0 w-full z-50 flex justify-center px-4 py-4 pointer-events-none">
-      <div
-        className={`w-full max-w-6xl pointer-events-auto rounded-full transition-[background-color,border-color,box-shadow,padding] duration-300 ${
-          isScrolled
-            ? "bg-background/70 backdrop-blur-md border border-border/40 shadow-lg px-6 py-2"
-            : "bg-transparent border border-transparent px-6 py-3"
-        }`}
+    <header className="absolute inset-x-0 top-0 z-50 flex items-center justify-between px-5 pt-6 lg:px-10 lg:pt-8">
+      <Link
+        href="/#hero"
+        aria-label="Harsh Vansjaliya, back to top"
+        onClick={e => handleNavLinkClick(e, "hero")}
+        className="block size-10 transition-transform duration-150 hover:-translate-y-0.5 motion-reduce:transform-none"
       >
-        <div className="flex items-center justify-between">
-          {/* Logo */}
+        <Image src="/hv-logo.svg" alt="" width={40} height={40} className="size-10" />
+      </Link>
+
+      <nav aria-label="Main" className="hidden md:flex items-center gap-7 text-[15px]">
+        {navItems.map(item => (
           <Link
-            href="/#hero"
-            aria-label="Harsh Vansjaliya, back to top"
-            onClick={e => handleNavLinkClick(e, "hero")}
-            className="flex items-center group relative cursor-pointer rounded-full focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px]"
+            key={item.href}
+            href={`/#${item.href}`}
+            aria-current={onProjectsRoute && item.href === "projects" ? "page" : undefined}
+            onClick={e => handleNavLinkClick(e, item.href)}
+            className={linkClass}
           >
-            <div className="relative overflow-hidden w-9 h-9 md:w-10 md:h-10 rounded-full border border-border bg-muted flex items-center justify-center">
-              <Image
-                src="/hv-logo.svg"
-                alt=""
-                className="w-full h-full object-cover dark:invert"
-                width={40}
-                height={40}
-              />
-            </div>
+            {item.label}
           </Link>
+        ))}
+      </nav>
 
-          {/* Desktop Nav */}
-          <nav
-            ref={containerRef}
-            className="relative hidden md:flex items-center gap-1 bg-muted/40 p-1 rounded-full border border-border/10"
-          >
-            {indicatorRect && (
-              <span
-                aria-hidden="true"
-                className="absolute top-1 bottom-1 bg-foreground rounded-full border border-background/10 transition-[left,width] duration-300 ease-out motion-reduce:transition-none"
-                style={{ left: indicatorRect.left, width: indicatorRect.width }}
-              />
-            )}
-            {navItems.map(item => (
-              <Link
-                href={`/#${item.href}`}
-                aria-current={active === item.href ? "page" : undefined}
-                key={item.href}
-                ref={registerItem(item.href)}
-                onClick={e => handleNavLinkClick(e, item.href)}
-                className={`relative z-10 px-4 py-1.5 text-xs font-semibold rounded-full transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] ${
-                  active === item.href
-                    ? "text-background"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+      <button
+        aria-expanded={open}
+        aria-controls="mobile-nav"
+        aria-label="Toggle navigation"
+        onClick={() => setOpen(!open)}
+        className="md:hidden flex size-11 items-center justify-center cursor-pointer"
+      >
+        {open ? <X size={22} /> : <Menu size={22} />}
+      </button>
 
-          {/* Mobile Menu Button */}
-          <button
-            aria-expanded={open}
-            className="md:hidden p-2 rounded-full border border-border/30 hover:bg-muted text-foreground transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px]"
-            onClick={() => setOpen(!open)}
-            aria-label="Toggle navigation"
-            aria-controls="mobile-nav"
-          >
-            {open ? <X size={18} /> : <Menu size={18} />}
-          </button>
-        </div>
-
-        {/* Mobile Nav */}
-        {open && (
-          <nav
-            id="mobile-nav"
-            className="md:hidden absolute left-4 right-4 mt-3 bg-background/95 backdrop-blur-xl border border-border/40 rounded-3xl p-4 shadow-xl space-y-2 flex flex-col pointer-events-auto"
-            aria-label="Mobile navigation"
-          >
-            {navItems.map(item => (
-              <Link
-                href={`/#${item.href}`}
-                aria-current={active === item.href ? "page" : undefined}
-                key={item.href}
-                onClick={e => handleNavLinkClick(e, item.href)}
-                className={`w-full text-left px-4 py-2.5 text-sm font-semibold rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] ${
-                  active === item.href
-                    ? "bg-primary/10 text-primary border border-primary/20"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground border border-transparent"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        )}
-      </div>
+      {open && (
+        <nav
+          id="mobile-nav"
+          aria-label="Mobile navigation"
+          className="md:hidden absolute inset-x-0 top-full mt-2 flex flex-col bg-card px-5 py-4 shadow-2xl animate-fade-up motion-reduce:animate-none"
+        >
+          {navItems.map(item => (
+            <Link
+              key={item.href}
+              href={`/#${item.href}`}
+              aria-current={onProjectsRoute && item.href === "projects" ? "page" : undefined}
+              onClick={e => handleNavLinkClick(e, item.href)}
+              className={`py-3 text-lead font-semibold ${linkClass}`}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+      )}
     </header>
   );
 };

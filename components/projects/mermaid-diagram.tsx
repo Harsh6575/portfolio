@@ -1,10 +1,8 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
-import { useTheme } from "next-themes";
 
 export const MermaidDiagram = ({ chart }: { chart: string }) => {
-  const { resolvedTheme } = useTheme();
   const id = useId().replace(/:/g, "");
   const [svg, setSvg] = useState("");
 
@@ -15,7 +13,7 @@ export const MermaidDiagram = ({ chart }: { chart: string }) => {
     import("mermaid").then(async ({ default: mermaid }) => {
       mermaid.initialize({
         startOnLoad: false,
-        theme: resolvedTheme === "dark" ? "dark" : "neutral",
+        theme: "dark",
         fontFamily: "inherit",
       });
       try {
@@ -29,21 +27,17 @@ export const MermaidDiagram = ({ chart }: { chart: string }) => {
     return () => {
       cancelled = true;
     };
-  }, [chart, id, resolvedTheme]);
+  }, [chart, id]);
 
   if (!svg) {
-    return (
-      <pre className="bg-muted border border-border rounded-xl p-4 overflow-x-auto text-xs font-mono mb-4">
-        {chart}
-      </pre>
-    );
+    return <pre className="bg-card p-5 overflow-x-auto text-small font-mono mb-6">{chart}</pre>;
   }
 
   return (
     <div
       role="img"
       aria-label="Architecture diagram"
-      className="bg-muted/40 border border-border rounded-xl p-4 mb-6 overflow-x-auto flex justify-center [&_svg]:max-w-full [&_svg]:h-auto"
+      className="bg-card p-5 mb-6 overflow-x-auto flex justify-center [&_svg]:max-w-full [&_svg]:h-auto"
       dangerouslySetInnerHTML={{ __html: svg }}
     />
   );

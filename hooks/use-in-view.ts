@@ -33,5 +33,11 @@ export function useInView<T extends HTMLElement>(opts?: {
     return () => observer.disconnect();
   }, [opts?.threshold, opts?.rootMargin]);
 
-  return { ref, isInView };
+  // Hidden only when the html has the js class, so the content still shows if scripts never run.
+  const reveal = (step = 0, className = "") => ({
+    className: `${className} ${isInView ? "animate-fade-up motion-reduce:animate-none" : "in-[.js]:opacity-0"}`,
+    style: { animationDelay: `${step * 80}ms` },
+  });
+
+  return { ref, isInView, reveal };
 }

@@ -14,7 +14,7 @@ export default async function Home() {
     <>
       <Hero />
       <About />
-      <Skills projects={projects} />
+      <Skills />
       <Experience projectSummaries={projectSummaries} />
       <Projects projects={projects} />
       <Contact />

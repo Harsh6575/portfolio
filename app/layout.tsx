@@ -1,12 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Hind, Space_Mono } from "next/font/google";
+import { Figtree, League_Spartan } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 
 import { Analytics } from "@vercel/analytics/next";
-import { ThemeProvider } from "@/components/theme-provider";
-import { ThemeToggle } from "@/components/theme-toggle";
 import {
   APP_URL,
   APP_NAME,
@@ -19,16 +17,17 @@ import {
   LEETCODE_URL,
 } from "@/constants";
 
-const hind = Hind({
+const figtree = Figtree({
   subsets: ["latin"],
-  variable: "--font-hind",
-  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-figtree",
+  weight: ["400", "600"],
+  style: ["normal", "italic"],
 });
 
-const spaceMono = Space_Mono({
+const leagueSpartan = League_Spartan({
   subsets: ["latin"],
-  variable: "--font-space-mono",
-  weight: ["400", "700"],
+  variable: "--font-league-spartan",
+  weight: ["700"],
 });
 
 export const metadata: Metadata = {
@@ -106,10 +105,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#FDFCFA" },
-    { media: "(prefers-color-scheme: dark)", color: "#090D16" },
-  ],
+  themeColor: "#0f0f0f",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({
@@ -119,83 +116,77 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${hind.variable} ${spaceMono.variable} antialiased font-hind`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-          key={"harsh-vansjaliya-portfolio"}
+      <body className={`${figtree.variable} ${leagueSpartan.variable}`}>
+        <script
+          dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: APP_NAME,
+              url: APP_URL,
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "@id": APP_URL,
+              name: APP_NAME,
+              jobTitle: APP_TITLE,
+              description: APP_DESCRIPTION,
+              url: APP_URL,
+              image: `${APP_URL}/hv-logo.svg`,
+              sameAs: [LINKED_IN_URL, GITHUB_URL, X_URL, LEETCODE_URL],
+              address: {
+                "@type": "PostalAddress",
+                addressCountry: "IN",
+              },
+              worksFor: {
+                "@type": "Organization",
+                name: CURRENT_COMPANY,
+              },
+              alumniOf: {
+                "@type": "EducationalOrganization",
+                name: "SVIT Vasad (GTU)",
+              },
+              knowsAbout: [
+                "Full-Stack Development",
+                "Backend Development",
+                "React",
+                "Next.js",
+                "TypeScript",
+                "Node.js",
+                "Python",
+                "PostgreSQL",
+                "Docker",
+                "Redis",
+                "BullMQ",
+                "n8n Automation",
+                "Stripe",
+                "System Design",
+                "API Architecture",
+                "Fintech Systems",
+              ],
+            }),
+          }}
+        />
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:bg-primary focus:px-4 focus:py-2 focus:text-small focus:font-semibold focus:text-primary-foreground"
         >
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "WebSite",
-                name: APP_NAME,
-                url: APP_URL,
-              }),
-            }}
-          />
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "Person",
-                "@id": APP_URL,
-                name: APP_NAME,
-                jobTitle: APP_TITLE,
-                description: APP_DESCRIPTION,
-                url: APP_URL,
-                image: `${APP_URL}/hv-logo.svg`,
-                sameAs: [LINKED_IN_URL, GITHUB_URL, X_URL, LEETCODE_URL],
-                address: {
-                  "@type": "PostalAddress",
-                  addressCountry: "IN",
-                },
-                worksFor: {
-                  "@type": "Organization",
-                  name: CURRENT_COMPANY,
-                },
-                alumniOf: {
-                  "@type": "EducationalOrganization",
-                  name: "SVIT Vasad (GTU)",
-                },
-                knowsAbout: [
-                  "Full-Stack Development",
-                  "Backend Development",
-                  "React",
-                  "Next.js",
-                  "TypeScript",
-                  "Node.js",
-                  "Python",
-                  "PostgreSQL",
-                  "Docker",
-                  "Redis",
-                  "BullMQ",
-                  "n8n Automation",
-                  "Stripe",
-                  "System Design",
-                  "API Architecture",
-                  "Fintech Systems",
-                ],
-              }),
-            }}
-          />
-          <a
-            href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-full focus:bg-foreground focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-background"
-          >
-            Skip to content
-          </a>
-          <Navbar />
-          <main id="main-content">{children}</main>
-          <ThemeToggle />
-          <Footer />
-          <Analytics />
-        </ThemeProvider>
+          Skip to content
+        </a>
+        <Navbar />
+        <main id="main-content">{children}</main>
+        <Footer />
+        <Analytics />
       </body>
     </html>
   );

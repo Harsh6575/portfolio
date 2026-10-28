@@ -2,47 +2,32 @@ import { getAllProjects, getProjectBySlug } from "@/lib/projects";
 import { notFound } from "next/navigation";
 import { APP_URL, APP_NAME } from "@/constants";
 import Link from "next/link";
-import { ArrowLeft, Calendar, ExternalLink } from "lucide-react";
-import { FaGithub } from "react-icons/fa6";
+import { Button } from "@/components/ui/button";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { Metadata } from "next";
 import { MermaidDiagram } from "@/components/projects/mermaid-diagram";
+import { TechLayerList } from "@/components/tech-layer-list";
 
 const markdownComponents: Components = {
-  h2: props => (
-    <h2 className="text-xl font-bold text-foreground mt-10 mb-4 scroll-mt-24" {...props} />
-  ),
-  h3: props => (
-    <h3 className="text-lg font-bold text-foreground mt-8 mb-3 scroll-mt-24" {...props} />
-  ),
-  p: props => (
-    <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-4" {...props} />
-  ),
-  ul: props => (
-    <ul className="space-y-2 mb-4 list-disc list-inside text-sm text-muted-foreground" {...props} />
-  ),
-  ol: props => (
-    <ol
-      className="space-y-2 mb-4 list-decimal list-inside text-sm text-muted-foreground"
-      {...props}
-    />
-  ),
-  li: props => <li className="leading-relaxed" {...props} />,
+  h2: props => <h2 className="on-view text-lead font-semibold mt-16 mb-4" {...props} />,
+  h3: props => <h3 className="on-view font-semibold mt-10 mb-3" {...props} />,
+  p: props => <p className="on-view mb-5" {...props} />,
+  ul: props => <ul className="on-view space-y-2 mb-5 list-disc pl-5" {...props} />,
+  ol: props => <ol className="on-view space-y-2 mb-5 list-decimal pl-5" {...props} />,
+  li: props => <li {...props} />,
   a: ({ href, ...props }) => {
     const isExternal = href?.startsWith("http");
     return (
       <a
         href={href}
-        className="text-primary underline underline-offset-4 hover:text-primary/80"
+        className="underline underline-offset-4 hover:no-underline"
         {...(isExternal && { target: "_blank", rel: "noopener noreferrer" })}
         {...props}
       />
     );
   },
-  code: props => (
-    <code className="bg-muted text-foreground px-1.5 py-0.5 rounded text-xs font-mono" {...props} />
-  ),
+  code: props => <code className="bg-card px-1.5 py-0.5 text-[0.9em] font-mono" {...props} />,
   pre: ({ node, ...props }) => {
     const code = node?.children[0];
     if (
@@ -53,14 +38,9 @@ const markdownComponents: Components = {
       const chart = code.children.map(child => (child.type === "text" ? child.value : "")).join("");
       return <MermaidDiagram chart={chart} />;
     }
-    return (
-      <pre
-        className="bg-muted border border-border rounded-xl p-4 overflow-x-auto text-xs font-mono mb-4"
-        {...props}
-      />
-    );
+    return <pre className="bg-card p-5 overflow-x-auto text-small font-mono mb-6" {...props} />;
   },
-  strong: props => <strong className="text-foreground font-bold" {...props} />,
+  strong: props => <strong className="font-semibold" {...props} />,
 };
 
 export async function generateStaticParams() {
@@ -101,8 +81,13 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
     notFound();
   }
 
+  const [name, subtitle] = project.title.split(" - ");
+  const [primaryLink, ...otherLinks] = project.links;
+  const linkLabel = (link: (typeof project.links)[number]) =>
+    link.label || (link.type === "github" ? "Source code" : "Live site");
+
   return (
-    <article className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 min-h-screen">
+    <article className="min-h-svh pt-40 pb-32">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -121,68 +106,58 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           }),
         }}
       />
-      <div className="max-w-3xl mx-auto">
-        <Link
-          href="/projects"
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors mb-8"
-        >
-          <ArrowLeft className="w-3.5 h-3.5" />
-          Back to Projects
-        </Link>
-
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          <span className="text-[9px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md border border-border text-muted-foreground bg-muted/60">
-            {project.category}
+      <div className="column">
+        <h1 className="font-display text-display font-bold tracking-[-0.04em] lg:w-[60vw]">
+          <span className="block overflow-hidden pb-[0.08em]">
+            <span className="block animate-rise motion-reduce:animate-none">{name}</span>
           </span>
-          <span className="text-[9px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md border bg-primary/10 text-primary border-primary/20">
-            {project.status}
-          </span>
-        </div>
-
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight text-balance mb-3">
-          {project.title}
         </h1>
+        <div className="animate-fade-up [animation-delay:300ms] motion-reduce:animate-none">
+          {subtitle && <p className="mt-4 text-lead font-semibold">{subtitle}</p>}
+          <p className="mt-4 text-lead">{project.description}</p>
+          <p className="mt-6 text-small text-muted-foreground tabular-nums">
+            {project.category} · {project.status} · {project.date}
+          </p>
+          <TechLayerList technologies={project.technologies} className="mt-2" />
 
-        <div className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground mb-8">
-          <Calendar className="w-3.5 h-3.5" />
-          <span>{project.date}</span>
-        </div>
-
-        <div className="flex flex-wrap gap-1.5 mb-10">
-          {project.technologies.map(tech => (
-            <span
-              key={tech}
-              className="text-[10px] font-bold rounded-md bg-muted border border-border text-muted-foreground px-2.5 py-1"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-
-        {project.links.length > 0 && (
-          <div className="flex flex-wrap gap-2.5 mb-12">
-            {project.links.map((link, idx) => (
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+            {primaryLink ? (
+              <Button asChild size="lg">
+                <a href={primaryLink.url} target="_blank" rel="noopener noreferrer">
+                  {linkLabel(primaryLink)}
+                </a>
+              </Button>
+            ) : (
+              <Button asChild size="lg">
+                <Link href="/#contact">Ask me about it</Link>
+              </Button>
+            )}
+            {otherLinks.map(link => (
               <a
-                key={idx}
+                key={link.url}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 rounded-full text-xs font-semibold px-4.5 py-2.5 border transition-colors duration-200 bg-foreground border-foreground text-background hover:bg-foreground/90"
+                className="font-semibold underline underline-offset-4 hover:no-underline"
               >
-                {link.type === "github" ? (
-                  <FaGithub className="w-4 h-4" />
-                ) : (
-                  <ExternalLink className="w-3.5 h-3.5" />
-                )}
-                <span>{link.label || (link.type === "github" ? "Source Code" : "Live")}</span>
+                {linkLabel(link)}
               </a>
             ))}
           </div>
-        )}
+        </div>
 
-        <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
-          {project.content}
-        </ReactMarkdown>
+        <div className="mt-16">
+          <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+            {project.content}
+          </ReactMarkdown>
+        </div>
+
+        <Link
+          href="/projects"
+          className="mt-16 inline-block font-semibold underline underline-offset-4 hover:no-underline"
+        >
+          All projects
+        </Link>
       </div>
     </article>
   );

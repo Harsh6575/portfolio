@@ -4,8 +4,6 @@ export const CURRENT_COMPANY: string = "Alite Projects";
 export const PREV_COMPANY: string = "AlgoAcharya";
 export const APP_NAME: string = "Harsh Vansjaliya";
 export const APP_TITLE: string = "Full-Stack Developer";
-export const APP_SUBTITLE: string = "Building High-Performance Web Applications";
-export const APP_TAGLINE: string = `I build products end to end: React/Next.js frontends, Node.js APIs, and the PostgreSQL schemas underneath, with ${TOTAL_EXPERIENCE}+ years shipping production code`;
 export const APP_DESCRIPTION: string = `Harsh Vansjaliya is a full-stack developer in India, with ${TOTAL_EXPERIENCE}+ years building scalable web apps and fintech systems using Next.js, TypeScript, Node.js & PostgreSQL.`;
 export const RESUME_URL: string =
   "https://raw.githubusercontent.com/Harsh6575/portfolio-data/main/assets/Harsh_Vansjaliya_Resume.pdf";
@@ -32,5 +30,3 @@ export const EDUCATION = [
     description: "Focused on Software Engineering, Data Structures, and Algorithms.",
   },
 ];
-
-export const EXPERIENCE_SUBTITLE: string = "Where I've worked, and what I built while I was there";

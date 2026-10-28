@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { TieredProjectList } from "@/components/projects/tiered-project-list";
+import { ProjectLedger } from "@/components/projects/project-ledger";
 import type { Project } from "@/lib/projects";
 
 type ProjectCategory = "all" | "backend" | "fullstack" | "fintech";
@@ -30,17 +30,17 @@ export const ProjectsList = ({ projects }: { projects: Project[] }) => {
   return (
     <div>
       {/* Filter categories tabs controller */}
-      <div className="flex flex-wrap gap-2 mb-12 border-b border-border">
+      <div className="flex flex-wrap gap-x-6 gap-y-2 mb-10">
         {filterTabs.map(tab => (
           <button
             key={tab.id}
             type="button"
             aria-pressed={selectedFilter === tab.id}
             onClick={() => setSelectedFilter(tab.id)}
-            className={`px-1 pb-3 -mb-px text-xs font-bold transition-colors shrink-0 cursor-pointer border-b-2 mr-6 focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] rounded-xs ${
+            className={`min-h-11 cursor-pointer underline-offset-[6px] transition-colors ${
               selectedFilter === tab.id
-                ? "text-foreground border-primary"
-                : "text-muted-foreground border-transparent hover:text-foreground"
+                ? "font-semibold underline"
+                : "text-muted-foreground hover:text-foreground"
             }`}
           >
             {tab.label}
@@ -49,11 +49,11 @@ export const ProjectsList = ({ projects }: { projects: Project[] }) => {
       </div>
 
       {filteredProjects.length === 0 ? (
-        <p className="py-12 text-sm text-muted-foreground">
+        <p className="py-12 text-muted-foreground">
           No projects in this category yet. Try All Projects.
         </p>
       ) : (
-        <TieredProjectList projects={filteredProjects} className="divide-y divide-border" />
+        <ProjectLedger projects={filteredProjects} />
       )}
     </div>
   );
